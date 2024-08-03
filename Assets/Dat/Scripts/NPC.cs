@@ -39,6 +39,10 @@ public class NPC : MonoBehaviour
             case NPCAction.Greeting:
                 _animator.SetTrigger("Greeting");
                 break;
+            
+            case NPCAction.Talking:
+                _animator.SetTrigger("Talking");
+                break;
 
             default:
                 _animator.SetTrigger("Idle");

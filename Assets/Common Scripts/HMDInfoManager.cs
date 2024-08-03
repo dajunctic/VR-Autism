@@ -24,9 +24,4 @@ public class HMDInfoManager : MonoBehaviour
             Dz.Log("We have a headset " + XRSettings.loadedDeviceName);
         }
     }
-
-    private void Update()
-    {
-        
-    }
 }
