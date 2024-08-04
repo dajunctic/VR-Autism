@@ -53,7 +53,8 @@ public class NPC : MonoBehaviour
 }
 
 
-public enum NPCAction{
+public enum NPCAction
+{
     PickingFruit,
     Walking,
     Waving,
