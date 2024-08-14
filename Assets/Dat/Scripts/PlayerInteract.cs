@@ -8,17 +8,32 @@ public class PlayerInteract : MonoBehaviour
 
     private void Update()
     {
+        var colliderArray = Physics.OverlapSphere(transform.position, interactRange);
+        var showChatInteract = false;
+            
+            
+        foreach (var col in colliderArray)
+        {
+            if (col.TryGetComponent<NPCInteractable>(out var npcInteractable))
+            {
+                showChatInteract = true;
+            }
+        }
+
+        DialogueManager.Inst.DisplayChatInteractUI(showChatInteract);
+        
         if (Input.GetKeyDown(KeyCode.F))
         {
-            var colliderArray = Physics.OverlapSphere(transform.position, interactRange);
-
-            foreach (var collider in colliderArray)
+            if (DialogueManager.Inst.InConversation) return;
+            
+            foreach (var col in colliderArray)
             {
-                if (collider.TryGetComponent<NPCInteractable>(out var npcInteractable))
+                if (col.TryGetComponent<NPCInteractable>(out var npcInteractable))
                 {
                     npcInteractable.Interact();
                 }
             }
+
         }
     }
 }

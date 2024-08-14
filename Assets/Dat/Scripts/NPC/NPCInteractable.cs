@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class NPCInteractable : MonoBehaviour
 {
-    [SerializeField] private NPCConversation conversation;
-
+    [SerializeField] private Conversation conversation;
+    [SerializeField] private ChatBubbleUI chatBubbleUI;
     public void Interact()
     {
         Debug.Log("Start Converation with NPC");
-        ConversationManager.Instance.StartConversation(conversation);
+        DialogueManager.Inst.StartConversation(conversation, chatBubbleUI);
     }
 }

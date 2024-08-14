@@ -153,7 +153,7 @@ namespace DazuCode
     public static class EventChannelExtension
     {
         /// Use for registering with EventsManager
-        public static void SubcribeListener(this MonoBehaviour listener, EventID eventID, Action<object> callback)
+        public static void SubscribeListener(this MonoBehaviour listener, EventID eventID, Action<object> callback)
         {
             EventChannel.Instance.SubscribeListener(eventID, callback);
         }
@@ -169,8 +169,8 @@ namespace DazuCode
         {
             EventChannel.Instance.SendEvent(eventID, null);
         }
-        /// Remove event when destroy gameobject
-        public static void UnsubcribeListener(this MonoBehaviour listener, EventID eventID, Action<object> callback)
+        /// Remove event when destroy game object
+        public static void UnsubscribeListener(this MonoBehaviour listener, EventID eventID, Action<object> callback)
         {
             EventChannel.Instance.UnsubscribeListener(eventID, callback);
         }
@@ -181,6 +181,6 @@ namespace DazuCode
     public enum EventID 
     {
         None,
-
+        DialogueEnding,
     }
 }
