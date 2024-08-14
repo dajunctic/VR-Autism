@@ -20,7 +20,7 @@ public class NPC : MonoBehaviour
         
     }
 
-    private void SetAction(NPCAction action)
+    public void SetAction(NPCAction action)
     {
         switch (action)
         {
