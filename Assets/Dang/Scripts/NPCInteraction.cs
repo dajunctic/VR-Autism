@@ -15,18 +15,14 @@ public class NPCInteraction : MonoBehaviour
     int index = 0;
     private State currentState;
     
-    
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         currentState = State.Move;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
         switch (currentState)
         {
             case State.Move:
