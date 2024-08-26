@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         playerVisual.GetComponent<MeshRenderer>().enabled = false;
+        transform.eulerAngles = new Vector3(0, 180, 0);
     }
 
     private void Update()
