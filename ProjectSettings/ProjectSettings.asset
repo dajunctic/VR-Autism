@@ -817,7 +817,7 @@ PlayerSettings:
     PS5: READY_PLAYER_ME
     QNX: READY_PLAYER_ME
     Stadia: READY_PLAYER_ME
-    Standalone: READY_PLAYER_ME
+    Standalone: READY_PLAYER_ME;UNITY_PIPELINE_URP
     VisionOS: READY_PLAYER_ME
     WebGL: READY_PLAYER_ME
     Windows Store Apps: READY_PLAYER_ME
