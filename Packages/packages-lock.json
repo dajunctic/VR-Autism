@@ -315,7 +315,7 @@
     },
     "com.unity.render-pipelines.universal": {
       "version": "14.0.11",
-      "depth": 0,
+      "depth": 1,
       "source": "builtin",
       "dependencies": {
         "com.unity.mathematics": "1.2.1",
@@ -327,7 +327,7 @@
     },
     "com.unity.render-pipelines.universal-config": {
       "version": "14.0.10",
-      "depth": 1,
+      "depth": 2,
       "source": "builtin",
       "dependencies": {
         "com.unity.render-pipelines.core": "14.0.10"
@@ -335,7 +335,7 @@
     },
     "com.unity.searcher": {
       "version": "4.9.2",
-      "depth": 2,
+      "depth": 3,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -349,7 +349,7 @@
     },
     "com.unity.shadergraph": {
       "version": "14.0.11",
-      "depth": 1,
+      "depth": 2,
       "source": "builtin",
       "dependencies": {
         "com.unity.render-pipelines.core": "14.0.11",
