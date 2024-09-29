@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class MissionManager : MonoBehaviour
@@ -10,6 +11,11 @@ public class MissionManager : MonoBehaviour
     [SerializeField] private AudioClip demoMissionClip;
     [SerializeField] private RectTransform bgMission;
     [SerializeField] private RectTransform rawImage;
+    
+    [SerializeField] private TextMeshProUGUI timeText;
+
+    public DateTime StartTime;
+    public bool MissionCompleted { get; set; } = false;
     
     private void Awake()
     {
@@ -28,9 +34,20 @@ public class MissionManager : MonoBehaviour
         ShowUp();
     }
 
+    private void Update()
+    {
+        if (!MissionCompleted)
+        {
+            var timeSpan = DateTime.Now - StartTime;
+
+            timeText.text = timeSpan.ToString(@"mm\:ss");
+        }
+    }
+
     private void ShowUp()
     {
         bgMission.DOAnchorPosX(450, 0.5f).SetEase(Ease.InOutQuad);
         rawImage.DOAnchorPosX(120, 0.5f).SetEase(Ease.InOutQuad);
+        StartTime = DateTime.Now;
     }
 }

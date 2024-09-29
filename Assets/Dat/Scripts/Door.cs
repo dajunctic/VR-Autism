@@ -58,6 +58,7 @@ public class Door : MonoBehaviour
             {
                 if (_state == State.Close) Open();
                 else Close();
+                InteractController.Inst.HideDown(); 
             }
         }
     }

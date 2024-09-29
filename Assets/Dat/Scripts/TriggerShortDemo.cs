@@ -15,7 +15,8 @@ public class TriggerShortDemo : MonoBehaviour
 
             if (interactObj != null)
             {
-                
+                CompleteMission.Inst.ShowUp();
+                MissionManager.Inst.MissionCompleted = true;
             }
         }
         else
@@ -27,6 +28,11 @@ public class TriggerShortDemo : MonoBehaviour
                 TutorialController.Inst.PlayShortDemo();
             }
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        
     }
 }
 
