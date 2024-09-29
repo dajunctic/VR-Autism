@@ -7,12 +7,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Inst;
     private void Awake()
     {
-        if (Inst != null)
-        {
-            Destroy(this);
-            return;
-        }
-        
         Inst = this;
         DontDestroyOnLoad(this);
     }
