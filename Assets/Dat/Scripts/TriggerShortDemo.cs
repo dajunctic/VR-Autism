@@ -6,13 +6,32 @@ using UnityEngine;
 
 public class TriggerShortDemo : MonoBehaviour
 {
+    [SerializeField] private TriggerType triggerType;
     private void OnTriggerEnter(Collider other)
     {
-        var player = other.GetComponent<ConvaiPlayerMovement>();
-
-        if (player != null)
+        if (triggerType == TriggerType.Checkout)
         {
-            TutorialController.Inst.PlayShortDemo();
+            var interactObj = other.GetComponent<IDaarkInteractable>();
+
+            if (interactObj != null)
+            {
+                
+            }
+        }
+        else
+        {
+            var player = other.GetComponent<ConvaiPlayerMovement>();
+
+            if (player != null)
+            {
+                TutorialController.Inst.PlayShortDemo();
+            }
         }
     }
+}
+
+public enum TriggerType
+{
+    Introduce,
+    Checkout,
 }
