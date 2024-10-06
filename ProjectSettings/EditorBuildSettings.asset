@@ -8,6 +8,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Demo.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/ConvaiDemo.unity
+    guid: b73622632241a634d9fd0b1b2cd7d605
+  - enabled: 1
+    path: Assets/Scenes/Demo 1.unity
+    guid: e1b793c40df980747b159fd6e9176269
+  - enabled: 1
+    path: Assets/Scenes/Demo 2.unity
+    guid: 1728c33fb4b47e245a0598bcb1f88c83
+  - enabled: 1
+    path: Assets/Scenes/Demo 3.unity
+    guid: 3968a21f23951b942811bf09fca9e1a0
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 8975f32493b72c649a512ba10d9dfead,
       type: 2}
