@@ -4638,7 +4638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lessonDetailPanel: {fileID: 1187651247}
-  titleText: {fileID: 0}
+  titleText: {fileID: 779491957}
   descriptionText: {fileID: 0}
   closeButton: {fileID: 1292755377}
   playButton: {fileID: 1283575117}
