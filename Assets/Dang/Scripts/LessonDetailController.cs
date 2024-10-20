@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LessonDetailController : MonoBehaviour
 {
     public GameObject lessonDetailPanel; 
-    public Text titleText; 
-    public Text descriptionText; 
+    public TextMeshProUGUI titleText; 
+    public TextMeshProUGUI descriptionText; 
     public Button closeButton;
     public Button playButton;
     public string sceneName;
