@@ -34,6 +34,7 @@
     "com.unity.xr.mock-hmd": "1.4.0-preview.2",
     "com.unity.xr.oculus": "4.3.0",
     "com.unity.xr.openxr": "1.12.1",
+    "com.unity.xr.openxr.picoxr": "file:D:/Unity Project/PICO Unity OpenXR Integration SDK-1.3.0-20241011",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
