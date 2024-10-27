@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace DazuCode
+namespace Daark
 {
     public class TransformLib : MonoBehaviour {
         public static void SetStretchAnchorAll(RectTransform t)

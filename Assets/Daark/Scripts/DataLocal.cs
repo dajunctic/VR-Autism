@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using UnityEngine;
 
-namespace DazuCode
+namespace Daark
 {
     public static class DataLocal<T>
     {

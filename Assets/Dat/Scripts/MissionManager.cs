@@ -21,13 +21,8 @@ public class MissionManager : MonoBehaviour
     {
         Inst = this;
     }
-
-    private void Start()
-    {
-        StartCoroutine(TalkMission());
-    }
-
-    private IEnumerator TalkMission()
+    
+    public IEnumerator StartMission()
     {
         yield return new WaitForSeconds(2f);
         AudioManager.Inst.Play(demoMissionClip);
@@ -39,15 +34,14 @@ public class MissionManager : MonoBehaviour
         if (!MissionCompleted)
         {
             var timeSpan = DateTime.Now - StartTime;
-
-            timeText.text = timeSpan.ToString(@"mm\:ss");
+            var m = timeSpan.Hours * 60 + timeSpan.Minutes;
+            timeText.text = "Tổng thời gian: " + m.ToString("00") + "m " + timeSpan.Seconds.ToString("00") + "s";
         }
     }
 
     private void ShowUp()
     {
-        bgMission.DOAnchorPosX(450, 0.5f).SetEase(Ease.InOutQuad);
-        rawImage.DOAnchorPosX(120, 0.5f).SetEase(Ease.InOutQuad);
+        bgMission.DOAnchorPosX(260, 0.5f).SetEase(Ease.InOutQuad);
         StartTime = DateTime.Now;
     }
 }

@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Daark;
 using UnityEngine;
 
 public class Door : MonoBehaviour
 {
     [SerializeField] private Transform visual;
     [SerializeField] private Collider openBlock;
+    [SerializeField] private GameObject interactUI;
     
     private Animator _animator;
     private bool _canInteract;
@@ -22,6 +24,16 @@ public class Door : MonoBehaviour
     {
         _animator = visual.GetComponent<Animator>();
         _state = State.Close;
+        interactUI.SetActive(false);
+        this.SubscribeListener(EventID.ToggleTheDoor, (param) => { ToggleTheDoor();});
+        
+    }
+
+    public void ToggleTheDoor()
+    {
+        if (_state == State.Close) Open();
+        else Close();
+        InteractController.Inst.HideDown();
     }
 
     private void Open()
@@ -41,6 +53,8 @@ public class Door : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         InteractController.Inst.ShowUp();
+        // interactUI.transform.localScale = Vector3.one;
+        interactUI.SetActive(true);
         _canInteract = true;
     }
 
@@ -48,6 +62,8 @@ public class Door : MonoBehaviour
     {
         InteractController.Inst.HideDown();
         _canInteract = false;
+        interactUI.SetActive(true);
+
     }
 
     private void Update()

@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
-namespace DazuCode
+namespace Daark
 {
     public class EventChannel : MonoBehaviour 
     {
@@ -182,5 +182,6 @@ namespace DazuCode
     {
         None,
         DialogueEnding,
+        ToggleTheDoor,
     }
 }

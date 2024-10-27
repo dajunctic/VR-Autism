@@ -8,7 +8,7 @@ using System.Diagnostics;
 using Debug = UnityEngine.Debug;
 
 
-namespace DazuCode
+namespace Daark
 {
     public class Dz
     {

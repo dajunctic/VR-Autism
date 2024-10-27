@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using DazuCode;
+using Daark;
 using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
