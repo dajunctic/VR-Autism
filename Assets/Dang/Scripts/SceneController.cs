@@ -1,36 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
+using Daark;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class SceneController : MonoBehaviour
 {
     public static SceneController instance;
     public GameObject lessonDetailPanel;
-    public LessonDetailController lessonDetailController;
-    public List<Lesson> lessons = new List<Lesson>();
-
+    public LessonDetailUI lessonDetailUI;
+    [SerializeField] private TopicUI[] topics;
+    public LessonConfig config;
+    
     private void Awake()
     {
         instance = this;
         lessonDetailPanel.SetActive(false);
+        this.SubscribeListener(EventID.ShowLessonDetail, param => ShowLessonDetail((Lesson)param));
+        
+        Init();
     }
 
-    public void ShowLessonDetail(int lessonID)
+    private void Init()
     {
-        Lesson lesson = lessons.Find(l => l.ID == lessonID);
+        for (var i = 0; i < topics.Length; i++)
+        {
+            topics[i].Init(config.topics.Find(x => x.id == i));
+        }
+    }
+
+    public void ShowLessonDetail(Lesson lesson)
+    {
         if (lesson != null)
         {
-            GameSession.Instance.LessonID = lessonID;
-            lessonDetailController.ShowLessonDetailPanel(lesson.Title, lesson.Description, lesson.Cover);
+            lessonDetailUI.ShowLessonDetailPanel(lesson.title, lesson.description, lesson.cover);
         }
         else
         {
-            Debug.LogWarning("Lesson not found with ID: " + lessonID);
+            Debug.LogWarning("Lesson not found");
         }
     }
-    // Start is called before the first frame update
+    
     public void LoadConvaiDemo()
     {
         SceneManager.LoadScene("ConvaiDemo");

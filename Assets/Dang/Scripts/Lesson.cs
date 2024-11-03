@@ -1,20 +1,22 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
+public class Topic
+{
+    public int id;
+    public string name;
+    public List<Lesson> lessons;
+}
+
+[Serializable]
 public class Lesson
 {
-    public int ID;                 
-    public string Title;            
-    public string Description;     
-    public Sprite Cover;            
-
- 
-    public Lesson(int id, string title, string description, Sprite cover)
-    {
-        ID = id;
-        Title = title;
-        Description = description;
-        Cover = cover;
-    }
+    public int id;
+    public string sceneName;
+    public string title;            
+    public string description;     
+    public Sprite cover;            
 }
 

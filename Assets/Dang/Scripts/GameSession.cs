@@ -14,7 +14,6 @@ public class GameSession
 
     public void ResetSession()
     {
-        LessonID = 11;
         EnvironmentType = "NoDistractor";
         Level = 1;
     }

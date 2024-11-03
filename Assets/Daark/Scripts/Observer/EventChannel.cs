@@ -183,5 +183,7 @@ namespace Daark
         None,
         DialogueEnding,
         ToggleTheDoor,
+        // Menu Scene
+        ShowLessonDetail
     }
 }

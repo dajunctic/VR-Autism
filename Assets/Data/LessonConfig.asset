@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0833c42cff86554699b37c5ae20811c, type: 3}
+  m_Name: LessonConfig
+  m_EditorClassIdentifier: 
+  topics:
+  - id: 0
+    name: "K\u1EF9 n\u0103ng x\xE3 h\u1ED9i c\u01A1 b\u1EA3n"
+    lessons:
+    - id: 1
+      sceneName: 
+      title: "L\xE0m quen b\u1EA1n m\u1EDBi t\u1EA1i c\xF4ng vi\xEAn"
+      description: "H\u1ECDc l\xE0m quen b\u1EA1n m\u1EDBi t\u1EA1i c\xF4ng vi\xEAn"
+      cover: {fileID: 21300000, guid: 37b639a755a4e554589090b71cdd1eb6, type: 3}
+    - id: 2
+      sceneName: 
+      title: "L\xE0m quen b\u1EA1n m\u1EDBi trong l\u1EDBp h\u1ECDc"
+      description: "L\xE0m quen b\u1EA1n m\u1EDBi trong l\u1EDBp h\u1ECDc"
+      cover: {fileID: 0}
+    - id: 3
+      sceneName: 
+      title: "Ch\xE0o b\u1EA1n t\u1EA1i c\xF4ng vi\xEAn"
+      description: "Ch\xE0o b\u1EA1n t\u1EA1i c\xF4ng vi\xEAn"
+      cover: {fileID: 0}
+    - id: 4
+      sceneName: 
+      title: "Ch\xE0o b\u1EA1n trong l\u1EDBp h\u1ECDc"
+      description: "Ch\xE0o b\u1EA1n trong l\u1EDBp h\u1ECDc"
+      cover: {fileID: 0}
+    - id: 5
+      sceneName: 
+      title: "Nh\u1EADn bi\u1EBFt c\u1EA3m x\xFAc khu\xF4n m\u1EB7t"
+      description: "Nh\u1EADn bi\u1EBFt c\u1EA3m x\xFAc khu\xF4n m\u1EB7t"
+      cover: {fileID: 0}
+    - id: 6
+      sceneName: 
+      title: "L\u1EAFng nghe v\xE0 \u0111\xE1p l\u1EA1i"
+      description: "L\u1EAFng nghe v\xE0 \u0111\xE1p l\u1EA1i"
+      cover: {fileID: 0}
+  - id: 1
+    name: "R\xE8n luy\u1EC7n s\u1EF1 t\u1EADp trung"
+    lessons:
+    - id: 1
+      sceneName: 
+      title: "Nh\u1EADn bi\u1EBFt \xE2m thanh trong s\u1EDF th\xFA"
+      description: "Nh\u1EADn bi\u1EBFt \xE2m thanh trong s\u1EDF th\xFA"
+      cover: {fileID: 0}
+    - id: 2
+      sceneName: 
+      title: "Nh\u1EADn bi\u1EBFt m\xE0u s\u1EAFc"
+      description: "Nh\u1EADn bi\u1EBFt m\xE0u s\u1EAFc"
+      cover: {fileID: 0}
+    - id: 3
+      sceneName: 
+      title: "Theo d\xF5i \u0111\u1ED9ng v\u1EADt trong s\u1EDF th\xFA"
+      description: "Theo d\xF5i \u0111\u1ED9ng v\u1EADt trong s\u1EDF th\xFA"
+      cover: {fileID: 0}
+    - id: 4
+      sceneName: 
+      title: "Nh\xECn theo ch\u1EC9 d\u1EABn trong s\u1EDF th\xFA"
+      description: "Nh\xECn theo ch\u1EC9 d\u1EABn trong s\u1EDF th\xFA"
+      cover: {fileID: 0}
+    - id: 5
+      sceneName: 
+      title: "T\xECm \u0111\u1ED3 v\u1EADt b\u1ECB \u1EA9n"
+      description: "T\xECm \u0111\u1ED3 v\u1EADt b\u1ECB \u1EA9n"
+      cover: {fileID: 0}
+  - id: 2
+    name: "Th\u1EF1c h\xE0nh theo t\xECnh hu\u1ED1ng c\u1EE5 th\u1EC3"
+    lessons:
+    - id: 1
+      sceneName: 
+      title: 
+      description: 
+      cover: {fileID: 0}
+    - id: 2
+      sceneName: 
+      title: 
+      description: 
+      cover: {fileID: 0}
+    - id: 3
+      sceneName: 
+      title: 
+      description: 
+      cover: {fileID: 0}
+  - id: 3
+    name: "Kh\xE1m ph\xE1 m\xF4i tr\u01B0\u1EDDng"
+    lessons:
+    - id: 1
+      sceneName: 
+      title: 
+      description: 
+      cover: {fileID: 0}
+    - id: 2
+      sceneName: 
+      title: 
+      description: 
+      cover: {fileID: 0}
+    - id: 3
+      sceneName: 
+      title: 
+      description: 
+      cover: {fileID: 0}

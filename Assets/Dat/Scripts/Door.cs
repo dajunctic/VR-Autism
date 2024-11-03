@@ -52,18 +52,19 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        InteractController.Inst.ShowUp();
-        // interactUI.transform.localScale = Vector3.one;
-        interactUI.SetActive(true);
-        _canInteract = true;
+        // InteractController.Inst.ShowUp();
+        // // interactUI.transform.localScale = Vector3.one;
+        // interactUI.SetActive(true);
+        // _canInteract = true;
+        ToggleTheDoor();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        InteractController.Inst.HideDown();
-        _canInteract = false;
-        interactUI.SetActive(true);
-
+        // InteractController.Inst.HideDown();
+        // _canInteract = false;
+        // interactUI.SetActive(true);
+        ToggleTheDoor();
     }
 
     private void Update()
