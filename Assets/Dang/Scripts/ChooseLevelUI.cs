@@ -8,10 +8,8 @@ using Newtonsoft.Json;
 
 public class ChooseLevelUI : MonoBehaviour
 {
-    public GameObject menuPanel;
     public GameObject lessonDetailPanel;
     public GameObject chooseTypePanel;
-    public GameObject chooseLevelPanel;
     public GameObject loadingPanel; 
     public Slider loadingSlider;
     public TextMeshProUGUI loadingText;
@@ -35,7 +33,7 @@ public class ChooseLevelUI : MonoBehaviour
     public void ShowChooseLevelPanel(string mission)
     {
         missionText.text = mission;
-        chooseLevelPanel.SetActive(true);
+        gameObject.SetActive(true);
     }
 
     private void SetEnvironmentLevel(int level)
@@ -46,12 +44,12 @@ public class ChooseLevelUI : MonoBehaviour
 
     void HideChooseLevelPanel()
     {
-        chooseLevelPanel.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     void BackChooseType()
     {
-        chooseLevelPanel.SetActive(false);
+        gameObject.SetActive(false);
         chooseTypePanel.SetActive(true);
     }
 
@@ -60,18 +58,17 @@ public class ChooseLevelUI : MonoBehaviour
         StartCoroutine(LoadSceneAsync());
     }
 
-    IEnumerator LoadSceneAsync()
+    private IEnumerator LoadSceneAsync()
     {
         var gameData = JsonConvert.SerializeObject(GameSession.Instance);
         PlayerPrefs.SetString("GameSession", gameData);
-        string sceneName = DetermineSceneName();
+        var sceneName = GetSceneName();
         //AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("ConvaiDemo");
+        var asyncLoad = SceneManager.LoadSceneAsync(sceneName);
         Debug.Log("Loading scene: " + sceneName);
 
         // Hide the current panel and show the loading panel
-        chooseLevelPanel.SetActive(false);
-        menuPanel.SetActive(false);
+        gameObject.SetActive(false);
         lessonDetailPanel.SetActive(false);
         chooseTypePanel.SetActive(false);
         loadingPanel.SetActive(true);
@@ -80,17 +77,15 @@ public class ChooseLevelUI : MonoBehaviour
         // While the asynchronous operation to load the new scene is not yet complete, continue updating the slider
         while (!asyncLoad.isDone)
         {
-            float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f); 
+            var progress = Mathf.Clamp01(asyncLoad.progress / 0.9f); 
             loadingSlider.value = progress;
-            loadingText.text = "Loading... " + (progress * 100).ToString("F0") + "%";
-            yield return null;
+            loadingText.text = (progress * 100).ToString("F0") + "%";
+            yield return new WaitForSeconds(0.01f);
         }
     }
 
-    private string DetermineSceneName()
+    private string GetSceneName()
     {
-        // Example: Lesson1_Distractor_Level1
-        return "Lesson" + GameSession.Instance.LessonID;
-        // return "Lesson" + GameSession.Instance.LessonID + "_" + GameSession.Instance.EnvironmentType + "_Level" + GameSession.Instance.Level;
+        return SceneController.Instance.Lesson.sceneName;
     }
 }

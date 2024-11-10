@@ -6,8 +6,6 @@ using UnityEngine.Serialization;
 
 public class LessonDetailUI : MonoBehaviour
 {
-    public GameObject lessonDetailPanel;
-    public GameObject chooseTypePanel;
     public ChooseTypeUI chooseTypeUI;
     public TextMeshProUGUI titleText; 
     public TextMeshProUGUI descriptionText;
@@ -16,32 +14,31 @@ public class LessonDetailUI : MonoBehaviour
     public Button playButton;
 
 
-    void Start()
+    private void Awake()
     {
-        closeButton.onClick.AddListener(HideLessonDetailPanel);
-        playButton.onClick.AddListener(() => ProceedToNextStep());
+        closeButton.onClick.AddListener(Hide);
+        playButton.onClick.AddListener(ProceedToNextStep);
     }
 
 
-    public void ShowLessonDetailPanel(string title, string description, Sprite cover)
+    public void Show(string title, string description, Sprite cover)
     {
         titleText.text = title;
         descriptionText.text = description;
         if (cover!= null) coverImage.sprite = cover;
-        lessonDetailPanel.SetActive(true);
+        gameObject.SetActive(true);
     }
 
    
-    void HideLessonDetailPanel()
+    void Hide()
     {
-        lessonDetailPanel.SetActive(false);
+        gameObject.SetActive(false);
     }
-
+    
     private void ProceedToNextStep()
     {
         chooseTypeUI.ShowChooseTypePanel(titleText.text);
-        lessonDetailPanel.SetActive(false);
-        chooseTypePanel.SetActive(true);
+        gameObject.SetActive(false);
     }
 
 }

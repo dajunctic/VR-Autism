@@ -78,15 +78,16 @@ MonoBehaviour:
     name: "Th\u1EF1c h\xE0nh theo t\xECnh hu\u1ED1ng c\u1EE5 th\u1EC3"
     lessons:
     - id: 1
-      sceneName: 
-      title: 
-      description: 
-      cover: {fileID: 0}
+      sceneName: Supermarket
+      title: "Mua \u0111\u1ED3 t\u1EA1i si\xEAu th\u1ECB"
+      description: "B\xE0i h\u1ECDc h\u01B0\u1EDBng d\u1EABn mua \u0111\u1ED3 t\u1EA1i
+        si\xEAu th\u1ECB."
+      cover: {fileID: 21300000, guid: 774e1205ac52a4f47a58e298d5dd7af1, type: 3}
     - id: 2
       sceneName: 
-      title: 
-      description: 
-      cover: {fileID: 0}
+      title: "D\u1ECDn d\u1EB9p ph\xF2ng"
+      description: "B\xE0i h\u1ECDc h\u01B0\u1EDBng d\u1EABn d\u1ECDn d\u1EB9p ph\xF2ng"
+      cover: {fileID: 21300000, guid: 0e7d8ebd52bd224409da2dacc67a8070, type: 3}
     - id: 3
       sceneName: 
       title: 
@@ -110,3 +111,11 @@ MonoBehaviour:
       title: 
       description: 
       cover: {fileID: 0}
+    - id: 0
+      sceneName: 
+      title: 
+      description: 
+      cover: {fileID: 0}
+  - id: 4
+    name: Test
+    lessons: []

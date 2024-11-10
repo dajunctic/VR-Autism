@@ -6,7 +6,6 @@ using UnityEngine.Serialization;
 
 public class ChooseTypeUI : MonoBehaviour
 {
-    public GameObject chooseTypePanel;
     public GameObject chooseLevelPanel;
     public GameObject lessonDetailPanel;
     public ChooseLevelUI chooseLevelUI;
@@ -17,9 +16,9 @@ public class ChooseTypeUI : MonoBehaviour
     public Button closeButton;
     public Button backButton;
 
-    private void Start()
+    private void Awake()
     {
-        chooseTypePanel.SetActive(false);
+        gameObject.SetActive(false);
         distractorButton.onClick.AddListener(() => SetEnvironmentType("Distractor"));
         noDistractorButton.onClick.AddListener(() => SetEnvironmentType("NoDistractor"));
         nextButton.onClick.AddListener(ProceedToNextStep);
@@ -30,7 +29,7 @@ public class ChooseTypeUI : MonoBehaviour
     public void ShowChooseTypePanel(string mission)
     {
         missionText.text = "Nhiệm vụ: " + mission;
-        chooseTypePanel.SetActive(true);
+        gameObject.SetActive(true);
     }
 
     private void SetEnvironmentType(string type)
@@ -42,17 +41,17 @@ public class ChooseTypeUI : MonoBehaviour
     private void ProceedToNextStep()
     {
         chooseLevelUI.ShowChooseLevelPanel(missionText.text);
-        chooseTypePanel.SetActive(false);
+        gameObject.SetActive(false);
         chooseLevelPanel.SetActive(true);
     }
     void HideChooseTypePanel()
     {
-        chooseTypePanel.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     void BackLessonDetail()
     {
-        chooseTypePanel.SetActive(false);
+        gameObject.SetActive(false);
         lessonDetailPanel.SetActive(true);
     }    
 }

@@ -8,15 +8,17 @@ using UnityEngine.UI;
 
 public class SceneController : MonoBehaviour
 {
-    public static SceneController instance;
+    public static SceneController Instance;
     public GameObject lessonDetailPanel;
     public LessonDetailUI lessonDetailUI;
     [SerializeField] private TopicUI[] topics;
     public LessonConfig config;
     
+    public Lesson Lesson { get; set; }
+    
     private void Awake()
     {
-        instance = this;
+        Instance = this;
         lessonDetailPanel.SetActive(false);
         this.SubscribeListener(EventID.ShowLessonDetail, param => ShowLessonDetail((Lesson)param));
         
@@ -35,7 +37,8 @@ public class SceneController : MonoBehaviour
     {
         if (lesson != null)
         {
-            lessonDetailUI.ShowLessonDetailPanel(lesson.title, lesson.description, lesson.cover);
+            Lesson = lesson;
+            lessonDetailUI.Show(lesson.title, lesson.description, lesson.cover);
         }
         else
         {
@@ -45,7 +48,7 @@ public class SceneController : MonoBehaviour
     
     public void LoadConvaiDemo()
     {
-        SceneManager.LoadScene("ConvaiDemo");
+        SceneManager.LoadScene("Supermarket");
     }
 
     public void LoadDemo1()
