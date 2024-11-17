@@ -184,6 +184,8 @@ namespace Daark
         DialogueEnding,
         ToggleTheDoor,
         // Menu Scene
-        ShowLessonDetail
+        ShowLessonDetail,
+        OnTriggerProcessEnter,
+        OnTriggerProcessExit
     }
 }

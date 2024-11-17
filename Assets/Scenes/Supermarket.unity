@@ -7973,6 +7973,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1836627790114235516, guid: 6d6fea070b46c0a4f8d3fc2926c579b7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 16a006efbda5d4c4ea1a17774a77d542, type: 2}
     - target: {fileID: 1923404301346663388, guid: 6d6fea070b46c0a4f8d3fc2926c579b7,
         type: 3}
       propertyPath: m_IsTrigger
@@ -8083,6 +8088,16 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2603835545539321546, guid: 6d6fea070b46c0a4f8d3fc2926c579b7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 16a006efbda5d4c4ea1a17774a77d542, type: 2}
+    - target: {fileID: 2610065059280488603, guid: 6d6fea070b46c0a4f8d3fc2926c579b7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 16a006efbda5d4c4ea1a17774a77d542, type: 2}
     - target: {fileID: 2681786041366230889, guid: 6d6fea070b46c0a4f8d3fc2926c579b7,
         type: 3}
       propertyPath: m_Camera
@@ -8103,6 +8118,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2863607875175348318, guid: 6d6fea070b46c0a4f8d3fc2926c579b7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 16a006efbda5d4c4ea1a17774a77d542, type: 2}
     - target: {fileID: 2884139027941556738, guid: 6d6fea070b46c0a4f8d3fc2926c579b7,
         type: 3}
       propertyPath: m_IsTrigger
@@ -8173,6 +8193,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 857188871}
+    - target: {fileID: 3705529625775007400, guid: 6d6fea070b46c0a4f8d3fc2926c579b7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 16a006efbda5d4c4ea1a17774a77d542, type: 2}
     - target: {fileID: 3719864242942882559, guid: 6d6fea070b46c0a4f8d3fc2926c579b7,
         type: 3}
       propertyPath: m_IsKinematic
@@ -8243,6 +8268,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4701361016816197111, guid: 6d6fea070b46c0a4f8d3fc2926c579b7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 16a006efbda5d4c4ea1a17774a77d542, type: 2}
     - target: {fileID: 4873194832020096045, guid: 6d6fea070b46c0a4f8d3fc2926c579b7,
         type: 3}
       propertyPath: m_IsTrigger
