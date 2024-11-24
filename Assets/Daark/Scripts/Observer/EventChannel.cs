@@ -186,6 +186,7 @@ namespace Daark
         // Menu Scene
         ShowLessonDetail,
         OnTriggerProcessEnter,
-        OnTriggerProcessExit
+        OnTriggerProcessExit,
+        PlaySound
     }
 }
