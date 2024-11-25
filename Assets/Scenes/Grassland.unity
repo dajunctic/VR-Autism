@@ -3367,7 +3367,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeIntroToSound: 4
   timeSoundToDescription: 4
-  timeDescription: 0
   timeToNextAnimal: 2
   animals:
   - name: 0
@@ -3375,31 +3374,37 @@ MonoBehaviour:
     sound: 3
     introductionSound: 4
     descriptionSound: 5
+    timeDescriptions: 0
   - name: 3
     cameraPos: {fileID: 1403391202}
     sound: 6
     introductionSound: 7
     descriptionSound: 8
+    timeDescriptions: 0
   - name: 4
     cameraPos: {fileID: 347271720}
     sound: 18
     introductionSound: 19
     descriptionSound: 20
+    timeDescriptions: 0
   - name: 1
     cameraPos: {fileID: 596520815}
     sound: 9
     introductionSound: 10
     descriptionSound: 11
+    timeDescriptions: 0
   - name: 5
     cameraPos: {fileID: 1598993702}
     sound: 15
     introductionSound: 16
     descriptionSound: 17
+    timeDescriptions: 0
   - name: 2
     cameraPos: {fileID: 682671638}
     sound: 12
     introductionSound: 13
     descriptionSound: 14
+    timeDescriptions: 0
   mainCamera: {fileID: 1625586401}
   cameraMoveSpeed: 2
 --- !u!4 &1483336162 stripped

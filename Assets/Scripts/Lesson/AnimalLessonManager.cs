@@ -16,10 +16,10 @@ public class AnimalLessonManager : MonoBehaviour
     }
     
     public float timeIntroToSound=4f;
-    public float timeSoundToDescription=4f;
+    public float timeSoundToDescription=15f;
     public float timeToNextAnimal = 2f;
-    
 
+    public TypeSound backgroundMusic;
     public Animal[] animals; 
     public Camera mainCamera;
     public float cameraMoveSpeed = 2f;
@@ -35,7 +35,8 @@ public class AnimalLessonManager : MonoBehaviour
     }
 
     private IEnumerator IELesson()
-    { 
+    {
+        this.SendEvent(EventID.PlaySound, backgroundMusic); 
         yield return new WaitForSeconds(2f);
         this.SendEvent(EventID.PlaySound, TypeSound.WelcomeToAnimalLesson);
         yield return new WaitForSeconds(5f);
@@ -79,10 +80,22 @@ public class AnimalLessonManager : MonoBehaviour
 
 public enum AnimalType
 {
+    // Grass Land
     Rabbit,
     Horse,
     Bear,
     Lion,
     Elephant,
     Giraffe,
+    // Farm
+    Chicken,
+    Sheep,
+    Dog,
+    Pig,
+    Cow,
+    // Ocean
+    Shark,
+    Jellyfish,
+    Dolphin,
+    Turtle
 }

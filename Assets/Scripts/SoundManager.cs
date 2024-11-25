@@ -62,9 +62,37 @@ public enum TypeSound
     ElephantDes,
     
     // Farm Animal Lesson
+    FarmSound,
     ChickenSound,
     ChickenIntro,
     ChickenDesc,
+    DogSound,
+    DogIntro,
+    DogDes,
+    SheepSound,
+    SheepIntro,
+    SheepDes,
+    CowSound,
+    CowIntro,
+    CowDes,
+    PigSound,
+    PigIntro,
+    PigDes,
+
+    // Ocean Animal Lesson
+    OceanSound,
+    SharkSound,
+    SharkIntro,
+    SharkDes,
+    DolphinSound,
+    DolphinIntro,
+    DolphinDes,
+    JellyfishSound,
+    JellyfishIntro,
+    JellyfishDes,
+    TurtleSound,
+    TurtleIntro,
+    TurtleDes,
     
     // lesson
     ThankParticipateLesson
