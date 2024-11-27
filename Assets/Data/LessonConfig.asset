@@ -21,31 +21,6 @@ MonoBehaviour:
       title: "L\xE0m quen b\u1EA1n m\u1EDBi t\u1EA1i c\xF4ng vi\xEAn"
       description: "H\u1ECDc l\xE0m quen b\u1EA1n m\u1EDBi t\u1EA1i c\xF4ng vi\xEAn"
       cover: {fileID: 21300000, guid: 37b639a755a4e554589090b71cdd1eb6, type: 3}
-    - id: 2
-      sceneName: 
-      title: "L\xE0m quen b\u1EA1n m\u1EDBi trong l\u1EDBp h\u1ECDc"
-      description: "L\xE0m quen b\u1EA1n m\u1EDBi trong l\u1EDBp h\u1ECDc"
-      cover: {fileID: 0}
-    - id: 3
-      sceneName: 
-      title: "Ch\xE0o b\u1EA1n t\u1EA1i c\xF4ng vi\xEAn"
-      description: "Ch\xE0o b\u1EA1n t\u1EA1i c\xF4ng vi\xEAn"
-      cover: {fileID: 0}
-    - id: 4
-      sceneName: 
-      title: "Ch\xE0o b\u1EA1n trong l\u1EDBp h\u1ECDc"
-      description: "Ch\xE0o b\u1EA1n trong l\u1EDBp h\u1ECDc"
-      cover: {fileID: 0}
-    - id: 5
-      sceneName: 
-      title: "Nh\u1EADn bi\u1EBFt c\u1EA3m x\xFAc khu\xF4n m\u1EB7t"
-      description: "Nh\u1EADn bi\u1EBFt c\u1EA3m x\xFAc khu\xF4n m\u1EB7t"
-      cover: {fileID: 0}
-    - id: 6
-      sceneName: 
-      title: "L\u1EAFng nghe v\xE0 \u0111\xE1p l\u1EA1i"
-      description: "L\u1EAFng nghe v\xE0 \u0111\xE1p l\u1EA1i"
-      cover: {fileID: 0}
   - id: 1
     name: "R\xE8n luy\u1EC7n s\u1EF1 t\u1EADp trung"
     lessons:
