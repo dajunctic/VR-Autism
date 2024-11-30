@@ -2579,27 +2579,27 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d155df62412156844a7451d3a320b87c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.26
+      value: -1.2600002
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d155df62412156844a7451d3a320b87c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.65
+      value: 0.47250563
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d155df62412156844a7451d3a320b87c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.74
+      value: 0.7410107
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d155df62412156844a7451d3a320b87c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99945205
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d155df62412156844a7451d3a320b87c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: -0.033101324
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d155df62412156844a7451d3a320b87c,
         type: 3}
@@ -2614,7 +2614,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d155df62412156844a7451d3a320b87c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -3.794
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d155df62412156844a7451d3a320b87c,
         type: 3}
@@ -9450,32 +9450,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 594494401}
   soundObjects:
-  - typeSound: 1
-    audioClip: {fileID: 8300000, guid: ab58c2f89ea6d3547b3ad169ee32e99e, type: 3}
-  - typeSound: 31
-    audioClip: {fileID: 8300000, guid: 7d91e4a10dda4e34d8b0e05234d089c5, type: 3}
-  - typeSound: 34
-    audioClip: {fileID: 8300000, guid: 3aaa221b0d6739043b3ad81ace54dc83, type: 3}
-  - typeSound: 25
-    audioClip: {fileID: 8300000, guid: 52157d3b64613ec45937a6f7df0f8016, type: 3}
-  - typeSound: 28
-    audioClip: {fileID: 8300000, guid: 636312ec19bfad24d94d9b5763f3eb35, type: 3}
-  - typeSound: 22
-    audioClip: {fileID: 8300000, guid: 663b1962e5170674781563388bb86c0b, type: 3}
-  - typeSound: 32
-    audioClip: {fileID: 8300000, guid: 69345be3ef053a245a29a9cd9862b41c, type: 3}
-  - typeSound: 35
-    audioClip: {fileID: 8300000, guid: 1bd7b9846d2ecd24ea91bf41a2086a0c, type: 3}
-  - typeSound: 26
-    audioClip: {fileID: 8300000, guid: c09d2c228350f6946a87aa81f8a5e73d, type: 3}
-  - typeSound: 29
-    audioClip: {fileID: 8300000, guid: e1a1d2cea5b7fa84bb688480591de6a5, type: 3}
-  - typeSound: 23
-    audioClip: {fileID: 8300000, guid: 97ba470d3cb3fe74db8b3b82bec3ecdf, type: 3}
-  - typeSound: 50
-    audioClip: {fileID: 8300000, guid: 9a2e507b335dcb74b9f9cbd01ece6d59, type: 3}
-  - typeSound: 21
+  - typeSound: 15
+    audioClip: {fileID: 8300000, guid: fa6275c5c01c04d42b9f7b42a39cc077, type: 3}
+  - typeSound: 16
+    audioClip: {fileID: 8300000, guid: 78ea58393eab8fb41b0bc448bf3fc672, type: 3}
+  - typeSound: 14
     audioClip: {fileID: 8300000, guid: e86cf3c116e76114c8ce678693b5ed2f, type: 3}
+  - typeSound: 20
+    audioClip: {fileID: 8300000, guid: a7715016f882cff4197fcaaf4c7d0b6f, type: 3}
+  - typeSound: 19
+    audioClip: {fileID: 8300000, guid: 52157d3b64613ec45937a6f7df0f8016, type: 3}
+  - typeSound: 18
+    audioClip: {fileID: 8300000, guid: f377f433ce372524787661d2c95e94d4, type: 3}
+  - typeSound: 26
+    audioClip: {fileID: 8300000, guid: 3be41bb0b5e987546891a556573ca9f6, type: 3}
+  - typeSound: 25
+    audioClip: {fileID: 8300000, guid: 3aaa221b0d6739043b3ad81ace54dc83, type: 3}
+  - typeSound: 17
+    audioClip: {fileID: 8300000, guid: 663b1962e5170674781563388bb86c0b, type: 3}
+  - typeSound: 22
+    audioClip: {fileID: 8300000, guid: 7a53abb14b2d8394fa6957e0a3eb1516, type: 3}
+  - typeSound: 21
+    audioClip: {fileID: 8300000, guid: 636312ec19bfad24d94d9b5763f3eb35, type: 3}
+  - typeSound: 23
+    audioClip: {fileID: 8300000, guid: 7d91e4a10dda4e34d8b0e05234d089c5, type: 3}
+  - typeSound: 24
+    audioClip: {fileID: 8300000, guid: 88bd4c4c79561b64fbee013c71eeb7f8, type: 3}
 --- !u!1 &1099772593
 GameObject:
   m_ObjectHideFlags: 0
@@ -13852,41 +13852,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ec74012c37bb0d41ad7e5f5a706c924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeIntroToSound: 9
-  timeSoundToDescription: 15
-  timeToNextAnimal: 2
-  backgroundMusic: 21
+  timeSoundToDescription: 4
+  backgroundMusic: 14
+  introSound: 15
+  endSound: 16
+  timeIntroSound: 6.4
   animals:
-  - name: 10
-    cameraPos: {fileID: 1349839458}
-    sound: 31
-    introductionSound: 32
-    descriptionSound: 33
-    timeDescriptions: 0
   - name: 9
-    cameraPos: {fileID: 1086236958}
-    sound: 34
-    introductionSound: 35
-    descriptionSound: 36
-    timeDescriptions: 0
-  - name: 8
-    cameraPos: {fileID: 613669256}
-    sound: 25
-    introductionSound: 26
-    descriptionSound: 27
-    timeDescriptions: 0
-  - name: 7
-    cameraPos: {fileID: 477892754}
-    sound: 28
-    introductionSound: 29
-    descriptionSound: 30
-    timeDescriptions: 0
-  - name: 6
-    cameraPos: {fileID: 885554301}
-    sound: 22
-    introductionSound: 23
+    cameraPos: {fileID: 1349839458}
+    sound: 23
     descriptionSound: 24
-    timeDescriptions: 0
+    timeDescriptions: 24.7
+  - name: 8
+    cameraPos: {fileID: 1086236958}
+    sound: 25
+    descriptionSound: 26
+    timeDescriptions: 18.8
+  - name: 7
+    cameraPos: {fileID: 613669256}
+    sound: 19
+    descriptionSound: 20
+    timeDescriptions: 17.8
+  - name: 6
+    cameraPos: {fileID: 477892754}
+    sound: 21
+    descriptionSound: 22
+    timeDescriptions: 21.3
+  - name: 5
+    cameraPos: {fileID: 885554301}
+    sound: 17
+    descriptionSound: 18
+    timeDescriptions: 20.5
   mainCamera: {fileID: 735263066}
   cameraMoveSpeed: 2
 --- !u!1 &1596737794

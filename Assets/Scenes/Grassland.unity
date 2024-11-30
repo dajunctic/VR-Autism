@@ -1141,29 +1141,27 @@ MonoBehaviour:
   audioSource: {fileID: 1436737395}
   soundObjects:
   - typeSound: 1
-    audioClip: {fileID: 8300000, guid: f453060792f2d8f4db8b4fc58ce6aa0e, type: 3}
+    audioClip: {fileID: 8300000, guid: c01fe26fb82407342bdfc7a9db0299f0, type: 3}
   - typeSound: 2
-    audioClip: {fileID: 8300000, guid: 7ccc3ff34a98bf94bb3f7ef95d51e508, type: 3}
-  - typeSound: 4
-    audioClip: {fileID: 8300000, guid: 8213156df8042bc43afb74420872ef75, type: 3}
+    audioClip: {fileID: 8300000, guid: bb136ef5c3c6eb54f80228d62b68b6f6, type: 3}
+  - typeSound: 5
+    audioClip: {fileID: 8300000, guid: 849edd589a6d71449ba3e962169a5378, type: 3}
   - typeSound: 7
-    audioClip: {fileID: 8300000, guid: 37d03a773b4e0334e825f4bfbd3518d6, type: 3}
+    audioClip: {fileID: 8300000, guid: a0880cdbdb627f54ca31e64628844d77, type: 3}
   - typeSound: 13
-    audioClip: {fileID: 8300000, guid: 148aadc9b727e6646915115b4835d193, type: 3}
+    audioClip: {fileID: 8300000, guid: e5652a84ec10ebc41a9ab0c6fac45d26, type: 3}
   - typeSound: 10
-    audioClip: {fileID: 8300000, guid: a1b36c85fda69e147b3591f295f273b0, type: 3}
-  - typeSound: 16
-    audioClip: {fileID: 8300000, guid: a88b0c4f4c2a2ef48993d83f8007a7d8, type: 3}
-  - typeSound: 3
-    audioClip: {fileID: 0}
-  - typeSound: 6
-    audioClip: {fileID: 0}
-  - typeSound: 9
-    audioClip: {fileID: 8300000, guid: ee533ee4358456443b86c3117d407134, type: 3}
-  - typeSound: 15
-    audioClip: {fileID: 8300000, guid: e7384cdfac299e8428eea33926db5b05, type: 3}
-  - typeSound: 12
     audioClip: {fileID: 8300000, guid: 4fe0fd2bbabb2e54f9d5ffd43781a8ac, type: 3}
+  - typeSound: 3
+    audioClip: {fileID: 8300000, guid: 7a4ddb6a07bd6bf449bca10de6a845cc, type: 3}
+  - typeSound: 9
+    audioClip: {fileID: 8300000, guid: 1e598003b4646154da87d29e91d8e1d0, type: 3}
+  - typeSound: 11
+    audioClip: {fileID: 8300000, guid: c32d4ff374e5a364bb94a6705b68a275, type: 3}
+  - typeSound: 8
+    audioClip: {fileID: 8300000, guid: ee533ee4358456443b86c3117d407134, type: 3}
+  - typeSound: 12
+    audioClip: {fileID: 8300000, guid: e7384cdfac299e8428eea33926db5b05, type: 3}
 --- !u!1 &297831686
 GameObject:
   m_ObjectHideFlags: 0
@@ -2982,14 +2980,6 @@ PrefabInstance:
         type: 3}
       insertIndex: 60
       addedObject: {fileID: 1848463695}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5288b5fcec2ddc341bc8ae164fbcb7de,
-        type: 3}
-      insertIndex: 61
-      addedObject: {fileID: 2081352629}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5288b5fcec2ddc341bc8ae164fbcb7de,
-        type: 3}
-      insertIndex: 62
-      addedObject: {fileID: 2042273943}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5288b5fcec2ddc341bc8ae164fbcb7de,
         type: 3}
       insertIndex: 63
@@ -4900,41 +4890,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ec74012c37bb0d41ad7e5f5a706c924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeIntroToSound: 4
   timeSoundToDescription: 4
-  timeToNextAnimal: 2
-  backgroundMusic: 0
+  backgroundMusic: 1
+  introSound: 2
+  endSound: 3
+  timeIntroSound: 7.3
   animals:
   - name: 0
     cameraPos: {fileID: 1350903315}
     sound: 6
-    introductionSound: 7
-    descriptionSound: 8
-    timeDescriptions: 0
+    descriptionSound: 7
+    timeDescriptions: 21.4
   - name: 2
     cameraPos: {fileID: 1403391202}
-    sound: 15
-    introductionSound: 16
-    descriptionSound: 17
-    timeDescriptions: 0
+    sound: 12
+    descriptionSound: 13
+    timeDescriptions: 21.9
   - name: 3
     cameraPos: {fileID: 347271720}
-    sound: 9
-    introductionSound: 10
-    descriptionSound: 11
-    timeDescriptions: 0
+    sound: 8
+    descriptionSound: 9
+    timeDescriptions: 23.1
   - name: 1
     cameraPos: {fileID: 596520815}
-    sound: 12
-    introductionSound: 13
-    descriptionSound: 14
-    timeDescriptions: 0
+    sound: 10
+    descriptionSound: 11
+    timeDescriptions: 26.8
   - name: 4
     cameraPos: {fileID: 1598993702}
-    sound: 3
-    introductionSound: 4
+    sound: 4
     descriptionSound: 5
-    timeDescriptions: 0
+    timeDescriptions: 21.7
   mainCamera: {fileID: 1625586401}
   cameraMoveSpeed: 2
 --- !u!1 &1452963168
