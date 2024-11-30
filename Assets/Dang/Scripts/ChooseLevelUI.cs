@@ -86,6 +86,6 @@ public class ChooseLevelUI : MonoBehaviour
 
     private string GetSceneName()
     {
-        return SceneController.Instance.Lesson.sceneName;
+        return SceneMenuController.Instance.Lesson.sceneName;
     }
 }

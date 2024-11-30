@@ -16,6 +16,6 @@ public class TestButton : MonoBehaviour
 
     private void Start()
     {
-        button.onClick.AddListener(SceneController.Instance.LoadConvaiDemo);
+        button.onClick.AddListener(SceneMenuController.Instance.LoadConvaiDemo);
     }
 }

@@ -1,14 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using Daark;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
-public class SceneController : MonoBehaviour
+public class SceneMenuController : MonoBehaviour
 {
-    public static SceneController Instance;
+    public static SceneMenuController Instance;
     public GameObject lessonDetailPanel;
     public LessonDetailUI lessonDetailUI;
     [SerializeField] private TopicUI[] topics;
@@ -49,21 +45,5 @@ public class SceneController : MonoBehaviour
     public void LoadConvaiDemo()
     {
         SceneManager.LoadScene("Supermarket");
-    }
-
-    public void LoadDemo1()
-    {
-        SceneManager.LoadScene("Demo 1");
-        Debug.Log("Clicked: ");
-    }
-
-    public void LoadDemo2()
-    {
-        SceneManager.LoadScene("Demo 2");
-    }
-
-    public void LoadDemo3()
-    {
-        SceneManager.LoadScene("Demo 3");
     }
 }

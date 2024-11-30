@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7117127345274769014}
   - component: {fileID: 7594396306158215799}
   m_Layer: 0
-  m_Name: ------ Convai Player ------
+  m_Name: Convai Player
   m_TagString: Player
   m_Icon: {fileID: 2800000, guid: 6bf5e2cc6144a3b408a06e7d9543c20e, type: 3}
   m_NavMeshLayer: 0

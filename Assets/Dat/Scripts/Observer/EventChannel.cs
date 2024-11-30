@@ -187,6 +187,8 @@ namespace Daark
         ShowLessonDetail,
         OnTriggerProcessEnter,
         OnTriggerProcessExit,
-        PlaySound
+        PlaySound,
+        // Change Scene
+        ChangeScene
     }
 }
