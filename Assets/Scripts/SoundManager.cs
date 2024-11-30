@@ -40,26 +40,24 @@ public enum TypeSound
     // Animal Lesson
     WelcomeToAnimalLesson,
     NextAnimal,
-    
+
     // Grass Land Animal Lesson
-    RabbitSound,
-    RabbitIntro,
-    RabbitDes,
-    LionSound,
-    LionIntro,
-    LionDes,
-    ZebraSound,
-    ZebraIntro,
-    ZebraDes,
-    BearSound,
-    BearIntro,
-    BearDes,
     GiraffeSound,
     GiraffeIntro,
     GiraffeDes,
+    RabbitSound,
+    RabbitIntro,
+    RabbitDes,
     ElephantSound,
     ElephantIntro,
     ElephantDes,
+    ZebraSound,
+    ZebraIntro,
+    ZebraDes,
+    LionSound,
+    LionIntro,
+    LionDes,
+
     
     // Farm Animal Lesson
     FarmSound,

@@ -82,8 +82,7 @@ public enum AnimalType
 {
     // Grass Land
     Rabbit,
-    Horse,
-    Bear,
+    Zebra,
     Lion,
     Elephant,
     Giraffe,
