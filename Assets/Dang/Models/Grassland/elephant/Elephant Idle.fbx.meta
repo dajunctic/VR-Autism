@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 0708a0f731011f24ba08e1c4ad828152
+guid: c8f40a4c4cf8a3f448edd440af04a454
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CH_NPC_MOB_Elephant_A01_MI_GRN
+    second: {fileID: 2100000, guid: c0798e852367ca142b83e1a24f487b03, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
