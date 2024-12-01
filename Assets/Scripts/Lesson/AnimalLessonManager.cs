@@ -10,16 +10,16 @@ public class AnimalLessonManager : MonoBehaviour
         public AnimalType name;
         public Transform cameraPos;
         public TypeSound sound;
-        public TypeSound introductionSound;
         public TypeSound descriptionSound;
         public float timeDescriptions;
     }
     
-    public float timeIntroToSound=4f;
-    public float timeSoundToDescription=15f;
-    public float timeToNextAnimal = 2f;
+    public float timeSoundToDescription=4f;
 
     public TypeSound backgroundMusic;
+    public TypeSound introSound;
+    public TypeSound endSound;
+    public float timeIntroSound;
     public Animal[] animals; 
     public Camera mainCamera;
     public float cameraMoveSpeed = 2f;
@@ -37,31 +37,23 @@ public class AnimalLessonManager : MonoBehaviour
     private IEnumerator IELesson()
     {
         this.SendEvent(EventID.PlaySound, backgroundMusic); 
-        yield return new WaitForSeconds(2f);
-        this.SendEvent(EventID.PlaySound, TypeSound.WelcomeToAnimalLesson);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1f);
+        this.SendEvent(EventID.PlaySound, introSound);
+        yield return new WaitForSeconds(timeIntroSound);
 
         for (var i = 0; i < animals.Length; i++)
         {
             var animal = animals[i];
             
             yield return MoveCameraToAnimal(animal.cameraPos);
-            this.SendEvent(EventID.PlaySound, animal.introductionSound);
-            yield return new WaitForSeconds(timeIntroToSound);
-            this.SendEvent(EventID.PlaySound, animal.sound);
-            yield return new WaitForSeconds(timeSoundToDescription);
             this.SendEvent(EventID.PlaySound, animal.descriptionSound);
             yield return new WaitForSeconds(animal.timeDescriptions);
-
-            if (i != animals.Length - 1)
-            {
-                this.SendEvent(EventID.PlaySound, TypeSound.NextAnimal);
-                yield return new WaitForSeconds(timeToNextAnimal);
-            }
+            this.SendEvent(EventID.PlaySound, animal.sound);
+            yield return new WaitForSeconds(timeSoundToDescription);
         }
         
-        yield return new WaitForSeconds(5f);
-        this.SendEvent(EventID.PlaySound, TypeSound.ThankParticipateLesson);
+        yield return new WaitForSeconds(1f);
+        this.SendEvent(EventID.PlaySound, endSound);
     }
 
     private IEnumerator MoveCameraToAnimal(Transform animalModel)

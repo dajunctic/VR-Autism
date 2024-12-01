@@ -37,63 +37,51 @@ public class SoundObject
 public enum TypeSound
 {
     None,
-    // Animal Lesson
-    WelcomeToAnimalLesson,
-    NextAnimal,
 
     // Grass Land Animal Lesson
+    GrassLandSound,
+    GrassLandIntro,
+    GrassLandEnd,
     GiraffeSound,
-    GiraffeIntro,
     GiraffeDes,
     RabbitSound,
-    RabbitIntro,
     RabbitDes,
     ElephantSound,
-    ElephantIntro,
     ElephantDes,
     ZebraSound,
-    ZebraIntro,
     ZebraDes,
     LionSound,
-    LionIntro,
     LionDes,
 
     
     // Farm Animal Lesson
     FarmSound,
+    FarmIntro,
+    FarmEnd,
     ChickenSound,
-    ChickenIntro,
     ChickenDesc,
     DogSound,
-    DogIntro,
     DogDes,
     SheepSound,
-    SheepIntro,
     SheepDes,
     CowSound,
-    CowIntro,
     CowDes,
     PigSound,
-    PigIntro,
     PigDes,
 
     // Ocean Animal Lesson
     OceanSound,
+    OceanIntro,
+    OceanEnd,
     SharkSound,
-    SharkIntro,
     SharkDes,
     DolphinSound,
-    DolphinIntro,
     DolphinDes,
     JellyfishSound,
-    JellyfishIntro,
     JellyfishDes,
     TurtleSound,
-    TurtleIntro,
     TurtleDes,
-    
-    // lesson
-    ThankParticipateLesson
+   
 }
 
 
