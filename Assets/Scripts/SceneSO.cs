@@ -23,6 +23,7 @@ public class SceneObject {
 
 public enum SceneEnum
 {
+    GameMenu,
     Supermarket,
     GrassLand,
     Farm,

@@ -5,10 +5,11 @@ using Daark;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RunMonitor : MonoBehaviour
+public class RunMonitor : BaseMono
 {
     private static RunMonitor _instance;
     [SerializeField] private SceneSO sceneSO;
+    [SerializeField] private ExitScene exitScene;
 
     private Action<object> OnChangeScene;
 
@@ -24,27 +25,18 @@ public class RunMonitor : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    private void Initialize()
+    protected override void Initialize()
     {
         OnChangeScene += param => LoadScene((SceneEnum)param);
     }
-
-    private void OnEnable()
-    {
-        ListenEvent();
-    }
-
-    private void OnDisable()
-    {   
-        StopListenEvent();
-    }
     
-    private void ListenEvent()
+    
+    protected override void ListenEvents()
     {
         this.SubscribeListener(EventID.ChangeScene, OnChangeScene);
     }
     
-    private void StopListenEvent()
+    protected override void StopListeningEvents()
     {
         this.SubscribeListener(EventID.ChangeScene, OnChangeScene);
     }
