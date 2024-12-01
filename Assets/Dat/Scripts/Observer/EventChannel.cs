@@ -7,7 +7,7 @@ namespace Daark
     public class EventChannel : MonoBehaviour 
     {
         #region Singleton
-        static EventChannel _instance;
+        private static EventChannel _instance;
 
         public static EventChannel Instance 
         {
@@ -24,8 +24,6 @@ namespace Daark
                 }
                 return _instance;
             }
-
-            private set { }
         }
 
         public static bool IsInstance() 
@@ -46,13 +44,13 @@ namespace Daark
             }
         }
 
-        // private void OnDestroy() {
-        //     if (_instance == this) 
-        //     {
-        //         ClearAllListener();
-        //         _instance = null;
-        //     }
-        // }
+        private void OnDestroy() {
+            if (_instance == this) 
+            {
+                ClearAllListener();
+                _instance = null;
+            }
+        }
 
         #endregion
 
@@ -190,6 +188,6 @@ namespace Daark
         PlaySound,
         // Change Scene
         ChangeScene,
-        ShowExitSceneUI
+        ExitScene
     }
 }

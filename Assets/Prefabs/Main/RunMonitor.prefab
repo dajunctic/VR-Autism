@@ -45,3 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneSO: {fileID: 11400000, guid: f18bec51113184f48b701083ac75b97a, type: 2}
+  exitScene: {fileID: 3828468543886525153, guid: c2425aa93186f964292fe864cdedc4d9,
+    type: 3}

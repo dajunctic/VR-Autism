@@ -1,5 +1,6 @@
 using System.Collections;
 using Daark;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class AnimalLessonManager : MonoBehaviour
@@ -13,19 +14,25 @@ public class AnimalLessonManager : MonoBehaviour
         public TypeSound descriptionSound;
         public float timeDescriptions;
     }
-    
+
+    [SerializeField] private bool turnOff;
     public float timeSoundToDescription=4f;
 
     public TypeSound backgroundMusic;
     public TypeSound introSound;
     public TypeSound endSound;
     public float timeIntroSound;
-    public Animal[] animals; 
-    public Camera mainCamera;
+    public Transform mainCamera;
     public float cameraMoveSpeed = 2f;
+    [SerializeField] private Transform rootPosition;
+    [SerializeField] private bool isInVR;
+    [ShowIf("@isInVR==true")]
+    [SerializeField] private Vector3 offsetVR;
+    public Animal[] animals;
     
     private void Start()
     {
+        if (turnOff) return;
         StartLesson();
     }
 
@@ -54,12 +61,16 @@ public class AnimalLessonManager : MonoBehaviour
         
         yield return new WaitForSeconds(1f);
         this.SendEvent(EventID.PlaySound, endSound);
+        
+        yield return new WaitForSeconds(5f);
+        
+        StartCoroutine(MoveCameraToAnimal(rootPosition, true));
     }
 
-    private IEnumerator MoveCameraToAnimal(Transform animalModel)
+    private IEnumerator MoveCameraToAnimal(Transform animalModel, bool end=false)
     {
-        Vector3 targetPosition = animalModel.position; 
-        Quaternion targetRotation = animalModel.rotation;
+        var targetPosition = animalModel.position + (isInVR ? offsetVR : Vector3.zero); 
+        var targetRotation = animalModel.rotation;
 
         while (Vector3.Distance(mainCamera.transform.position, targetPosition) > 0.1f)
         {
@@ -67,6 +78,8 @@ public class AnimalLessonManager : MonoBehaviour
             mainCamera.transform.rotation = Quaternion.Lerp(mainCamera.transform.rotation, targetRotation, Time.deltaTime * cameraMoveSpeed);
             yield return null;
         }
+        
+        if (end) this.SendEvent(EventID.ExitScene);
     }
 }
 

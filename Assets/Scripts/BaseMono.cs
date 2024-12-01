@@ -7,12 +7,11 @@ public abstract class BaseMono : MonoBehaviour
 {
     private void Awake()
     {
-        throw new NotImplementedException();
+        Initialize();
     }
 
     private void OnEnable()
     {
-        Initialize();
         ListenEvents();
     }
 
@@ -21,9 +20,16 @@ public abstract class BaseMono : MonoBehaviour
         StopListeningEvents();
     }
 
-    
+    private void Update()
+    {
+        Tick();
+    }
+
+
     protected virtual void Initialize() { }
     protected virtual void ListenEvents() { }
 
     protected virtual void StopListeningEvents() { }
+
+    protected virtual void Tick() { }
 }

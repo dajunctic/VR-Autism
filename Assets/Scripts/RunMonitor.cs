@@ -9,36 +9,37 @@ public class RunMonitor : BaseMono
 {
     private static RunMonitor _instance;
     [SerializeField] private SceneSO sceneSO;
-    [SerializeField] private ExitScene exitScene;
+    
+    private ExitScene _exitScene;
 
     private Action<object> OnChangeScene;
+    private Action<object> OnExitScene;
 
-    private void Awake()
+    protected override void Initialize()
     {
         if (_instance != null)
         {
             Destroy(this);
             return;
         }
-
+        
         _instance = this;
         DontDestroyOnLoad(this);
+        
+        OnChangeScene = param => LoadScene((SceneEnum)param);
+        OnExitScene = param => ExitScene();
     }
-
-    protected override void Initialize()
-    {
-        OnChangeScene += param => LoadScene((SceneEnum)param);
-    }
-    
     
     protected override void ListenEvents()
     {
         this.SubscribeListener(EventID.ChangeScene, OnChangeScene);
+        this.SubscribeListener(EventID.ExitScene, OnExitScene);
     }
     
     protected override void StopListeningEvents()
     {
-        this.SubscribeListener(EventID.ChangeScene, OnChangeScene);
+        this.UnsubscribeListener(EventID.ChangeScene, OnChangeScene);
+        this.UnsubscribeListener(EventID.ExitScene, OnExitScene);
     }
     
     private void LoadScene(SceneEnum sceneEnum)
@@ -46,4 +47,10 @@ public class RunMonitor : BaseMono
         SceneManager.LoadScene(sceneSO.GetSceneName(sceneEnum));
     }
 
+    private void ExitScene()
+    {
+        var exitScene = FindObjectOfType<ExitScene>(true);
+        if (exitScene == null) return;
+        exitScene.ShowUp();
+    }
 }

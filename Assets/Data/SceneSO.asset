@@ -14,16 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneLists:
   - sceneEnum: 0
-    name: Supermarket
+    name: GameMenu
   - sceneEnum: 1
-    name: Grassland
+    name: Supermarket
   - sceneEnum: 2
-    name: Farm
+    name: Grassland
   - sceneEnum: 3
-    name: Ocean
+    name: Farm
   - sceneEnum: 4
-    name: TidyRoom
+    name: Ocean
   - sceneEnum: 5
-    name: Bathroom
+    name: TidyRoom
   - sceneEnum: 6
+    name: Bathroom
+  - sceneEnum: 7
     name: Classroom

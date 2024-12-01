@@ -1,3 +1,4 @@
+using System;
 using Daark;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,14 +12,22 @@ public class SceneMenuController : MonoBehaviour
     public LessonConfig config;
     
     public Lesson Lesson { get; set; }
+    private Action<object> ShowLessonDetails;
     
     private void Awake()
     {
         Instance = this;
         lessonDetailPanel.SetActive(false);
-        this.SubscribeListener(EventID.ShowLessonDetail, param => ShowLessonDetail((Lesson)param));
+
+        ShowLessonDetails = param => ShowLessonDetail((Lesson)param);
+        this.SubscribeListener(EventID.ShowLessonDetail, ShowLessonDetails);
         
         Init();
+    }
+
+    private void OnDestroy()
+    {
+        this.UnsubscribeListener(EventID.ShowLessonDetail, ShowLessonDetails);
     }
 
     private void Init()
@@ -40,10 +49,5 @@ public class SceneMenuController : MonoBehaviour
         {
             Debug.LogWarning("Lesson not found");
         }
-    }
-    
-    public void LoadConvaiDemo()
-    {
-        SceneManager.LoadScene("Supermarket");
     }
 }
