@@ -8856,30 +8856,32 @@ MonoBehaviour:
   introSound: 28
   endSound: 29
   timeIntroSound: 8.1
+  mainCamera: {fileID: 2033821557}
+  cameraMoveSpeed: 2
+  rootPosition: {fileID: 1882431108}
+  isInVR: 0
+  offsetVR: {x: 0, y: 0, z: 0}
   animals:
   - name: 13
     cameraPos: {fileID: 1221094646}
     sound: 0
     descriptionSound: 37
-    timeDescriptions: 26.3
+    timeDescriptions: 11
   - name: 11
     cameraPos: {fileID: 1758253572}
     sound: 0
     descriptionSound: 35
-    timeDescriptions: 27.1
+    timeDescriptions: 9
   - name: 10
     cameraPos: {fileID: 1301107620}
     sound: 0
     descriptionSound: 31
-    timeDescriptions: 29.3
+    timeDescriptions: 11
   - name: 12
     cameraPos: {fileID: 685511666}
     sound: 0
     descriptionSound: 33
-    timeDescriptions: 29.8
-  mainCamera: {fileID: 1086499592}
-  cameraMoveSpeed: 2
-  rootPosition: {fileID: 1882431108}
+    timeDescriptions: 11
 --- !u!4 &552842256
 Transform:
   m_ObjectHideFlags: 0
@@ -18079,6 +18081,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 3290560462628128254, guid: b913f75e9028f6846bdc2b960b61a6b8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4028822339186647823, guid: b913f75e9028f6846bdc2b960b61a6b8,
         type: 3}
       propertyPath: m_Enabled
@@ -18114,6 +18121,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -1.93
       objectReference: {fileID: 0}
+    - target: {fileID: 6066071021585426233, guid: b913f75e9028f6846bdc2b960b61a6b8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6904819270381506852, guid: b913f75e9028f6846bdc2b960b61a6b8,
         type: 3}
       propertyPath: m_Enabled
@@ -18128,12 +18140,6 @@ PrefabInstance:
 --- !u!20 &1086499591 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 4322933001899521288, guid: b913f75e9028f6846bdc2b960b61a6b8,
-    type: 3}
-  m_PrefabInstance: {fileID: 1086499590}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1086499592 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4812816877853377933, guid: b913f75e9028f6846bdc2b960b61a6b8,
     type: 3}
   m_PrefabInstance: {fileID: 1086499590}
   m_PrefabAsset: {fileID: 0}
@@ -19267,6 +19273,11 @@ MonoBehaviour:
   introSound: 28
   endSound: 29
   timeIntroSound: 2
+  mainCamera: {fileID: 2033821557}
+  cameraMoveSpeed: 2
+  rootPosition: {fileID: 1882431108}
+  isInVR: 0
+  offsetVR: {x: 0, y: 0, z: 0}
   animals:
   - name: 13
     cameraPos: {fileID: 1859266500}
@@ -19288,9 +19299,6 @@ MonoBehaviour:
     sound: 0
     descriptionSound: 33
     timeDescriptions: 2
-  mainCamera: {fileID: 2033821557}
-  cameraMoveSpeed: 2
-  rootPosition: {fileID: 1882431108}
 --- !u!4 &1246958782
 Transform:
   m_ObjectHideFlags: 0
@@ -23562,7 +23570,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &2033821555
 AudioListener:
   m_ObjectHideFlags: 0
@@ -23570,7 +23578,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2033821554}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &2033821556
 Camera:
   m_ObjectHideFlags: 0
@@ -24429,7 +24437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a7448dbb5a384b4b951c16aa5726350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Intro: 9
+  Intro: 8.5
 --- !u!4 &953966645011203269
 Transform:
   m_ObjectHideFlags: 0
@@ -24991,6 +24999,11 @@ PrefabInstance:
         type: 3}
       propertyPath: minSpeed
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030616749268461218, guid: dee794ddf56298d4d9731a9ab06ff76d,
+        type: 3}
+      propertyPath: flockSize
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1030616749268461218, guid: dee794ddf56298d4d9731a9ab06ff76d,
         type: 3}
@@ -28400,8 +28413,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 521308876}
   - {fileID: 467516854}
-  - {fileID: 1086499590}
   - {fileID: 113249112}
+  - {fileID: 1086499590}
   - {fileID: 853863832}
   - {fileID: 552842256}
   - {fileID: 1246958782}

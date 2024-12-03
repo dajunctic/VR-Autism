@@ -6250,7 +6250,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &735263065
 AudioListener:
   m_ObjectHideFlags: 0
@@ -6258,7 +6258,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 735263064}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &735263066
 Camera:
   m_ObjectHideFlags: 0
@@ -7955,7 +7955,7 @@ PrefabInstance:
     - target: {fileID: 3290560462628128254, guid: b913f75e9028f6846bdc2b960b61a6b8,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4028822339186647823, guid: b913f75e9028f6846bdc2b960b61a6b8,
         type: 3}
@@ -8012,12 +8012,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b913f75e9028f6846bdc2b960b61a6b8, type: 3}
---- !u!4 &976336682 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4812816877853377933, guid: b913f75e9028f6846bdc2b960b61a6b8,
-    type: 3}
-  m_PrefabInstance: {fileID: 976336681}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &984371183
 GameObject:
   m_ObjectHideFlags: 0
@@ -9652,7 +9646,7 @@ MonoBehaviour:
   audioSource: {fileID: 594494401}
   soundObjects:
   - typeSound: 15
-    audioClip: {fileID: 8300000, guid: fa6275c5c01c04d42b9f7b42a39cc077, type: 3}
+    audioClip: {fileID: 8300000, guid: 7c113139e4ddcee4fb18c7e17e8fe509, type: 3}
   - typeSound: 16
     audioClip: {fileID: 8300000, guid: 78ea58393eab8fb41b0bc448bf3fc672, type: 3}
   - typeSound: 14
@@ -14058,38 +14052,38 @@ MonoBehaviour:
   backgroundMusic: 14
   introSound: 15
   endSound: 16
-  timeIntroSound: 6.4
-  mainCamera: {fileID: 976336682}
+  timeIntroSound: 6.3
+  mainCamera: {fileID: 735263067}
   cameraMoveSpeed: 2
   rootPosition: {fileID: 356289178}
-  isInVR: 1
+  isInVR: 0
   offsetVR: {x: 0, y: -1, z: 0}
   animals:
   - name: 9
     cameraPos: {fileID: 1349839458}
     sound: 23
     descriptionSound: 24
-    timeDescriptions: 24.7
+    timeDescriptions: 11
   - name: 8
     cameraPos: {fileID: 1086236958}
     sound: 25
     descriptionSound: 26
-    timeDescriptions: 18.8
+    timeDescriptions: 12
   - name: 7
     cameraPos: {fileID: 613669256}
     sound: 19
     descriptionSound: 20
-    timeDescriptions: 17.8
+    timeDescriptions: 10
   - name: 6
     cameraPos: {fileID: 477892754}
     sound: 21
     descriptionSound: 22
-    timeDescriptions: 21.3
+    timeDescriptions: 12
   - name: 5
     cameraPos: {fileID: 885554301}
     sound: 17
     descriptionSound: 18
-    timeDescriptions: 20.5
+    timeDescriptions: 12
 --- !u!1 &1596737794
 GameObject:
   m_ObjectHideFlags: 0

@@ -4822,38 +4822,38 @@ MonoBehaviour:
   backgroundMusic: 1
   introSound: 2
   endSound: 3
-  timeIntroSound: 7.3
-  mainCamera: {fileID: 1940266057}
+  timeIntroSound: 6.9
+  mainCamera: {fileID: 1625586402}
   cameraMoveSpeed: 2
   rootPosition: {fileID: 183032855}
-  isInVR: 1
+  isInVR: 0
   offsetVR: {x: 0, y: -1.1, z: 0}
   animals:
   - name: 0
     cameraPos: {fileID: 1350903315}
     sound: 6
     descriptionSound: 7
-    timeDescriptions: 21.4
+    timeDescriptions: 11
   - name: 2
     cameraPos: {fileID: 1403391202}
     sound: 12
     descriptionSound: 13
-    timeDescriptions: 21.9
+    timeDescriptions: 11
   - name: 3
     cameraPos: {fileID: 347271720}
     sound: 8
     descriptionSound: 9
-    timeDescriptions: 23.1
+    timeDescriptions: 12
   - name: 1
     cameraPos: {fileID: 596520815}
     sound: 10
     descriptionSound: 11
-    timeDescriptions: 26.8
+    timeDescriptions: 11
   - name: 4
     cameraPos: {fileID: 1598993702}
     sound: 4
     descriptionSound: 5
-    timeDescriptions: 21.7
+    timeDescriptions: 10
 --- !u!1 &1452963168
 GameObject:
   m_ObjectHideFlags: 0
@@ -5446,7 +5446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!20 &1625586401
 Camera:
   m_ObjectHideFlags: 0
@@ -5520,7 +5520,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625586400}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!1 &1625841563 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 95e02cc5b5be83841b7093cc4c84a866,
@@ -6473,7 +6473,7 @@ PrefabInstance:
     - target: {fileID: 3290560462628128254, guid: b913f75e9028f6846bdc2b960b61a6b8,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4028822339186647823, guid: b913f75e9028f6846bdc2b960b61a6b8,
         type: 3}
@@ -6515,12 +6515,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b913f75e9028f6846bdc2b960b61a6b8, type: 3}
---- !u!4 &1940266057 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4812816877853377933, guid: b913f75e9028f6846bdc2b960b61a6b8,
-    type: 3}
-  m_PrefabInstance: {fileID: 1940266056}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1944684759
 GameObject:
   m_ObjectHideFlags: 0
