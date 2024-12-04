@@ -4823,10 +4823,10 @@ MonoBehaviour:
   introSound: 2
   endSound: 3
   timeIntroSound: 6.9
-  mainCamera: {fileID: 1625586402}
+  mainCamera: {fileID: 1940266057}
   cameraMoveSpeed: 2
   rootPosition: {fileID: 183032855}
-  isInVR: 0
+  isInVR: 1
   offsetVR: {x: 0, y: -1.1, z: 0}
   animals:
   - name: 0
@@ -5446,7 +5446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!20 &1625586401
 Camera:
   m_ObjectHideFlags: 0
@@ -5520,7 +5520,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625586400}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1 &1625841563 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 95e02cc5b5be83841b7093cc4c84a866,
@@ -6473,7 +6473,7 @@ PrefabInstance:
     - target: {fileID: 3290560462628128254, guid: b913f75e9028f6846bdc2b960b61a6b8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4028822339186647823, guid: b913f75e9028f6846bdc2b960b61a6b8,
         type: 3}
@@ -6515,6 +6515,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b913f75e9028f6846bdc2b960b61a6b8, type: 3}
+--- !u!4 &1940266057 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4812816877853377933, guid: b913f75e9028f6846bdc2b960b61a6b8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1940266056}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &1940266058 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4322933001899521288, guid: b913f75e9028f6846bdc2b960b61a6b8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1940266056}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1944684759
 GameObject:
   m_ObjectHideFlags: 0
@@ -7070,6 +7082,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3828468543886525153, guid: c2425aa93186f964292fe864cdedc4d9,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1940266058}
     - target: {fileID: 4457358482054663212, guid: c2425aa93186f964292fe864cdedc4d9,
         type: 3}
       propertyPath: m_Name

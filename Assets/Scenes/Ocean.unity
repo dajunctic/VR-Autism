@@ -8856,11 +8856,11 @@ MonoBehaviour:
   introSound: 28
   endSound: 29
   timeIntroSound: 8.1
-  mainCamera: {fileID: 2033821557}
+  mainCamera: {fileID: 1086499592}
   cameraMoveSpeed: 2
   rootPosition: {fileID: 1882431108}
-  isInVR: 0
-  offsetVR: {x: 0, y: 0, z: 0}
+  isInVR: 1
+  offsetVR: {x: 0, y: -1.1, z: 0}
   animals:
   - name: 13
     cameraPos: {fileID: 1221094646}
@@ -18084,7 +18084,7 @@ PrefabInstance:
     - target: {fileID: 3290560462628128254, guid: b913f75e9028f6846bdc2b960b61a6b8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4028822339186647823, guid: b913f75e9028f6846bdc2b960b61a6b8,
         type: 3}
@@ -18140,6 +18140,12 @@ PrefabInstance:
 --- !u!20 &1086499591 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 4322933001899521288, guid: b913f75e9028f6846bdc2b960b61a6b8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1086499590}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1086499592 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4812816877853377933, guid: b913f75e9028f6846bdc2b960b61a6b8,
     type: 3}
   m_PrefabInstance: {fileID: 1086499590}
   m_PrefabAsset: {fileID: 0}
@@ -23570,7 +23576,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &2033821555
 AudioListener:
   m_ObjectHideFlags: 0
@@ -23578,7 +23584,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2033821554}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &2033821556
 Camera:
   m_ObjectHideFlags: 0
