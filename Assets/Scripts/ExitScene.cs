@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class ExitScene : BaseMono
 {
+    [SerializeField] private bool fixedPos;
     [SerializeField] private float distToCam;
     [SerializeField] private Camera cam;
 
@@ -17,7 +18,17 @@ public class ExitScene : BaseMono
 
     public void ShowUp()
     {
-        if (cam == null) return;
+        if (fixedPos)
+        {
+            gameObject.SetActive(true);
+        }
+        
+        
+        if (cam == null)
+        {
+            Debug.LogWarning("No camera assigned to ExitScene");
+            return;
+        }
 
         var targetPosition = cam.transform.position + cam.transform.forward * distToCam;
         transform.position = targetPosition;

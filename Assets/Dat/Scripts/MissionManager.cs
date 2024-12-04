@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Daark;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -41,6 +42,7 @@ public class MissionManager : MonoBehaviour
 
     private void ShowUp()
     {
+        this.SendEvent(EventID.ExitScene);
         bgMission.DOAnchorPosX(260, 0.5f).SetEase(Ease.InOutQuad);
         StartTime = DateTime.Now;
     }

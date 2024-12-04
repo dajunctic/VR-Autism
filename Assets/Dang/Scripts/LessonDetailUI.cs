@@ -6,6 +6,7 @@ using UnityEngine.Serialization;
 
 public class LessonDetailUI : MonoBehaviour
 {
+    [SerializeField] private ChooseLevelUI chooseLevelUI;
     public ChooseTypeUI chooseTypeUI;
     public TextMeshProUGUI titleText; 
     public TextMeshProUGUI descriptionText;
@@ -37,8 +38,12 @@ public class LessonDetailUI : MonoBehaviour
     
     private void ProceedToNextStep()
     {
-        chooseTypeUI.ShowChooseTypePanel(titleText.text);
+        this.chooseLevelUI.gameObject.SetActive(true);
+        chooseLevelUI.StartGame();
+        this.chooseLevelUI.gameObject.SetActive(false);
+        // chooseTypeUI.ShowChooseTypePanel(titleText.text);
         gameObject.SetActive(false);
     }
+    
 
 }

@@ -7363,6 +7363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee63a48a2e24e504fbb838bdf94e500c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chooseLevelUI: {fileID: 739358572}
   chooseTypeUI: {fileID: 271000603}
   titleText: {fileID: 1373507878}
   descriptionText: {fileID: 2334105}
@@ -10043,6 +10044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee63a48a2e24e504fbb838bdf94e500c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chooseLevelUI: {fileID: 1706001270}
   chooseTypeUI: {fileID: 1211410272}
   titleText: {fileID: 441472147}
   descriptionText: {fileID: 735683465}
@@ -27011,7 +27013,7 @@ MonoBehaviour:
   m_CheckFor3DOcclusion: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 511
+    m_Bits: 255
   m_RaycastTriggerInteraction: 1
 --- !u!114 &1374751925
 MonoBehaviour:
@@ -33517,7 +33519,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 505294512}
   m_HandleRect: {fileID: 505294511}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
