@@ -13,6 +13,7 @@ public class AnimalLessonManager : MonoBehaviour
         public TypeSound sound;
         public TypeSound descriptionSound;
         public float timeDescriptions;
+        public GameObject introUI;
     }
 
     [SerializeField] private bool turnOff;
@@ -32,6 +33,17 @@ public class AnimalLessonManager : MonoBehaviour
     
     private void Start()
     {
+        foreach (var animal in animals)
+        {
+            if (animal.introUI != null)
+            {
+                animal.introUI.SetActive(false);
+            }
+            else
+            {
+                Debug.LogWarning($"Intro UI for {animal.name} is not found!");
+            }
+        }
         if (turnOff) return;
         StartLesson();
     }
@@ -54,9 +66,20 @@ public class AnimalLessonManager : MonoBehaviour
             
             yield return MoveCameraToAnimal(animal.cameraPos);
             this.SendEvent(EventID.PlaySound, animal.descriptionSound);
+
+            if (animal.introUI != null)
+            {
+                animal.introUI.SetActive(true); 
+            }
+
             yield return new WaitForSeconds(animal.timeDescriptions);
             this.SendEvent(EventID.PlaySound, animal.sound);
             yield return new WaitForSeconds(timeSoundToDescription);
+
+            if (animal.introUI != null)
+            {
+                animal.introUI.SetActive(false); 
+            }
         }
         
         yield return new WaitForSeconds(1f);
