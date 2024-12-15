@@ -43,7 +43,9 @@ public class MissionManager : MonoBehaviour
     private void ShowUp()
     {
         this.SendEvent(EventID.ExitScene);
-        bgMission.DOAnchorPosX(260, 0.5f).SetEase(Ease.InOutQuad);
+        this.bgMission.localScale = Vector3.zero;
+        this.bgMission.gameObject.SetActive(true);
+        bgMission.DOScale(1, 0.5f).SetEase(Ease.InOutQuad);
         StartTime = DateTime.Now;
     }
 }
