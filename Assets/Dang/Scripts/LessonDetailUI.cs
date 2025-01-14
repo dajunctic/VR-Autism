@@ -19,6 +19,7 @@ public class LessonDetailUI : MonoBehaviour
     {
         closeButton.onClick.AddListener(Hide);
         playButton.onClick.AddListener(ProceedToNextStep);
+        Debug.LogWarning("hehehhehe");
     }
 
 

@@ -14,9 +14,12 @@ public class Topic
 public class Lesson
 {
     public int id;
+    public int topicId;
     public string sceneName;
     public string title;            
     public string description;     
-    public Sprite cover;            
+    public Sprite cover;
+    public List<float> sessionTimes;
 }
+
 

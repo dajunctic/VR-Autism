@@ -183,6 +183,7 @@ namespace Daark
         ToggleTheDoor,
         // Menu Scene
         ShowLessonDetail,
+        ShowLessonReported,
         OnTriggerProcessEnter,
         OnTriggerProcessExit,
         PlaySound,

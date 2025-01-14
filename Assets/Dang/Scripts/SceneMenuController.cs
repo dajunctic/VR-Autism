@@ -16,6 +16,7 @@ public class SceneMenuController : MonoBehaviour
     
     private void Awake()
     {
+        Debug.LogWarning("scene controller");
         Instance = this;
         lessonDetailPanel.SetActive(false);
 
