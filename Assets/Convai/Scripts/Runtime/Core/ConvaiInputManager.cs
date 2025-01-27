@@ -164,7 +164,7 @@ namespace Convai.Scripts.Runtime.Core
 
             if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) LockCursor(true);
             if (Input.GetKeyDown(RunKey)) isRunning = !isRunning;
-            if (Input.GetKeyDown(TextSendKey) || Input.GetKeyDown(TextSendAltKey)) enterPress?.Invoke();
+            if (Input.GetKeyDown(TextSendKey) || Input.GetKeyDown(TextSendAltKey)) sendText?.Invoke();
             if (Input.GetKeyDown(OpenSettingPanelKey)) toggleSettings?.Invoke();
             if (Input.GetKeyDown(TalkKey))
             {

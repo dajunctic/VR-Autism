@@ -321,3 +321,88 @@
 
 .changelog {
 }
+
+.ltm-item {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0);
+    height: auto;
+    border-left-color: rgba(0, 0, 0, 0.16);
+    border-right-color: rgba(0, 0, 0, 0.16);
+    border-top-color: rgba(0, 0, 0, 0.16);
+    border-bottom-color: rgba(0, 0, 0, 0.16);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    flex-direction: row;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+}
+
+.ltm-information {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0);
+    justify-content: center;
+    border-top-width: 4px;
+}
+
+.ltm-label {
+    flex-grow: 0;
+    -unity-text-align: middle-left;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    margin-bottom: 4px;
+    margin-top: 4px;
+}
+
+.ltm-button-container {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0);
+    align-self: flex-end;
+    justify-content: center;
+    flex-shrink: 0;
+    height: 100%;
+    align-items: flex-end;
+}
+
+.ltm-button {
+    flex-shrink: 1;
+    height: auto;
+    width: 50%;
+    font-size: 19px;
+}
+
+.ltm-tier-label {
+    flex-grow: 1;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.ltm-disclaimer {
+    -unity-font: url('project://database/Assets/Convai/Art/UI/Custom%20Fonts/Space_Grotesk/static/SpaceGrotesk-Regular.ttf?fileID=12800000&guid=2313aff2442ff4bb08cbc22e96312f7d&type=3#SpaceGrotesk-Regular');
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    max-width: 100%;
+    white-space: normal;
+}
+
+.ltm-tier-border {
+    flex-grow: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    height: 2px;
+    color: rgb(11, 96, 73);
+    flex-shrink: 0;
+}

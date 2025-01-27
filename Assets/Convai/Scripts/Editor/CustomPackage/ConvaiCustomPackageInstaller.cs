@@ -1,555 +1,551 @@
 #if UNITY_EDITOR
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Convai.Scripts.Runtime.LoggerSystem;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.PackageManager;
 using UnityEditor.PackageManager.Requests;
+using UnityEngine;
 using UnityEngine.UIElements;
 using PackageInfo = UnityEditor.PackageManager.PackageInfo;
 
 namespace Convai.Scripts.Editor.CustomPackage
 {
-    /// <summary>
-    ///     Custom package installer for Convai's Custom Packages in Unity Editor.
-    /// </summary>
     public class ConvaiCustomPackageInstaller : IActiveBuildTargetChanged
     {
-        // Paths to different Convai packages
+        #region Constants
+
+        // XR Package Paths
         private const string AR_PACKAGE_PATH = "Assets/Convai/Custom Packages/ConvaiARUpgrader.unitypackage";
-        private const string IOS_BUILD_PACKAGE_PATH = "Assets/Convai/Custom Packages/ConvaiiOSBuild.unitypackage";
-        private const string TMP_PACKAGE_PATH = "Assets/Convai/Custom Packages/ConvaiCustomTMP.unitypackage";
-        private const string URP_CONVERTER_PACKAGE_PATH = "Assets/Convai/Custom Packages/ConvaiURPConverter.unitypackage";
         private const string VR_PACKAGE_PATH = "Assets/Convai/Custom Packages/ConvaiVRUpgrader.unitypackage";
+        private const string MR_PACKAGE_PATH = "Assets/Convai/Custom Packages/ConvaiMRUpgrader.unitypackage";
+        private const string XR_PACKAGE_PATH = "Assets/Convai/Custom Packages/ConvaiXR.unitypackage";
 
-        // Index to keep track of the current package installation step
-        private int _currentPackageInstallIndex;
+        private const string XR_PREFAB_PATH = "Assets/Convai/ConvaiXR/Prefabs/Convai Essentials - XR.prefab";
 
-        // Current setup type
+        // Other Package Paths
+        private const string IOS_BUILD_PACKAGE_PATH = "Assets/Convai/Custom Packages/ConvaiiOSBuild.unitypackage";
+        private const string URP_CONVERTER_PACKAGE_PATH = "Assets/Convai/Custom Packages/ConvaiURPConverter.unitypackage";
+        private const string TMP_PACKAGE_PATH = "Assets/Convai/Custom Packages/ConvaiCustomTMP.unitypackage";
+
+        #endregion
+
+        #region Fields
+
         private SetupTypes _currentSetup;
+        private List<string> _setupSteps;
+        private int _totalSetupSteps;
+        private int _currentStep = 0;
+        private string _currentStepDescription = "";
+        private bool _assembliesLocked = false;
 
-        // Request object for package installations/uninstallations
-        private Request _request;
+        private BuildTarget _selectedARPlatform;
+        private InstallationType _installationType;
 
-        public ConvaiCustomPackageInstaller(VisualElement root)
-        {
-            root.Q<Button>("install-ar-package").clicked += StartARPackageInstall;
-            root.Q<Button>("install-vr-package").clicked += StartVRPackageInstall;
-            root.Q<Button>("uninstall-xr-package").clicked += StartXRPackageUninstall;
-            root.Q<Button>("install-ios-build-package").clicked += () =>
-            {
-                InstallConvaiUnityPackage(IOS_BUILD_PACKAGE_PATH);
-                TryToDownloadiOSDLL();
-            };
-            root.Q<Button>("install-urp-converter").clicked += () => InstallConvaiUnityPackage(URP_CONVERTER_PACKAGE_PATH);
-            root.Q<Button>("convai-custom-tmp-package").clicked += () => InstallConvaiUnityPackage(TMP_PACKAGE_PATH);
-        }
-
-        #region IActiveBuildTargetChanged Members
-
-        // IActiveBuildTargetChanged callback
         public int callbackOrder { get; }
 
-        /// <summary>
-        ///     Called when the active build target is changed.
-        /// </summary>
-        /// <param name="previousTarget">The previous build target.</param>
-        /// <param name="newTarget">The new build target.</param>
+        #endregion
+
+        #region Enums
+
+        private enum SetupTypes
+        {
+            AR,
+            VR,
+            MR,
+            iOS,
+            NormalUnityPackage
+        }
+
+        private enum InstallationType
+        {
+            Automatic,
+            Manual
+        }
+
+        #endregion
+
+        #region Constructor
+
+        public ConvaiCustomPackageInstaller()
+        {
+        }
+
+        public ConvaiCustomPackageInstaller(VisualElement root = null)
+        {
+            if (root != null)
+            {
+                InitializeUI(root);
+            }
+        }
+
+        #endregion
+
+        #region UI Initialization
+
+        private void InitializeUI(VisualElement root)
+        {
+            root.Q<Button>("install-ar-package").clicked += () => StartPackageInstall(SetupTypes.AR);
+            root.Q<Button>("install-vr-package").clicked += () => StartPackageInstall(SetupTypes.VR);
+            root.Q<Button>("install-mr-package").clicked += () => StartPackageInstall(SetupTypes.MR);
+            root.Q<Button>("install-ios-build-package").clicked += () =>
+            {
+                InitializeSetupSteps(SetupTypes.iOS);
+                InstallConvaiPackage(IOS_BUILD_PACKAGE_PATH);
+                TryToDownloadiOSDLL();
+            };
+            root.Q<Button>("install-urp-converter").clicked += () =>
+            {
+                InitializeSetupSteps(SetupTypes.NormalUnityPackage);
+                InstallConvaiPackage(URP_CONVERTER_PACKAGE_PATH);
+                EditorUtility.ClearProgressBar();
+            };
+            root.Q<Button>("convai-custom-tmp-package").clicked += () =>
+            {
+                InitializeSetupSteps(SetupTypes.NormalUnityPackage);
+                InstallConvaiPackage(TMP_PACKAGE_PATH);
+                EditorUtility.ClearProgressBar();
+            };
+        }
+
+        #endregion
+
+        #region Build Target Change Handling
+
         public void OnActiveBuildTargetChanged(BuildTarget previousTarget, BuildTarget newTarget)
         {
-            // Check if the new build target is iOS and trigger the download of iOS DLL.
             if (newTarget == BuildTarget.iOS) TryToDownloadiOSDLL();
         }
 
         #endregion
 
-        /// <summary>
-        ///     Progress method to handle the installation/uninstallation progress.
-        /// </summary>
-        private void Progress()
-        {
-            // Check if the request object is initialized
-            if (_request == null) return;
-            if (_request.IsCompleted)
-            {
-                switch (_request.Status)
-                {
-                    case StatusCode.InProgress:
-                        // Do nothing while the request is still in progress
-                        break;
-                    case StatusCode.Success:
-                        // Handle the successful completion of the package request
-                        HandlePackageRequest();
-                        break;
-                    case StatusCode.Failure:
-                        // Log an error message in case of failure
-                        ConvaiLogger.Error("Error: " + _request.Error.message, ConvaiLogger.LogCategory.UI);
-                        break;
-                }
+        #region Package Installation
 
-                // Remove the Progress method from the update event
-                EditorApplication.UnlockReloadAssemblies();
-                EditorApplication.update -= Progress;
+        private async void StartPackageInstall(SetupTypes setupType)
+        {
+            _currentSetup = setupType;
+
+            InitializeSetupSteps(setupType);
+
+            if (setupType == SetupTypes.AR)
+            {
+                if (!await ConfirmARPlatform()) return;
+                if (!await ConfirmAutomaticInstallation(SetupTypes.AR)) return;
+            }
+            else
+            {
+                if (!await ConfirmInstallationType(setupType)) return;
+            }
+
+            InitializeSetupSteps(setupType);
+            _currentStep = 0;
+
+            ConvaiLogger.DebugLog($"Installation of {setupType} package has started... This process may take 3-5 minutes.", ConvaiLogger.LogCategory.Editor);
+
+            LockAssemblies();
+
+            try
+            {
+                await HandlePackageInstall();
+            }
+            catch (Exception e)
+            {
+                ConvaiLogger.Error($"An error occurred during package installation: {e.Message}", ConvaiLogger.LogCategory.Editor);
+            }
+            finally
+            {
+                UnlockAssemblies();
+                EditorUtility.ClearProgressBar();
+                ConvaiLogger.DebugLog($"Convai {setupType} setup process completed.", ConvaiLogger.LogCategory.Editor);
             }
         }
 
-        /// <summary>
-        ///     Method to handle the completion of the package request.
-        /// </summary>
-        private void HandlePackageRequest()
+        private void InitializeSetupSteps(SetupTypes setupType)
+        {
+            _setupSteps = new List<string>();
+            if (setupType == SetupTypes.AR && _selectedARPlatform != EditorUserBuildSettings.activeBuildTarget)
+            {
+                _setupSteps.Add($"Change build platform to {_selectedARPlatform}");
+            }
+            else if ((setupType == SetupTypes.VR || setupType == SetupTypes.MR) &&
+                     _installationType == InstallationType.Automatic &&
+                     EditorUserBuildSettings.activeBuildTarget != BuildTarget.Android)
+            {
+                _setupSteps.Add("Change build platform to Android");
+            }
+
+            switch (setupType)
+            {
+                case SetupTypes.AR:
+                    if (_installationType == InstallationType.Automatic)
+                    {
+                        _setupSteps.AddRange(_selectedARPlatform == BuildTarget.Android
+                            ? new[] { "Universal Render Pipeline (URP)", "ARCore", "Convai AR Package", "Convai URP Converter" }
+                            : new[] { "Universal Render Pipeline (URP)", "ARKit", "Convai iOS DLL", "Convai iOS Build Package", "Convai AR Package", "Convai URP Converter", });
+                    }
+                    else
+                    {
+                        _setupSteps.Add("Convai AR Package");
+                    }
+
+                    break;
+                case SetupTypes.VR:
+                    if (_installationType == InstallationType.Automatic)
+                    {
+                        _setupSteps.AddRange(new[] { "Universal Render Pipeline (URP)", "OpenXR", "XR Interaction Toolkit", "Convai VR Package", "Convai URP Converter" });
+                    }
+                    else
+                    {
+                        _setupSteps.Add("Convai VR Package");
+                    }
+
+                    break;
+                case SetupTypes.MR:
+                    if (_installationType == InstallationType.Automatic)
+                    {
+                        _setupSteps.AddRange(new[] { "Universal Render Pipeline (URP)", "XR Management", "Oculus XR Plugin", "Convai URP Converter", "Meta XR SDK All", "Convai MR Package" });
+                    }
+                    else
+                    {
+                        _setupSteps.Add("Convai MR Package");
+                    }
+
+                    break;
+                case SetupTypes.iOS:
+                    _setupSteps.AddRange(new[] { "Convai iOS Build Package", "Convai iOS DLL" });
+                    break;
+                case SetupTypes.NormalUnityPackage:
+                    _setupSteps.Add("Convai Custom Package");
+                    break;
+            }
+
+            _totalSetupSteps = _setupSteps.Count;
+        }
+
+        private async Task HandlePackageInstall()
         {
             switch (_currentSetup)
             {
-                case SetupTypes.None:
-                    // Do nothing for SetupTypes.None
-                    break;
-                case SetupTypes.ARiOS:
-                    // Handle iOS AR package installation
-                    HandleARPackageInstall();
-                    ConvaiLogger.DebugLog("The request for package installation from the Package Manager has been successfully completed.", ConvaiLogger.LogCategory.Editor);
-                    break;
-                case SetupTypes.ARAndroid:
-                    // Handle Android AR package installation
-                    HandleARPackageInstall();
-                    ConvaiLogger.DebugLog("The request for package installation from the Package Manager has been successfully completed.", ConvaiLogger.LogCategory.Editor);
+                case SetupTypes.AR:
+                    await HandleARPackageInstall();
                     break;
                 case SetupTypes.VR:
-                    // Handle VR package installation
-                    HandleVRPackageInstall();
-                    ConvaiLogger.DebugLog("The request for package installation from the Package Manager has been successfully completed.", ConvaiLogger.LogCategory.Editor);
+                    await HandleVRPackageInstall();
                     break;
-                case SetupTypes.Uninstaller:
-                    // Handle uninstallation package completion
-                    HandleUninstallPackage();
-                    ConvaiLogger.DebugLog("The request for package uninstallation from the Package Manager has been successfully completed.", ConvaiLogger.LogCategory.Editor);
+                case SetupTypes.MR:
+                    await HandleMRPackageInstall();
                     break;
             }
-
-            // Add the Progress method back to the update event
-            EditorApplication.update += Progress;
         }
 
-        private void StartARPackageInstall()
+        private async Task HandleARPackageInstall()
         {
-            if (EditorUtility.DisplayDialog("Which Platform",
-                    "Which platform do you want to install AR package for?", "Android", "iOS"))
+            ChangeBuildTarget(_selectedARPlatform);
+            await Task.Delay(TimeSpan.FromSeconds(5));
+            await InitializeURPSetup();
+
+            if (_selectedARPlatform == BuildTarget.Android)
             {
-                // Display confirmation dialog before installation
-                if (EditorUtility.DisplayDialog("Confirm Android AR Package Installation",
-                        "This step will install AR-related packages and integrate Convai's AR package into your project. " +
-                        "This process will affect your project. Do you want to proceed?\n\n" +
-                        "The following operations will be performed:\n" +
-                        "- Universal Render Pipeline (URP)\n" +
-                        "- ARCore Plugin\n" +
-                        "- Convai Custom AR Package\n" +
-                        "- Convai URP Converter\n\n" +
-                        "* If these packages are not present in your project, they will be installed.\n" +
-                        "* If the target build platform is not Android, it will be switched to Android.", "Yes, Proceed", "No, Cancel"))
-                {
-                    EditorApplication.LockReloadAssemblies();
-                    StartPackageInstallation(SetupTypes.ARAndroid);
-                }
+                await InitializeARCoreSetup();
+            }
+            else if (_selectedARPlatform == BuildTarget.iOS)
+            {
+                await InitializeARKitSetup();
+                TryToDownloadiOSDLL();
+                InstallConvaiPackage(IOS_BUILD_PACKAGE_PATH);
+            }
+
+            InstallConvaiPackage(AR_PACKAGE_PATH);
+            InstallConvaiPackage(URP_CONVERTER_PACKAGE_PATH);
+        }
+
+        private async Task HandleVRPackageInstall()
+        {
+            if (_installationType == InstallationType.Automatic)
+            {
+                ChangeBuildTarget(BuildTarget.Android);
+                await Task.Delay(TimeSpan.FromSeconds(5));
+                await InitializeURPSetup();
+                await InitializeOpenXRSetup();
+                await InitializeXRInteractionToolkitSetup();
+                InstallConvaiPackage(VR_PACKAGE_PATH);
+                InstallConvaiPackage(URP_CONVERTER_PACKAGE_PATH);
             }
             else
             {
-                // Display confirmation dialog before installation
-                if (EditorUtility.DisplayDialog("Confirm iOS AR Package Installation",
-                        "This step will install AR-related packages and integrate Convai's AR package into your project. " +
-                        "This process will affect your project. Do you want to proceed?\n\n" +
-                        "The following operations will be performed:\n" +
-                        "- Universal Render Pipeline (URP)\n" +
-                        "- ARKit Plugin\n" +
-                        "- Convai Custom AR Package\n" +
-                        "- Convai URP Converter\n\n" +
-                        "* If these packages are not present in your project, they will be installed.\n" +
-                        "* If the target build platform is not iOS, it will be switched to iOS.", "Yes, Proceed", "No, Cancel"))
-                {
-                    EditorApplication.LockReloadAssemblies();
-                    StartPackageInstallation(SetupTypes.ARiOS);
-                }
+                InstallConvaiPackage(XR_PACKAGE_PATH);
+                await TryToInstantiateXRPrefab();
             }
         }
 
-        private void StartVRPackageInstall()
+        private async Task HandleMRPackageInstall()
         {
-            if (EditorUtility.DisplayDialog("Confirm VR Package Installation",
-                    "This step will install VR-related packages and integrate Convai's VR package into your project. " +
-                    "This process will affect your project. Do you want to proceed?\n\n" +
-                    "The following operations will be performed:\n" +
-                    "- Universal Render Pipeline (URP)\n" +
-                    "- OpenXR Plugin\n" +
-                    "- XR Interaction Toolkit\n" +
-                    "- Convai Custom VR Package\n" +
-                    "- Convai URP Converter\n\n" +
-                    "* If these packages are not present in your project, they will be installed.\n" +
-                    "* If the target build platform is not Android, it will be switched to Android.", "Yes, Proceed", "No, Cancel"))
+            if (_installationType == InstallationType.Automatic)
             {
-                EditorApplication.LockReloadAssemblies();
-                StartPackageInstallation(SetupTypes.VR);
-            }
-        }
-
-        private void StartXRPackageUninstall()
-        {
-            // Display confirmation dialog before uninstallation
-            if (EditorUtility.DisplayDialog("Confirm Package Uninstallation",
-                    "This process will uninstall the Convai package and revert changes made by AR or VR setups in your project. " +
-                    "It may affect your project. Are you sure you want to proceed?\n\n" +
-                    "The following packages will be uninstalled.\n" +
-                    "- ARCore Plugin or ARKit\n" +
-                    "- OpenXR Plugin\n" +
-                    "- XR Interaction Toolkit\n" +
-                    "- Convai Custom AR or VR Package\n\n" +
-                    "* The Convai Uninstaller Package will be installed. This process will revert scripts modified for XR to their default states.",
-                    "Yes, Uninstall", "No, Cancel"))
-            {
-                _currentSetup = SetupTypes.Uninstaller;
-                EditorApplication.update += Progress;
-                EditorApplication.LockReloadAssemblies();
-                HandleUninstallPackage();
-            }
-        }
-
-        /// <summary>
-        ///     Method to handle the uninstallation of packages.
-        /// </summary>
-        private void HandleUninstallPackage()
-        {
-            // Check if the request object is not initialized
-            if (_request == null)
-            {
-                // Define asset paths to delete
-                string[] deleteAssetPaths =
-                {
-                    "Assets/Samples",
-                    "Assets/Convai/ConvaiAR",
-                    "Assets/Convai/ConvaiVR",
-                    "Assets/XR",
-                    "Assets/XRI"
-                };
-
-                List<string> outFailedPaths = new();
-                // Delete specified asset paths
-                AssetDatabase.DeleteAssets(deleteAssetPaths, outFailedPaths);
-
-                // Log errors if any deletion fails
-                if (outFailedPaths.Count > 0)
-                    foreach (string failedPath in outFailedPaths)
-                        ConvaiLogger.Error($"Failed to delete asset path: {failedPath}", ConvaiLogger.LogCategory.Editor);
-            }
-
-            // Define package names for uninstallation
-            string ARCorePackageName = "com.unity.xr.arcore";
-            string ARKitPackageName = "com.unity.xr.arkit";
-            string OpenXRPackageName = "com.unity.xr.openxr";
-            string XRInteractionToolkitPackageName = "com.unity.xr.interaction.toolkit";
-
-            // Check if ARCore is installed and initiate removal
-            if (IsPackageInstalled(ARCorePackageName)) _request = Client.Remove(ARCorePackageName);
-
-            // Check if ARKit is installed and initiate removal
-            if (IsPackageInstalled(ARKitPackageName))
-            {
-                _request = Client.Remove(ARKitPackageName);
-            }
-            // Check if OpenXR is installed and initiate removal
-            else if (IsPackageInstalled(OpenXRPackageName))
-            {
-                _request = Client.Remove(OpenXRPackageName);
-            }
-            // Check if XR Interaction Toolkit is installed and initiate removal
-            else if (IsPackageInstalled(XRInteractionToolkitPackageName))
-            {
-                _request = Client.Remove(XRInteractionToolkitPackageName);
+                ChangeBuildTarget(BuildTarget.Android);
+                await InitializeURPSetup();
+                await InitializeXRManagementSetup();
+                await InitializeOculusXRSetup();
+                InstallConvaiPackage(URP_CONVERTER_PACKAGE_PATH);
+                await InitializeMetaXRSDKAllSetup();
+                InstallConvaiPackage(MR_PACKAGE_PATH);
+                await Task.Delay(TimeSpan.FromSeconds(5));
             }
             else
             {
-                // Stop the update event if the request is not initialized
-                EditorApplication.update -= Progress;
-                EditorApplication.UnlockReloadAssemblies();
+                InstallConvaiPackage(XR_PACKAGE_PATH);
+                await TryToInstantiateXRPrefab();
+            }
+        }
+
+        #endregion
+
+        #region Package Initialization
+
+        private async Task InitializePackageSetup(string packageName, string stepDescription)
+        {
+            UpdateProgressBar(stepDescription);
+            if (IsPackageInstalled(packageName))
+            {
+                IncrementProgress($"{packageName} is already installed. Skipping...");
+                return;
             }
 
-            // Remove the Progress method from the update event if the request is not initialized
-            if (_request == null) EditorApplication.update -= Progress;
-        }
+            ConvaiLogger.DebugLog($"{packageName} Package Installation Request sent to Package Manager.", ConvaiLogger.LogCategory.Editor);
+            AddRequest request = Client.Add(packageName);
 
-        /// <summary>
-        ///     Method to start the installation of a specific package setup.
-        /// </summary>
-        private void StartPackageInstallation(SetupTypes setupType)
-        {
-            // Log a message indicating the start of the package installation
-            ConvaiLogger.DebugLog($"Installation of {setupType} package has started... This process may take 3-5 minutes.", ConvaiLogger.LogCategory.Editor);
-
-            // Warn the user about the possibility of 'Failed to Resolve Packages' error
-            ConvaiLogger.Warn("If you encounter with 'Failed to Resolve Packages' error, there's no need to be concerned.", ConvaiLogger.LogCategory.Editor);
-
-            // Reset the package installation index
-            _currentPackageInstallIndex = 0;
-
-            // Set the current setup type
-            _currentSetup = setupType;
-            // Initialize the Universal Render Pipeline (URP) setup
-            InitializeURPSetup();
-        }
-
-        /// <summary>
-        ///     Method to handle the installation of AR-related packages.
-        /// </summary>
-        private void HandleARPackageInstall()
-        {
-            // Check the current package installation index
-            if (_currentPackageInstallIndex == 0)
+            while (!request.IsCompleted)
             {
-                switch (_currentSetup)
-                {
-                    case SetupTypes.ARAndroid:
-                        // Initialize the ARCore setup
-                        InitializeARCoreSetup();
-                        break;
-                    case SetupTypes.ARiOS:
-                        // Initialize the ARKit setup
-                        InitializeARKitSetup();
-                        break;
-                }
+                await Task.Delay(100);
+            }
+
+            if (request.Status == StatusCode.Success)
+            {
+                await Task.Delay(TimeSpan.FromSeconds(5));
+                IncrementProgress($"Successfully installed: {packageName}");
             }
             else
             {
-                // Install AR-related packages and perform necessary setup
-                InstallConvaiUnityPackage(AR_PACKAGE_PATH);
-                InstallConvaiUnityPackage(URP_CONVERTER_PACKAGE_PATH);
-                switch (_currentSetup)
-                {
-                    case SetupTypes.ARAndroid:
-                        TryToChangeEditorBuildTargetToAndroid();
-                        break;
-                    case SetupTypes.ARiOS:
-                        TryToChangeEditorBuildTargetToiOS();
-                        break;
-                }
+                ConvaiLogger.Error($"Failed to install {packageName}: {request.Error.message}", ConvaiLogger.LogCategory.Editor);
             }
         }
 
-        /// <summary>
-        ///     Method to handle the installation of VR-related packages.
-        /// </summary>
-        private void HandleVRPackageInstall()
+        private Task InitializeURPSetup() => InitializePackageSetup("com.unity.render-pipelines.universal", "Installing Universal Render Pipeline (URP)");
+        private Task InitializeARCoreSetup() => InitializePackageSetup("com.unity.xr.arcore@5.1.4", "Installing ARCore");
+        private Task InitializeARKitSetup() => InitializePackageSetup("com.unity.xr.arkit@5.1.4", "Installing ARKit");
+        private Task InitializeOpenXRSetup() => InitializePackageSetup("com.unity.xr.openxr@1.10.0", "Installing OpenXR");
+        private Task InitializeOculusXRSetup() => InitializePackageSetup("com.unity.xr.oculus", "Installing Oculus XR Plugin");
+        private Task InitializeMetaXRSDKAllSetup() => InitializePackageSetup("com.meta.xr.sdk.all", "Installing Meta XR SDK");
+        private Task InitializeXRManagementSetup() => InitializePackageSetup("com.unity.xr.management", "Installing XR Management");
+        private Task InitializeXRInteractionToolkitSetup() => InitializePackageSetup("com.unity.xr.interaction.toolkit@2.5.4", "Installing XR Interaction Toolkit");
+
+        #endregion
+
+        #region Package Installation Methods
+
+        private void InstallConvaiPackage(string packagePath)
         {
-            // Check the current package installation index
-            if (_currentPackageInstallIndex == 0)
-            {
-                // Initialize the OpenXR setup
-                InitializeOpenXRSetup();
-            }
-            else if (_currentPackageInstallIndex == 1)
-            {
-                // Initialize the XR Interaction Toolkit setup
-                InitializeXRInteractionToolkitSetup();
-            }
-            else
-            {
-                // Install VR-related packages and perform necessary setup
-                InstallConvaiUnityPackage(VR_PACKAGE_PATH);
-                InstallConvaiUnityPackage(URP_CONVERTER_PACKAGE_PATH);
-                TryToChangeEditorBuildTargetToAndroid();
-            }
-        }
+            string packageName = Path.GetFileNameWithoutExtension(packagePath);
+            UpdateProgressBar($"Installing {packageName}");
 
-        /// <summary>
-        ///     Method to initialize the URP setup.
-        /// </summary>
-        private void InitializeURPSetup()
-        {
-            // Define the URP package name
-            const string URPPackageName = "com.unity.render-pipelines.universal";
+            ConvaiLogger.DebugLog($"Importing: {packageName}", ConvaiLogger.LogCategory.Editor);
 
-            // Check if the URP package is already installed
-            if (IsPackageInstalled(URPPackageName))
-            {
-                // If installed, handle the successful package request
-                HandlePackageRequest();
-                return;
-            }
-
-            // If not installed, send a request to the Package Manager to add the URP package
-            _request = Client.Add(URPPackageName);
-            ConvaiLogger.DebugLog($"{URPPackageName} Package Installation Request Sent to Package Manager.", ConvaiLogger.LogCategory.Editor);
-
-            // Add the Progress method to the update event to monitor the installation progress
-            EditorApplication.update += Progress;
-        }
-
-        /// <summary>
-        ///     Method to initialize the ARCore setup.
-        /// </summary>
-        private void InitializeARCoreSetup()
-        {
-            // Set the current package installation index for ARCore
-            _currentPackageInstallIndex = 1;
-
-            // Define the ARCore package name
-            string ARCorePackageName = "com.unity.xr.arcore@5.1.4";
-
-            // Check if the ARCore package is already installed
-            if (IsPackageInstalled(ARCorePackageName))
-            {
-                // If installed, handle the AR package installation
-                HandleARPackageInstall();
-                return;
-            }
-
-            // If not installed, send a request to the Package Manager to add the ARCore package
-            _request = Client.Add(ARCorePackageName);
-            ConvaiLogger.DebugLog($"{ARCorePackageName} Package Installation Request sent to Package Manager.", ConvaiLogger.LogCategory.Editor);
-        }
-
-        /// <summary>
-        ///     Method to initialize the ARKit setup.
-        /// </summary>
-        private void InitializeARKitSetup()
-        {
-            // Set the current package installation index for AR Setup
-            _currentPackageInstallIndex = 1;
-
-            // Define the ARKit package name
-            string ARKitPackageName = "com.unity.xr.arkit@5.1.4";
-
-            // Check if the ARKit package is already installed
-            if (IsPackageInstalled(ARKitPackageName))
-            {
-                // If installed, handle the AR package installation
-                HandleARPackageInstall();
-                return;
-            }
-
-            // If not installed, send a request to the Package Manager to add the ARKit package
-            _request = Client.Add(ARKitPackageName);
-            ConvaiLogger.DebugLog($"{ARKitPackageName} Package Installation Request sent to Package Manager.", ConvaiLogger.LogCategory.Editor);
-        }
-
-        /// <summary>
-        ///     Method to initialize the OpenXR setup.
-        /// </summary>
-        private void InitializeOpenXRSetup()
-        {
-            // Set the current package installation index for OpenXR
-            _currentPackageInstallIndex = 1;
-
-            // Define the OpenXR package name
-            string OpenXRPackageName = "com.unity.xr.openxr@1.10.0";
-
-            // Check if the OpenXR package is already installed
-            if (IsPackageInstalled(OpenXRPackageName))
-            {
-                // If installed, handle the VR package installation
-                HandleVRPackageInstall();
-                return;
-            }
-
-            // If not installed, send a request to the Package Manager to add the OpenXR package
-            _request = Client.Add(OpenXRPackageName);
-            ConvaiLogger.DebugLog($"{OpenXRPackageName} Package Installation Request sent to Package Manager.", ConvaiLogger.LogCategory.Editor);
-        }
-
-        /// <summary>
-        ///     Method to initialize the XR Interaction Toolkit setup.
-        /// </summary>
-        private void InitializeXRInteractionToolkitSetup()
-        {
-            // Set the current package installation index for XR Interaction Toolkit
-            _currentPackageInstallIndex = 2;
-
-            // Define the XR Interaction Toolkit package name
-            const string XRInteractionToolkitPackageName = "com.unity.xr.interaction.toolkit@2.5.4";
-
-            // Check if the XR Interaction Toolkit package is already installed
-            if (IsPackageInstalled(XRInteractionToolkitPackageName))
-            {
-                // If installed, handle the VR package installation
-                HandleVRPackageInstall();
-                return;
-            }
-
-            // If not installed, send a request to the Package Manager to add the XR Interaction Toolkit package
-            _request = Client.Add(XRInteractionToolkitPackageName);
-            ConvaiLogger.DebugLog($"<color=orange>{XRInteractionToolkitPackageName} Package Installation Request sent to Package Manager.</color>",
-                ConvaiLogger.LogCategory.Editor);
-        }
-
-        /// <summary>
-        ///     Method to install a custom Convai Unity package.
-        /// </summary>
-        private static void InstallConvaiUnityPackage(string packagePath)
-        {
-            ConvaiLogger.DebugLog($"<color=orange>Importing: {packagePath}</color>", ConvaiLogger.LogCategory.UI);
-            // Import the Unity package
             AssetDatabase.ImportPackage(packagePath, false);
 
-            // Get the package name without extension
-            string packageName = Path.GetFileNameWithoutExtension(packagePath);
-            ConvaiLogger.DebugLog($"<color=lime>{packageName} Custom Unity Package Installation Completed.</color>", ConvaiLogger.LogCategory.UI);
+            IncrementProgress($"{packageName} Custom Unity Package Installation Completed.");
         }
 
-        /// <summary>
-        ///     Method to check if a package is already installed.
-        /// </summary>
-        private static bool IsPackageInstalled(string packageName)
+        private async Task TryToInstantiateXRPrefab()
         {
-            // Iterate through all registered packages
-            return PackageInfo.GetAllRegisteredPackages().Any(packageInfo => packageInfo.name == packageName);
+            if (_installationType != InstallationType.Manual || _currentSetup == SetupTypes.AR) return;
 
-            // Return false if the package is not installed
-        }
+            ConvaiLogger.DebugLog("Attempting to instantiate XR Prefab...", ConvaiLogger.LogCategory.Editor);
 
-        /// <summary>
-        ///     Try changing the editor build target to Android.
-        /// </summary>
-        private static void TryToChangeEditorBuildTargetToAndroid()
-        {
-            // Check if the current build target is not Android
-            if (EditorUserBuildSettings.activeBuildTarget != BuildTarget.Android)
+            const int maxAttempts = 30;
+            const int delayBetweenAttempts = 1000; // 1 second
+
+            for (int attempt = 0; attempt < maxAttempts; attempt++)
             {
-                // Switch the active build target to Android
-                EditorUserBuildSettings.SwitchActiveBuildTargetAsync(BuildTargetGroup.Android, BuildTarget.Android);
-                ConvaiLogger.DebugLog("Build Target Platform is being Changed to Android...", ConvaiLogger.LogCategory.UI);
+                await DelayWithEditorAvailableCheck(delayBetweenAttempts);
+
+                if (TryInstantiatePrefab(out GameObject prefab))
+                {
+                    ConvaiLogger.DebugLog($"Convai XR Prefab Instantiated on attempt {attempt + 1}.", ConvaiLogger.LogCategory.Editor);
+                    return;
+                }
+            }
+
+            ConvaiLogger.Error($"Failed to load XR Prefab at path: {XR_PREFAB_PATH} after {maxAttempts} attempts.", ConvaiLogger.LogCategory.Editor);
+        }
+
+        private bool TryInstantiatePrefab(out GameObject prefab)
+        {
+            AssetDatabase.Refresh();
+            prefab = AssetDatabase.LoadAssetAtPath<GameObject>(XR_PREFAB_PATH);
+
+            if (prefab != null)
+            {
+                PrefabUtility.InstantiatePrefab(prefab);
+                return true;
+            }
+
+            return false;
+        }
+
+        private static void TryToDownloadiOSDLL() => iOSDLLDownloader.TryToDownload();
+
+        private async Task<bool> ConfirmARPlatform()
+        {
+            string[] options = { "Android", "iOS" };
+            int choice = await DisplayDialogComplex("Select AR Platform", "Choose the target platform for AR development:", options);
+
+            if (choice == -1 || choice == 1) return false; // User cancelled
+
+            _selectedARPlatform = choice == 0 ? BuildTarget.Android : BuildTarget.iOS;
+            return true;
+        }
+
+        private async Task<bool> ConfirmInstallationType(SetupTypes setupType)
+        {
+            string[] options = { "Automatic", "Manual" };
+            string message = $"Choose the installation type for {setupType}:\n\n" +
+                             "Automatic Installation: All necessary packages will be installed, and your project settings will be changed to prepare for building. This option is suitable for new projects. " +
+                             "Using it on existing projects may pose risks and could lead to errors in your current setup.\n\n" +
+                             "Manual Installation: Only the Convai XR package will be installed, and your project settings will remain unchanged. This option is suitable for those who already have an existing XR project.";
+
+            int choice = await DisplayDialogComplex($"Select {setupType} Installation Type", message, options);
+
+            if (choice == -1 || choice == 1) return false; // User cancelled
+
+            _installationType = choice == 0 ? InstallationType.Automatic : InstallationType.Manual;
+
+            if (_installationType == InstallationType.Automatic)
+            {
+                return await ConfirmAutomaticInstallation(setupType);
+            }
+
+            return true;
+        }
+
+        private async Task<bool> ConfirmAutomaticInstallation(SetupTypes setupType)
+        {
+            InitializeSetupSteps(setupType);
+
+            string packageList = string.Join("\n", _setupSteps.Select(p => $"- {p}"));
+
+            string message = $"Automatic installation for {setupType} will change your project settings, import the following packages, and perform the following steps: \n\n" +
+                             $"{packageList}\n\n" +
+                             "* This process cannot be undone.\n\n" +
+                             "** Recommended for new projects.\n\n" +
+                             "Are you sure you want to proceed with the automatic installation?";
+
+            int choice = await DisplayDialogComplex("Confirm Automatic Installation", message, new[] { "Yes, proceed", "No, cancel" });
+
+            return choice == 0;
+        }
+
+        private void ChangeBuildTarget(BuildTarget target)
+        {
+            UpdateProgressBar($"Changing Build Target to {target}");
+
+            if (EditorUserBuildSettings.activeBuildTarget != target)
+            {
+                ConvaiLogger.DebugLog($"Build Target Platform is being Changed to {target}...", ConvaiLogger.LogCategory.Editor);
+
+                BuildTargetGroup targetGroup = target == BuildTarget.Android ? BuildTargetGroup.Android : BuildTargetGroup.iOS;
+                bool switched = EditorUserBuildSettings.SwitchActiveBuildTarget(targetGroup, target);
+
+                if (switched)
+                {
+                    IncrementProgress($"Build Target changed to {target}");
+                }
+                else
+                {
+                    IncrementProgress($"Failed to Change Build Target to {target}");
+                }
+            }
+            else
+            {
+                IncrementProgress($"Build Target is already set to {target}");
             }
         }
 
-        /// <summary>
-        ///     Try changing the editor build target to iOS.
-        /// </summary>
-        private static void TryToChangeEditorBuildTargetToiOS()
+        public void InstallConvaiURPConverter()
         {
-            // Check if the current build target is not iOS
-            if (EditorUserBuildSettings.activeBuildTarget != BuildTarget.iOS)
+            InitializeSetupSteps(SetupTypes.NormalUnityPackage);
+            InstallConvaiPackage(URP_CONVERTER_PACKAGE_PATH);
+            EditorUtility.ClearProgressBar();
+        }
+        #endregion
+
+        #region Utility Methods
+
+        private static bool IsPackageInstalled(string packageName) =>
+            PackageInfo.GetAllRegisteredPackages().Any(packageInfo => packageInfo.name == packageName);
+
+        private void LockAssemblies()
+        {
+            if (!_assembliesLocked)
             {
-                // Switch the active build target to iOS
-                EditorUserBuildSettings.SwitchActiveBuildTargetAsync(BuildTargetGroup.iOS, BuildTarget.iOS);
-                ConvaiLogger.DebugLog("Build Target Platform is being Changed to iOS...", ConvaiLogger.LogCategory.UI);
+                EditorApplication.LockReloadAssemblies();
+                _assembliesLocked = true;
+                ConvaiLogger.DebugLog("Assemblies locked for package installation.", ConvaiLogger.LogCategory.Editor);
             }
         }
 
-        /// <summary>
-        ///     Attempts to download the iOS DLL using the IOSDLLDownloader class.
-        /// </summary>
-        private void TryToDownloadiOSDLL()
+        private void UnlockAssemblies()
         {
-            // Call the TryToDownload method from the IOSDLLDownloader class.
-            iOSDLLDownloader.TryToDownload();
+            if (_assembliesLocked)
+            {
+                EditorApplication.UnlockReloadAssemblies();
+                _assembliesLocked = false;
+                ConvaiLogger.DebugLog("Assemblies unlocked after package installation.", ConvaiLogger.LogCategory.Editor);
+            }
         }
 
-        #region Nested type: SetupTypes
-
-        // Enum to represent different setup types
-        private enum SetupTypes
+        private async Task DelayWithEditorAvailableCheck(int delayBetweenAttempts)
         {
-            None,
-            ARAndroid,
-            ARiOS,
-            VR,
-            Uninstaller
+            await Task.Delay(delayBetweenAttempts);
+
+            if (EditorApplication.isCompiling || EditorApplication.isUpdating)
+            {
+                ConvaiLogger.DebugLog("Waiting for Unity to finish compiling or updating...", ConvaiLogger.LogCategory.Editor);
+                await DelayWithEditorAvailableCheck(delayBetweenAttempts); // Recursive call to wait again
+            }
+        }
+
+        private Task<int> DisplayDialogComplex(string title, string message, string[] options)
+        {
+            return Task.FromResult(EditorUtility.DisplayDialogComplex(title, message, options[0], "Cancel", options[1]));
+        }
+
+        #endregion
+
+        #region Progress Management
+
+        private void UpdateProgressBar(string stepDescription)
+        {
+            _currentStepDescription = stepDescription;
+            float progress = (float)_currentStep / _totalSetupSteps;
+            int progressPercentage = Mathf.RoundToInt(progress * 100);
+            string title = $"Convai {_currentSetup} Setup Progress";
+            string info = $"Step {_currentStep + 1} of {_totalSetupSteps}: {_currentStepDescription} ({progressPercentage}% Complete)";
+
+            EditorUtility.DisplayProgressBar(title, info, progress);
+        }
+
+        private void IncrementProgress(string completedStepDescription)
+        {
+            _currentStep++;
+            ConvaiLogger.DebugLog(completedStepDescription, ConvaiLogger.LogCategory.Editor);
+            if (_currentStep < _totalSetupSteps)
+            {
+                UpdateProgressBar(_setupSteps[_currentStep]);
+            }
         }
 
         #endregion

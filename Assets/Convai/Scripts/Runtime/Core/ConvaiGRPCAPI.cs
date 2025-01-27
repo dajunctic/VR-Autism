@@ -312,7 +312,7 @@ namespace Convai.Scripts.Runtime.Core
             Metadata headers = new()
             {
                 { "source", "Unity" },
-                { "version", "3.1.1" }
+                { "version", "3.2.0" }
             };
 
             CallOptions options = new(headers);
@@ -350,6 +350,21 @@ namespace Convai.Scripts.Runtime.Core
                     }
                 }
             };
+
+            if (_activeConvaiNPC != null)
+            {
+                if (_activeConvaiNPC.TryGetComponent(out NarrativeDesignKeyController ndController))
+                {
+                    foreach (NarrativeDesignKeyController.NarrativeDesignKey templateKey in ndController.narrativeDesignKeys)
+                    {
+                        getResponseConfigRequest.GetResponseConfig.NarrativeTemplateKeys.Add(templateKey.name, templateKey.value);
+                    }
+                }
+                if (_activeConvaiNPC.TryGetComponent(out DynamicInfoController diController))
+                {
+                    getResponseConfigRequest.GetResponseConfig.DynamicInfoConfig = diController.DynamicInfoConfig;
+                }
+            }
 
             if (isActionActive || _activeConvaiNPC != null) getResponseConfigRequest.GetResponseConfig.ActionConfig = actionConfig;
 

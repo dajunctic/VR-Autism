@@ -120,6 +120,8 @@ namespace Convai.Scripts.Runtime.Core
         [field: NonSerialized] public bool NarrativeDesignManager { get; set; }
         [field: NonSerialized] public bool ConvaiGroupNPCController { get; set; }
         [field: NonSerialized] public bool LongTermMemoryController { get; set; }
+        [field: NonSerialized] public bool NarrativeDesignKeyController { get; set; }
+        [field: NonSerialized] public bool DynamicInfoController { get; set; }
 
         public ConvaiNPCAudioManager AudioManager { get; private set; }
 
@@ -201,8 +203,25 @@ namespace Convai.Scripts.Runtime.Core
             if (_convaiChatUIHandler != null) _convaiChatUIHandler.UpdateCharacterList();
         }
 
-        public async void TriggerEvent(string triggerName, string triggerMessage = "")
+        public async void TriggerEvent(string triggerName)
         {
+            string triggerMessage = "";
+            TriggerConfig trigger = new()
+            {
+                TriggerName = triggerName,
+                TriggerMessage = triggerMessage
+            };
+
+            // Send the trigger to the server using GRPC
+            await ConvaiGRPCAPI.Instance.SendTriggerData(_client, characterID, trigger, this);
+
+            // Invoke the UnityEvent
+            onTriggerSent.Invoke(triggerMessage, triggerName);
+        }
+        
+        public async void TriggerSpeech(string triggerMessage)
+        {
+            string triggerName = "";
             TriggerConfig trigger = new()
             {
                 TriggerName = triggerName,

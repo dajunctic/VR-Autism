@@ -35,11 +35,6 @@ namespace Convai.Scripts.Runtime.Addons
         [SerializeField] [Tooltip("Limit of upwards and downwards look angles.")] [Range(1, 90)]
         private float lookXLimit = 45.0f;
 
-        [SerializeField] [Tooltip("Player Visual")]
-        private Transform playerVisual;
-
-        private Animator _animator;
-
         private CharacterController _characterController;
         private Vector3 _moveDirection = Vector3.zero;
         private float _rotationX;
@@ -54,8 +49,6 @@ namespace Convai.Scripts.Runtime.Addons
                 Instance = this;
             else
                 Destroy(gameObject);
-
-            _animator = playerVisual.GetComponent<Animator>();
         }
 
         private void Start()
@@ -80,26 +73,21 @@ namespace Convai.Scripts.Runtime.Addons
 
         private void MovePlayer()
         {
-            var isWalking = false;
-            
-            var horizontalMovement = Vector3.zero;
+            Vector3 horizontalMovement = Vector3.zero;
 
             if (!EventSystem.current.IsPointerOverGameObject() && !UIUtilities.IsAnyInputFieldFocused())
             {
-                var forward = transform.TransformDirection(Vector3.forward);
-                var right = transform.TransformDirection(Vector3.right);
+                Vector3 forward = transform.TransformDirection(Vector3.forward);
+                Vector3 right = transform.TransformDirection(Vector3.right);
 
-                var speed = ConvaiInputManager.Instance.isRunning ? runningSpeed : walkingSpeed;
-              
-                var moveVector = ConvaiInputManager.Instance.moveVector;
-                var curSpeedX = speed * moveVector.x;
-                var curSpeedY = speed * moveVector.y;
+                float speed = ConvaiInputManager.Instance.isRunning ? runningSpeed : walkingSpeed;
+
+                Vector2 moveVector = ConvaiInputManager.Instance.moveVector;
+                float curSpeedX = speed * moveVector.x;
+                float curSpeedY = speed * moveVector.y;
 
                 horizontalMovement = forward * curSpeedY + right * curSpeedX;
             }
-            
-            _animator.SetBool("IsWalking", horizontalMovement != Vector3.zero);
-            
 
             if (!_characterController.isGrounded)
                 // Apply gravity only when canMove is true

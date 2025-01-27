@@ -62,7 +62,10 @@ namespace Convai.Scripts.Runtime.Core
                 {
                     foundConvaiNPC = true;
 
-                    if (_lastHitNpc != nearbyNPC && !CheckForNPCToNPCConversation(nearbyNPC)) UpdateActiveNPC(nearbyNPC);
+                    if (_lastHitNpc != nearbyNPC && !CheckForNPCToNPCConversation(nearbyNPC))
+                    {
+                        UpdateActiveNPC(nearbyNPC);
+                    }
                 }
             }
 

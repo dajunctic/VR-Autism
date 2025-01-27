@@ -99,7 +99,10 @@ namespace Convai.Scripts.Runtime.Features
         {
             yield return new WaitForSeconds(0.5f);
             ConvaiGroupNPCController receiver = npcGroup.GroupNPC1 == sender ? npcGroup.GroupNPC2 : npcGroup.GroupNPC1;
-            while (receiver.ConvaiNPC.IsCharacterTalking) yield return new WaitForSeconds(0.1f);
+            while (receiver.ConvaiNPC.IsCharacterTalking)
+            {
+                yield return new WaitForSeconds(0.1f);
+            }
             try
             {
                 ConvaiLogger.DebugLog($"Relaying message from {sender.CharacterName} to {receiver.CharacterName}: {message}", ConvaiLogger.LogCategory.Character);

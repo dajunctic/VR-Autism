@@ -25,7 +25,7 @@ namespace Convai.Scripts.Editor.CustomPackage
         public static void TryToDownload()
         {
             if (CheckFileExistence()) return;
-            ConvaiLogger.DebugLog("<color=lime>The iOS DLL download has started...</color>", ConvaiLogger.LogCategory.UI);
+            ConvaiLogger.DebugLog("<color=lime>The iOS DLL download has started...</color>", ConvaiLogger.LogCategory.Editor);
             DownloadAndExtract(GetTargetDirectory());
         }
 

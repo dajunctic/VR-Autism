@@ -53,14 +53,24 @@ namespace Convai.Scripts.Runtime.Features
             }
         }
 
-        public void InvokeSelectedTrigger(string message = "")
+        public void InvokeSelectedTrigger()
         {
             if (convaiNPC != null && availableTriggers != null && selectedTriggerIndex >= 0 && selectedTriggerIndex < availableTriggers.Count)
             {
                 string selectedTriggerName = availableTriggers[selectedTriggerIndex];
                 ConvaiNPCManager.Instance.SetActiveConvaiNPC(convaiNPC, false);
                 onTriggerEvent?.Invoke();
-                convaiNPC.TriggerEvent(selectedTriggerName, message);
+                convaiNPC.TriggerEvent(selectedTriggerName);
+            }
+        }
+
+        public void InvokeSpeech(string message)
+        {
+            if (convaiNPC != null && !string.IsNullOrEmpty(message))
+            {
+                ConvaiNPCManager.Instance.SetActiveConvaiNPC(convaiNPC, false);
+                onTriggerEvent?.Invoke();
+                convaiNPC.TriggerSpeech(message);
             }
         }
     }
