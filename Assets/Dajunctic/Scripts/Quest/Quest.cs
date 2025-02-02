@@ -3,35 +3,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Quest : MonoBehaviour
+namespace Dajunctic.Scripts.Quest
 {
-    [SerializeField] private string title;
-    [SerializeField] private string description;
-    [SerializeField] private List<QuestObjective> objectives;
-
-    public bool IsCompleted()
+    public class Quest : MonoBehaviour
     {
-        return true;
-    }
+        [SerializeField] private string title;
+        [SerializeField] private string description;
+        [SerializeField] private List<QuestObjective> objectives;
+
+        public bool IsCompleted()
+        {
+            return true;
+        }
     
-}
-
-[Serializable]
-public class QuestObjective
-{
-    public enum ObjectiveType
-    {
-        Collect,    
-        Talk,
-        Drop,
     }
-    
-    public ObjectiveType Type { get; set; }
-    public int Quantity { get; set; }
 
-    public void Complete()
+    [Serializable]
+    public class QuestObjective
     {
+        public enum ObjectiveType
+        {
+            Collect,    
+            Talk,
+            Drop,
+        }
+    
+        public ObjectiveType Type { get; set; }
+        public int Quantity { get; set; }
+
+        public void Complete()
+        {
         
+        }
     }
 }
+
 
