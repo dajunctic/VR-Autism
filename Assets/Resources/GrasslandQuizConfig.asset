@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40c9340add58a524da09eb745c1fc541, type: 3}
+  m_Name: GrasslandQuizConfig
+  m_EditorClassIdentifier: 
+  questions:
+  - question: "\u0110\xE2y l\xE0 con v\u1EADt g\xEC?"
+    answers:
+    - "H\u1ED5"
+    - "S\u01B0 t\u1EED"
+    - Voi
+    - "S\xF3i"
+    correctAnswer: 2
+    associatedObject: {fileID: 9076124945877968073, guid: 2487911eee863fd47a93b46bb18a8ce9,
+      type: 3}
+    questionSound: 11
+    animalSound: 10
+    asked: 0
+  - question: "\u0110\xE2y l\xE0 con v\u1EADt g\xEC?"
+    answers:
+    - "Th\u1ECF"
+    - "S\xF3i"
+    - "C\u1EEBu"
+    - "Ng\u1EF1a v\u1EB1n"
+    correctAnswer: 3
+    associatedObject: {fileID: 2893247661414741198, guid: 54f01597eeff23b439bbb91dfd8f5cb1,
+      type: 3}
+    questionSound: 13
+    animalSound: 12
+    asked: 0
+  - question: "\u0110\xE2y l\xE0 con v\u1EADt g\xEC?"
+    answers:
+    - "G\xE0"
+    - "Th\u1ECF"
+    - "H\u1ED5"
+    - "S\u01B0 t\u1EED"
+    correctAnswer: 1
+    associatedObject: {fileID: 2506048158765108544, guid: 8d72d53770c1d484ba3940a7df97ed7d,
+      type: 3}
+    questionSound: 9
+    animalSound: 6
+    asked: 0
+  - question: "\u0110\xE2y l\xE0 con v\u1EADt g\xEC?"
+    answers:
+    - "Ch\xF3"
+    - "Th\u1ECF"
+    - "S\u01B0 t\u1EED"
+    - "H\u01B0\u01A1u cao c\u1ED5"
+    correctAnswer: 2
+    associatedObject: {fileID: 3738976252314424919, guid: c511151b1e75567489302fef2c695501,
+      type: 3}
+    questionSound: 15
+    animalSound: 14
+    asked: 0
+  - question: "\u0110\xE2y l\xE0 con v\u1EADt g\xEC?"
+    answers:
+    - "H\u01B0\u01A1u cao c\u1ED5"
+    - "Ng\u1EF1a v\u1EB1n"
+    - "S\u01B0 t\u1EED"
+    - "Ch\xF3"
+    correctAnswer: 0
+    associatedObject: {fileID: 2087390146465553193, guid: cd4028cde88545a4abc88c7c2bf90003,
+      type: 3}
+    questionSound: 7
+    animalSound: 6
+    asked: 0

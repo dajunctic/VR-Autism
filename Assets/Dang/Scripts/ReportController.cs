@@ -15,7 +15,7 @@ public class ReportController : MonoBehaviour
     public Lesson Lesson { get; set; }
     public Action<object> ShowLessonReporteds;
 
-    private void Awake()
+    private void Start()
     {
         Debug.LogWarning("amen");
         Instance = this;

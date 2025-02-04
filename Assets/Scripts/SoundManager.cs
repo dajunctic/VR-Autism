@@ -19,11 +19,38 @@ public class SoundManager : MonoBehaviour
         
     }
 
-    private void PlaySound(TypeSound typeSound)
+    public void PlaySound(TypeSound typeSound)
     {
+        audioSource.Stop();
         var sound = soundObjects.Find(x => x.typeSound == typeSound);
         if (sound is null) return;
         audioSource.PlayOneShot(sound.audioClip);
+    }
+
+    public void PlaySoundLoop(TypeSound typeSound)
+    {
+        var sound = soundObjects.Find(x => x.typeSound == typeSound);
+        if (sound is null) return;
+        audioSource.Stop();
+        audioSource.loop = true;
+        audioSource.clip = sound.audioClip;
+        audioSource.volume = 0.2f;
+        audioSource.Play();
+    }
+
+    public void StopLoopingSound()
+    {
+        if (audioSource.isPlaying && audioSource.loop)
+        {
+            audioSource.Stop();
+            audioSource.loop = false;
+        }
+    }
+
+    public float GetSoundDuration(TypeSound typeSound)
+    {
+        var sound = soundObjects.Find(x => x.typeSound == typeSound);
+        return sound != null && sound.audioClip != null ? sound.audioClip.length : 0f;
     }
 }
 
@@ -37,6 +64,10 @@ public class SoundObject
 public enum TypeSound
 {
     None,
+
+    // Quizz
+    Lose,
+    Win,
 
     // Grass Land Animal Lesson
     GrassLandSound,

@@ -37,6 +37,7 @@ public class ReportDetailUI : MonoBehaviour
 
         if (windowGraph != null)
         {
+            Debug.LogWarning("huhu");
             windowGraph.ShowGraph(sessionTimes);
         }
         else

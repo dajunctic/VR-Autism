@@ -17,9 +17,9 @@ public class Window_Graph : MonoBehaviour
 
     private void Awake()
     {
-        //Debug.LogWarning("hihihihihihehehhehee");
+        Debug.LogWarning("hihihihihihehehhehee");
         graphContainer = transform.Find("graphContainer").GetComponent<RectTransform>();
-        //Debug.LogWarning(graphContainer);
+        Debug.LogWarning("huhu" + graphContainer);
         labelTemplateX = graphContainer.Find("labelTemplateX").GetComponent<RectTransform>();
         labelTemplateY = graphContainer.Find("labelTemplateY").GetComponent<RectTransform>();
         //dashTemplateX = graphContainer.Find("dashTemplateX").GetComponent<RectTransform>();

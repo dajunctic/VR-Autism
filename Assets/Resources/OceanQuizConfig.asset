@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40c9340add58a524da09eb745c1fc541, type: 3}
+  m_Name: OceanQuizConfig
+  m_EditorClassIdentifier: 
+  questions:
+  - question: "\u0110\xE2y l\xE0 con v\u1EADt g\xEC?"
+    answers:
+    - "C\xE1 m\u1EADp"
+    - Voi
+    - "C\xE1 heo"
+    - "R\xF9a bi\u1EC3n"
+    correctAnswer: 0
+    associatedObject: {fileID: 8278977719749019177, guid: a428dab0c5674f7409f205c3c6485d9a,
+      type: 3}
+    questionSound: 2
+    animalSound: 32
+    asked: 0
+  - question: "\u0110\xE2y l\xE0 con v\u1EADt g\xEC?"
+    answers:
+    - "R\xF9a bi\u1EC3n"
+    - "S\u1EE9a bi\u1EC3n"
+    - "C\u1EEBu"
+    - "C\xE1 heo"
+    correctAnswer: 1
+    associatedObject: {fileID: 4013585350488808787, guid: 9cbdc5866dc3e594187cba366b9c6427,
+      type: 3}
+    questionSound: 2
+    animalSound: 36
+    asked: 0
+  - question: "\u0110\xE2y l\xE0 con v\u1EADt g\xEC?"
+    answers:
+    - "Ng\u1EF1a v\u1EB1n"
+    - "C\xE1 heo"
+    - "C\xE1 m\u1EADp"
+    - "R\xF9a bi\u1EC3n"
+    correctAnswer: 3
+    associatedObject: {fileID: 816358979517907117, guid: b99714ff9a0d8ab4cba63ee4da627e0c,
+      type: 3}
+    questionSound: 2
+    animalSound: 38
+    asked: 0
+  - question: "\u0110\xE2y l\xE0 con v\u1EADt g\xEC?"
+    answers:
+    - "Ch\xF3"
+    - "H\u1ED5"
+    - "C\xE1 heo"
+    - "Sao bi\u1EC3n"
+    correctAnswer: 2
+    associatedObject: {fileID: 2243110374048950, guid: 2ac40f21ddb94ea4c817795b43637cb6,
+      type: 3}
+    questionSound: 35
+    animalSound: 34
+    asked: 0
