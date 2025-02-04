@@ -1,40 +1,111 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using KBCore.Refs;
+using Plugins.QuickOutline.Scripts;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Dajunctic.Scripts.Quest
 {
     public class Quest : MonoBehaviour
     {
-        [SerializeField] private string title;
-        [SerializeField] private string description;
-        [SerializeField] private List<QuestObjective> objectives;
+        [Header("Setup quest")] 
+        [SerializeField] private int id;
+        [SerializeField] private QuestType questType;
+        [ShowIf("@questType == QuestType.HoldClick || @questType == QuestType.HoldTouch)]")]
+        [SerializeField] private float duration;
 
-        public bool IsCompleted()
+        [Header("Components")] 
+        [SerializeField, Child] private Outline outline;
+        [SerializeField] private GameObject bubbleQuestion;
+        [SerializeField] private QuestProgressUI questProgressUI;
+        [SerializeField] private GameObject posBubbleQuestion;
+        [SerializeField] private GameObject posProgressBar;
+        
+        public int Id => id;
+        private QuestController controller;
+        private State state;
+        private float progress;
+        
+        public enum State
         {
-            return true;
+            Disable,
+            Enable,
+            Start,
+            Completed
         }
-    
+        
+        public void Init(QuestController questController)
+        {
+            controller = questController;
+            state = State.Disable;
+        }
+
+        public void SetState(State newState)
+        {
+            state = newState;
+
+            bubbleQuestion.SetActive(state == State.Enable);
+            outline.enabled = newState == State.Start;
+
+            if (state == State.Start)
+            {
+                progress = 0;
+            }
+            if (state == State.Completed)
+            {
+                controller.OnCompleteQuest();
+            }
+        }
+        
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (!other.CompareTag("Player") || state == State.Disable) return;
+
+            if (state == State.Enable)
+            {
+                if (questType == QuestType.Touch)
+                {
+                    SetState(State.Completed);
+                }
+
+                if (questType == QuestType.HoldTouch)
+                {
+                    SetState(State.Start);
+                }
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (!other.CompareTag("Player") || state == State.Disable) return;
+
+            if (state != State.Completed)
+            {
+                SetState(State.Enable);
+            }
+        }
+
+        private void Update()
+        {
+            if (state != State.Start) return;
+            
+            progress += Time.deltaTime / duration;
+            questProgressUI.SetProgress(progress);
+            if (progress >= 1)
+            {
+                progress = 1;
+                SetState(State.Completed);
+            }
+        }
     }
 
-    [Serializable]
-    public class QuestObjective
+    public enum QuestType
     {
-        public enum ObjectiveType
-        {
-            Collect,    
-            Talk,
-            Drop,
-        }
-    
-        public ObjectiveType Type { get; set; }
-        public int Quantity { get; set; }
-
-        public void Complete()
-        {
-        
-        }
+        Click,
+        Touch,
+        HoldClick,
+        HoldTouch
     }
 }
 

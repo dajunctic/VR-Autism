@@ -5,6 +5,11 @@ namespace Dajunctic.Scripts.Quest
 {
     public class QuestEventData: BaseSO
     {
-        public Action<object> OnQuestFinished;
+        public Action<Quest> OnQuestCompleted;
+
+        public void OnCompleteQuest(Quest quest)
+        {
+            OnQuestCompleted?.Invoke(quest);
+        }
     }
 }
