@@ -31,7 +31,7 @@ namespace Convai.Scripts.Runtime.Features
 
         private void ConvaiNPC_ShowSpeechBubble(string text)
         {
-            if (!string.IsNullOrEmpty(text)) _speechBubble.ShowSpeechBubble(text);
+            if(!string.IsNullOrEmpty(text)) _speechBubble.ShowSpeechBubble(text);
         }
     }
 }

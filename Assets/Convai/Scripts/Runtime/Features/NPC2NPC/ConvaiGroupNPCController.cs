@@ -42,7 +42,7 @@ namespace Convai.Scripts.Runtime.Features
         private void OnDestroy()
         {
             if (TryGetComponent(out ConvaiNPCAudioManager convaiNPCAudio)) convaiNPCAudio.OnAudioTranscriptAvailable -= HandleAudioTranscriptAvailable;
-            if (_npc2NPCGrpcClient != null) _npc2NPCGrpcClient.OnTranscriptAvailable -= HandleTranscriptAvailable;
+            if(_npc2NPCGrpcClient!=null) _npc2NPCGrpcClient.OnTranscriptAvailable -= HandleTranscriptAvailable;
             if (_checkPlayerVicinityCoroutine != null) StopCoroutine(_checkPlayerVicinityCoroutine);
         }
 

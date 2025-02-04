@@ -21,13 +21,13 @@ namespace Convai.Scripts.Runtime.Features
         private ConvaiService.ConvaiServiceClient _client;
         private NPCGroup _npcGroup;
 
+        public event Action<string, ConvaiGroupNPCController> OnTranscriptAvailable;
+
         private void OnDestroy()
         {
             _cancellationTokenSource?.Cancel();
             _cancellationTokenSource?.Dispose();
         }
-
-        public event Action<string, ConvaiGroupNPCController> OnTranscriptAvailable;
 
         /// <summary>
         ///     Initializes the NPC2NPCGRPCClient with the given API key and ConvaiService client.
@@ -50,7 +50,7 @@ namespace Convai.Scripts.Runtime.Features
             Metadata headers = new()
             {
                 { "source", "Unity" },
-                { "version", "3.1.1" }
+                { "version", "3.2.0" }
             };
 
             CallOptions options = new(headers);
@@ -135,8 +135,7 @@ namespace Convai.Scripts.Runtime.Features
         /// <param name="call">The AsyncDuplexStreamingCall to use for receiving the response.</param>
         /// <param name="cancellationToken">The cancellation token to use for cancelling the operation.</param>
         /// <returns>A task that represents the asynchronous operation.</returns>
-        private async Task ReceiveResultFromServer(AsyncDuplexStreamingCall<GetResponseRequest, GetResponseResponse> call, CancellationToken cancellationToken,
-            ConvaiGroupNPCController npcController)
+        private async Task ReceiveResultFromServer(AsyncDuplexStreamingCall<GetResponseRequest, GetResponseResponse> call, CancellationToken cancellationToken, ConvaiGroupNPCController npcController)
         {
             ConvaiLogger.Info("Receiving response from server", ConvaiLogger.LogCategory.Character);
             Queue<LipSyncBlendFrameData> lipSyncBlendFrameQueue = new();

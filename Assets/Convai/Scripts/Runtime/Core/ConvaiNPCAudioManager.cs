@@ -12,8 +12,8 @@ namespace Convai.Scripts.Runtime.Core
         private readonly Queue<ResponseAudio> _responseAudios = new();
         private AudioSource _audioSource;
         private ConvaiNPC _convaiNPC;
-        private bool _lastTalkingState;
         private ConvaiGroupNPCController _npcController;
+        private bool _lastTalkingState;
         private Coroutine _playInOrderCoroutine;
         private bool _stopAudioPlayingLoop;
         private bool _waitForCharacterLipSync;
@@ -23,7 +23,7 @@ namespace Convai.Scripts.Runtime.Core
             _audioSource = GetComponent<AudioSource>();
             _convaiNPC = GetComponent<ConvaiNPC>();
             TryGetComponent(out _npcController);
-
+            
             _lastTalkingState = false;
         }
 
@@ -100,9 +100,13 @@ namespace Convai.Scripts.Runtime.Core
                             yield return new WaitForSeconds(0.01f);
 
                         if (_npcController != null)
+                        {
                             while (_npcController.IsOtherNPCTalking())
+                            {
                                 yield return new WaitForSeconds(0.1f);
-
+                            }
+                        }
+                        
                         _audioSource.Play();
                         //ConvaiLogger.DebugLog($"Playing: {currentResponseAudio.AudioTranscript}", ConvaiLogger.LogCategory.LipSync);
                         SetCharacterTalking(true);

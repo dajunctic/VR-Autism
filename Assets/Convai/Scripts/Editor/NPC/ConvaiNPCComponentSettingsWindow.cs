@@ -22,7 +22,7 @@ namespace Convai.Scripts.Editor.NPC
         private void OnGUI()
         {
             titleContent = new GUIContent("Convai NPC Components");
-            Vector2 windowSize = new(300, 210);
+            Vector2 windowSize = new(300, 250);
             minSize = windowSize;
             maxSize = windowSize;
             if (_convaiNPC == null)
@@ -46,6 +46,12 @@ namespace Convai.Scripts.Editor.NPC
             _convaiNPC.LongTermMemoryController =
                 EditorGUILayout.Toggle(new GUIContent("Long Term Memory", "Component to toggle Long term memory for this character"),
                     _convaiNPC.LongTermMemoryController);
+            _convaiNPC.NarrativeDesignKeyController =
+                EditorGUILayout.Toggle(new GUIContent("Narrative Design Keys", "Adds handler for Narrative Design Keys for this character"),
+                    _convaiNPC.NarrativeDesignKeyController);
+            _convaiNPC.DynamicInfoController =
+                EditorGUILayout.Toggle(new GUIContent("Dynamic Info", "Component used to send dynamic info like your game states to the character"),
+                    _convaiNPC.DynamicInfoController);
 
             EditorGUILayout.EndVertical();
 
@@ -96,6 +102,9 @@ namespace Convai.Scripts.Editor.NPC
                 _convaiNPC.NarrativeDesignManager = _convaiNPC.GetComponent<NarrativeDesignManager>() is not null;
                 _convaiNPC.ConvaiGroupNPCController = _convaiNPC.GetComponent<ConvaiGroupNPCController>() is not null;
                 _convaiNPC.LongTermMemoryController = _convaiNPC.GetComponent<ConvaiLTMController>() is not null;
+                _convaiNPC.NarrativeDesignKeyController =
+                    _convaiNPC.GetComponent<NarrativeDesignKeyController>() is not null;
+                _convaiNPC.DynamicInfoController = _convaiNPC.GetComponent<DynamicInfoController>() is not null;
                 Repaint();
             }
         }
@@ -115,6 +124,8 @@ namespace Convai.Scripts.Editor.NPC
                 ApplyComponent<NarrativeDesignManager>(_convaiNPC.NarrativeDesignManager);
                 ApplyComponent<ConvaiGroupNPCController>(_convaiNPC.ConvaiGroupNPCController);
                 ApplyComponent<ConvaiLTMController>(_convaiNPC.LongTermMemoryController);
+                ApplyComponent<NarrativeDesignKeyController>(_convaiNPC.NarrativeDesignKeyController);
+                ApplyComponent<DynamicInfoController>(_convaiNPC.DynamicInfoController);
             }
         }
 

@@ -49,6 +49,8 @@ namespace Convai.Scripts.Runtime.Core
         private void HandleInputSubmission(string input)
         {
             if (!_convaiNPC.isCharacterActive || string.IsNullOrEmpty(input.Trim())) return;
+            _convaiNPC.InterruptCharacterSpeech();
+            UpdateActionConfig();
             _convaiNPC.SendTextDataAsync(input);
             _convaiChatUIHandler.SendPlayerText(input);
             ClearInputField();
@@ -73,7 +75,10 @@ namespace Convai.Scripts.Runtime.Core
         private void HandleToggleChat()
         {
             TMP_InputField inputFieldInScene = FindActiveInputField();
-            if (!inputFieldInScene.isFocused && _convaiNPC.isCharacterActive) inputFieldInScene.ActivateInputField();
+            if (!inputFieldInScene.isFocused && _convaiNPC.isCharacterActive)
+            {
+                inputFieldInScene.ActivateInputField();
+            }
         }
 
         private void HandleSendText()

@@ -1,10 +1,10 @@
-using UnityEditor;
-using UnityEditor.PackageManager.Requests;
 #if !READY_PLAYER_ME
+using UnityEditor;
+using System;
 using UnityEditor.PackageManager;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
-#endif
+using Random = UnityEngine.Random;
 
 
 namespace Convai.Scripts.Editor.CustomPackage
@@ -16,16 +16,12 @@ namespace Convai.Scripts.Editor.CustomPackage
 
         static ReadyPlayerMeImporter()
         {
-#if !READY_PLAYER_ME
-        ConvaiLogger.DebugLog("Ready Player Me is not installed, importing it", ConvaiLogger.LogCategory.Editor);
-        _request = Client.Add("https://github.com/readyplayerme/rpm-unity-sdk-core.git");
-        EditorUtility.DisplayProgressBar("Importing Ready Player Me", "Importing.....", Random.Range(0,1f));
-        EditorApplication.update += UnityEditorUpdateCallback;
-
-#endif
+            Debug.Log("Ready Player Me is not installed, importing it.");
+            _request = Client.Add("https://github.com/readyplayerme/rpm-unity-sdk-core.git");
+            EditorUtility.DisplayProgressBar("Importing Ready Player Me", "Importing.....", Random.Range(0, 1f));
+            EditorApplication.update += UnityEditorUpdateCallback;
         }
 
-#if !READY_PLAYER_ME
         private static void UnityEditorUpdateCallback()
         {
             if (_request == null) return;
@@ -33,20 +29,21 @@ namespace Convai.Scripts.Editor.CustomPackage
             switch (_request.Status)
             {
                 case StatusCode.Success:
-                    ConvaiLogger.DebugLog( "Ready Player Me has been imported successfully", ConvaiLogger.LogCategory.Editor);
+                    Debug.Log("Ready Player Me has been imported successfully");
                     break;
                 case StatusCode.Failure:
-                    ConvaiLogger.Error($"Ready Player Me has failed to import: {_request.Error.message}", ConvaiLogger.LogCategory.Editor);
+                    Debug.LogError("Ready Player Me has failed to import: " + _request.Error.message);
                     break;
                 case StatusCode.InProgress:
-                    ConvaiLogger.DebugLog("Ready Player Me is still importing...", ConvaiLogger.LogCategory.Editor);
+                    Debug.Log("Ready Player Me is still importing...");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
             EditorApplication.update -= UnityEditorUpdateCallback;
             EditorUtility.ClearProgressBar();
         }
-#endif
     }
 }
+#endif
