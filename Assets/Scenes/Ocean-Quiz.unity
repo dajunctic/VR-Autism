@@ -319,6 +319,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: System UI
       objectReference: {fileID: 0}
+    - target: {fileID: 6457315487829206945, guid: 4bfcfa6fb891b8c429dc854b8ee54dca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7378570275141836586, guid: 4bfcfa6fb891b8c429dc854b8ee54dca,
         type: 3}
       propertyPath: m_BlockingMask.m_Bits
@@ -329,18 +334,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bfcfa6fb891b8c429dc854b8ee54dca, type: 3}
---- !u!114 &289091179 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3838185508357447259, guid: 4bfcfa6fb891b8c429dc854b8ee54dca,
-    type: 3}
-  m_PrefabInstance: {fileID: 289091178}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &467516853
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,6 +371,18 @@ Transform:
   - {fileID: 1820619413}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &500250167 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8765007834013762630, guid: 0ff4f01035c778047b87226a1568ddbf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1944599096}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &521308874
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,6 +619,22 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 14e792d52135e564fa95c6ab12065a7b, type: 3}
   - typeSound: 2
     audioClip: {fileID: 8300000, guid: e934956b7ab67cd4db724265929ed32a, type: 3}
+  - typeSound: 52
+    audioClip: {fileID: 8300000, guid: df0da0b688a7a41418260b8a34669580, type: 3}
+  - typeSound: 19
+    audioClip: {fileID: 8300000, guid: e6a967509ba667f4c91f07c7feec0666, type: 3}
+  - typeSound: 20
+    audioClip: {fileID: 8300000, guid: 5269b506cbc1a294dafd28d6603caa4c, type: 3}
+  - typeSound: 21
+    audioClip: {fileID: 8300000, guid: 32e40ce3505749249bbbb3aebc9206f5, type: 3}
+  - typeSound: 22
+    audioClip: {fileID: 8300000, guid: 784b81f3538eb0047af2bbee79dbdb34, type: 3}
+  - typeSound: 23
+    audioClip: {fileID: 8300000, guid: 36199c8fef2790141a22285db71c2649, type: 3}
+  - typeSound: 24
+    audioClip: {fileID: 8300000, guid: 77e3ee5b1efde4a44b065d371c76d585, type: 3}
+  - typeSound: 25
+    audioClip: {fileID: 8300000, guid: dcaea746bdf86d041a51e140c9fc46a2, type: 3}
 --- !u!4 &867156436
 Transform:
   m_ObjectHideFlags: 0
@@ -1200,6 +1221,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2425aa93186f964292fe864cdedc4d9, type: 3}
+--- !u!114 &1329008384 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 740047861698004904, guid: 0ff4f01035c778047b87226a1568ddbf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1944599096}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &1523529392 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 932995752721236072, guid: 0ff4f01035c778047b87226a1568ddbf,
@@ -1532,6 +1565,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Quizzz
+      objectReference: {fileID: 0}
+    - target: {fileID: 6131206875481359396, guid: 0ff4f01035c778047b87226a1568ddbf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6222980759401724625, guid: 0ff4f01035c778047b87226a1568ddbf,
         type: 3}
@@ -1917,12 +1955,17 @@ PrefabInstance:
         type: 3}
       propertyPath: score
       value: 
-      objectReference: {fileID: 289091179}
+      objectReference: {fileID: 500250167}
     - target: {fileID: 9188471086318479826, guid: 6f532ff8a182f2441bd03104c1648037,
         type: 3}
       propertyPath: questionText
       value: 
       objectReference: {fileID: 1944599101}
+    - target: {fileID: 9188471086318479826, guid: 6f532ff8a182f2441bd03104c1648037,
+        type: 3}
+      propertyPath: time_completed
+      value: 
+      objectReference: {fileID: 1329008384}
     - target: {fileID: 9188471086318479826, guid: 6f532ff8a182f2441bd03104c1648037,
         type: 3}
       propertyPath: answerButtons.Array.data[0]

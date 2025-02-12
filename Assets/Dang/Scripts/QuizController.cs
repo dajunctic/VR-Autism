@@ -89,6 +89,7 @@ public class QuizController : MonoBehaviour
     private void EndQuiz()
     {
         Debug.Log("Quiz ended.");
+        uiController.ShowFinalTime();
         gameover.SetActive(true);
         nextQuestionButton.gameObject.SetActive(false);
         soundManager.StopLoopingSound();

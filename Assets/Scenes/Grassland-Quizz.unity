@@ -123,18 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &21720237 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3838185508357447259, guid: 4bfcfa6fb891b8c429dc854b8ee54dca,
-    type: 3}
-  m_PrefabInstance: {fileID: 940439667177250060}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &44076205
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,22 +737,30 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 14e792d52135e564fa95c6ab12065a7b, type: 3}
   - typeSound: 2
     audioClip: {fileID: 8300000, guid: e934956b7ab67cd4db724265929ed32a, type: 3}
-  - typeSound: 15
-    audioClip: {fileID: 8300000, guid: e5652a84ec10ebc41a9ab0c6fac45d26, type: 3}
-  - typeSound: 7
-    audioClip: {fileID: 8300000, guid: 849edd589a6d71449ba3e962169a5378, type: 3}
-  - typeSound: 13
-    audioClip: {fileID: 8300000, guid: c32d4ff374e5a364bb94a6705b68a275, type: 3}
-  - typeSound: 10
+  - typeSound: 33
     audioClip: {fileID: 8300000, guid: ee533ee4358456443b86c3117d407134, type: 3}
-  - typeSound: 14
+  - typeSound: 37
     audioClip: {fileID: 8300000, guid: e7384cdfac299e8428eea33926db5b05, type: 3}
-  - typeSound: 9
-    audioClip: {fileID: 8300000, guid: a0880cdbdb627f54ca31e64628844d77, type: 3}
-  - typeSound: 11
-    audioClip: {fileID: 8300000, guid: 1e598003b4646154da87d29e91d8e1d0, type: 3}
-  - typeSound: 12
+  - typeSound: 35
     audioClip: {fileID: 8300000, guid: 4fe0fd2bbabb2e54f9d5ffd43781a8ac, type: 3}
+  - typeSound: 31
+    audioClip: {fileID: 0}
+  - typeSound: 29
+    audioClip: {fileID: 0}
+  - typeSound: 3
+    audioClip: {fileID: 8300000, guid: 35796bd90351fdc4ea427952d9a5f246, type: 3}
+  - typeSound: 4
+    audioClip: {fileID: 8300000, guid: 246e9e7a55098ee419ccb77ee97f8500, type: 3}
+  - typeSound: 5
+    audioClip: {fileID: 8300000, guid: f1fbda4cf365c8a4faab6bfc5d5d7bc0, type: 3}
+  - typeSound: 6
+    audioClip: {fileID: 8300000, guid: 9c84156ee806bb64d936f772733d9882, type: 3}
+  - typeSound: 7
+    audioClip: {fileID: 8300000, guid: 58dbd27556ffb3c42be02f42cb7cebeb, type: 3}
+  - typeSound: 8
+    audioClip: {fileID: 8300000, guid: f58e763b0342c06448003be07a37fa96, type: 3}
+  - typeSound: 9
+    audioClip: {fileID: 8300000, guid: 3cdab0190a2c7dd4991f5eb0c1d5d60d, type: 3}
 --- !u!4 &166303933
 Transform:
   m_ObjectHideFlags: 0
@@ -5850,6 +5846,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: System UI
       objectReference: {fileID: 0}
+    - target: {fileID: 6457315487829206945, guid: 4bfcfa6fb891b8c429dc854b8ee54dca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7599,6 +7600,30 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ff4f01035c778047b87226a1568ddbf, type: 3}
+--- !u!114 &6074523220157429774 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 740047861698004904, guid: 0ff4f01035c778047b87226a1568ddbf,
+    type: 3}
+  m_PrefabInstance: {fileID: 6074523220157429773}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6074523220157429775 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8765007834013762630, guid: 0ff4f01035c778047b87226a1568ddbf,
+    type: 3}
+  m_PrefabInstance: {fileID: 6074523220157429773}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &6089141447511554448
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7967,12 +7992,17 @@ PrefabInstance:
         type: 3}
       propertyPath: score
       value: 
-      objectReference: {fileID: 21720237}
+      objectReference: {fileID: 6074523220157429775}
     - target: {fileID: 9188471086318479826, guid: 6f532ff8a182f2441bd03104c1648037,
         type: 3}
       propertyPath: questionText
       value: 
       objectReference: {fileID: 1533910580}
+    - target: {fileID: 9188471086318479826, guid: 6f532ff8a182f2441bd03104c1648037,
+        type: 3}
+      propertyPath: time_completed
+      value: 
+      objectReference: {fileID: 6074523220157429774}
     - target: {fileID: 9188471086318479826, guid: 6f532ff8a182f2441bd03104c1648037,
         type: 3}
       propertyPath: answerButtons.Array.data[0]

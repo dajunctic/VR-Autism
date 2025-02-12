@@ -11,7 +11,12 @@ public class QuizUIController : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI score;
+    [SerializeField]
+    private TextMeshProUGUI time_completed;
     int count = 0;
+    private float startTime;
+    private float elapsedTime;
+    private bool isTiming;
     [SerializeField]
     private Button[] answerButtons;
 
@@ -32,6 +37,12 @@ public class QuizUIController : MonoBehaviour
     public void SetupUIForQuestion(QuizConfig.QuestionData question)
     {
         questionText.text = question.question;
+
+        if (!isTiming)
+        {
+            startTime = Time.time;
+            isTiming = true;
+        }
 
         for (int i = 0; i < answerButtons.Length; i++)
         {
@@ -63,6 +74,15 @@ public class QuizUIController : MonoBehaviour
         }
     }
 
+    public void ShowFinalTime()
+    {
+        elapsedTime = Time.time - startTime;
+        int minutes = Mathf.FloorToInt(elapsedTime / 60);
+        int seconds = Mathf.FloorToInt(elapsedTime % 60);
+
+        time_completed.text = "Thời gian: " + minutes.ToString("00") + ":" + seconds.ToString("00");
+    }
+
     public void HandleSubmittedAnswer(int selectedAnswerIndex, int correctAnswerIndex)
     {
         var selectedButton = answerButtons[selectedAnswerIndex];
@@ -70,7 +90,7 @@ public class QuizUIController : MonoBehaviour
         {
             selectedButton.image.color = correctColor;
             count++;
-            score.text = "Điểm số: " + count;
+            score.text = "Số câu trả lời đúng: " + count;
         }
         else
         {
