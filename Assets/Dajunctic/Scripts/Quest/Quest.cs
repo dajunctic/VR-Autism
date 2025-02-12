@@ -69,7 +69,7 @@ namespace Dajunctic.Scripts.Quest
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.CompareTag("Player") || state == State.Disable) return;
+            if (!other.CompareTag("Character") || state == State.Disable) return;
 
             if (state == State.Enable)
             {
@@ -87,7 +87,7 @@ namespace Dajunctic.Scripts.Quest
 
         private void OnTriggerExit(Collider other)
         {
-            if (!other.CompareTag("Player") || state == State.Disable) return;
+            if (!other.CompareTag("Character") || state == State.Disable) return;
 
             if (state != State.Completed)
             {

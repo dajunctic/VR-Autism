@@ -498,6 +498,7 @@ GameObject:
   - component: {fileID: 1937785369236080292}
   - component: {fileID: 6993371923118639860}
   - component: {fileID: 1323163644376483739}
+  - component: {fileID: 3875459433395867494}
   m_Layer: 5
   m_Name: Quizzz
   m_TagString: Untagged
@@ -615,6 +616,25 @@ MonoBehaviour:
   gameover: {fileID: 6131206875481359396}
   quizConfigName: GrasslandQuizConfig
   nextQuestionButton: {fileID: 4543209651173175465}
+--- !u!114 &3875459433395867494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3791457419703885717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 255
+  m_RaycastTriggerInteraction: 1
 --- !u!1 &4579804752869984025
 GameObject:
   m_ObjectHideFlags: 0
