@@ -3,6 +3,7 @@ using KBCore.Refs;
 using Plugins.QuickOutline.Scripts;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Dajunctic.Scripts.Quest
 {
@@ -11,15 +12,17 @@ namespace Dajunctic.Scripts.Quest
         [Header("Setup quest")] 
         [SerializeField] private int id;
         [SerializeField] private QuestType questType;
-        [ShowIf("@questType == QuestType.HoldClick || @questType == QuestType.HoldTouch)]")]
+        [ShowIf("@questType == QuestType.HoldClick || questType == QuestType.HoldTouch")]
         [SerializeField] private float duration;
 
         [Header("Components")] 
-        [SerializeField, Child] private Outline outline;
-        [SerializeField] private GameObject bubbleQuestion;
-        [SerializeField] private QuestProgressUI questProgressUI;
-        [SerializeField] private GameObject posBubbleQuestion;
-        [SerializeField] private GameObject posProgressBar;
+        [SerializeField] private Outline outline;
+        [SerializeField] private Transform posBubbleQuestion;
+        [SerializeField] private Transform posProgressBar;
+        
+        [Header("Events")]
+        [SerializeField] private UnityEvent onQuestStarted;
+        [SerializeField] private UnityEvent onQuestFinished;
         
         public int Id => id;
         private QuestController controller;
@@ -38,21 +41,27 @@ namespace Dajunctic.Scripts.Quest
         {
             controller = questController;
             state = State.Disable;
+            if (outline) outline.enabled = false;
         }
 
         public void SetState(State newState)
         {
             state = newState;
 
-            bubbleQuestion.SetActive(state == State.Enable);
-            outline.enabled = newState == State.Start;
+            controller.bubbleQuestion.SetActive(state == State.Enable);
+            controller.bubbleQuestion.transform.position = posBubbleQuestion.position;
+            controller.questProgressUI.gameObject.SetActive(state == State.Start);
+            controller.questProgressUI.transform.position = posProgressBar.position;
+            if (outline) outline.enabled = newState == State.Start;
 
             if (state == State.Start)
             {
                 progress = 0;
+                onQuestStarted?.Invoke();
             }
             if (state == State.Completed)
             {
+                onQuestFinished?.Invoke();
                 controller.OnCompleteQuest();
             }
         }
@@ -91,7 +100,7 @@ namespace Dajunctic.Scripts.Quest
             if (state != State.Start) return;
             
             progress += Time.deltaTime / duration;
-            questProgressUI.SetProgress(progress);
+            controller.questProgressUI.SetProgress(progress);
             if (progress >= 1)
             {
                 progress = 1;

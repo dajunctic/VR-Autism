@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Daark;
 using UnityEngine;
 
 namespace Dajunctic.Scripts.Quest
@@ -7,6 +8,10 @@ namespace Dajunctic.Scripts.Quest
     public class QuestController: MonoBehaviour
     {
         [SerializeField] private Quest[] quests;
+        [SerializeField] public QuestProgressUI questProgressUI;
+        [SerializeField] public GameObject bubbleQuestion;
+        [SerializeField] public GameObject congratulationUI;
+
 
         private int curQuestId;
 
@@ -16,37 +21,44 @@ namespace Dajunctic.Scripts.Quest
             {
                 quest.Init(this);
             }
+            
+            questProgressUI.gameObject.SetActive(false);
+            bubbleQuestion.SetActive(false);
+            congratulationUI.SetActive(false);
 
             curQuestId = 0;
         }
 
         private Quest GetCurQuest()
         {
-            return quests.First(x => x.Id == curQuestId);
+            return quests.FirstOrDefault(x => x.Id == curQuestId);
         }
 
         private void Start()
         {
             var quest = GetCurQuest();
-
-            if (quest != null)
-            {
-                quest.SetState(Quest.State.Enable);
-            }
+            quest?.SetState(Quest.State.Enable);
         }
 
         public void OnCompleteQuest()
         {
+            if (curQuestId >= quests.Length - 1)
+            {
+                congratulationUI.SetActive(true);
+                this.SendEvent(EventID.ExitScene);
+                return;
+            }
+            
             curQuestId++;
             var quest = GetCurQuest();
             
-            if (curQuestId >= quests.Length || quest is null)
+            if (quest is null)
             {
                 Debug.LogError($"Quest {curQuestId} not found in total {quests.Length} quests");
             }
             else
             {
-                
+                quest.SetState(Quest.State.Enable);
             }
         }
 

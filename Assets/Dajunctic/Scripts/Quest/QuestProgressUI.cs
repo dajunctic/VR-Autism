@@ -7,11 +7,11 @@ namespace Dajunctic.Scripts.Quest
 {
     public class QuestProgressUI : MonoBehaviour
     {
-        [SerializeField] private Image bar;
+        [SerializeField] private Slider bar;
 
         public void SetProgress(float progress)
         {
-            bar.fillAmount = progress;
+            bar.value = progress;
         }
     }
 }

@@ -31,6 +31,19 @@ namespace Dajunctic.Scripts.Objects
             }
         }
 
+        public void TurnOn()
+        {
+            if (!turnOn)
+            {
+                animator.Play("FaucetWaterStart");
+            }
+        }
+
+        public void TurnOff()
+        {
+            animator.Play("FaucetWaterEnd");
+        }
+
         private void Toggle(bool state)
         {
             turnOn = state;

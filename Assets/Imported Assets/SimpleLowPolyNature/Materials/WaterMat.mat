@@ -21,18 +21,20 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: WaterMat
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _EMISSION
+  - _ENVIRONMENTREFLECTIONS_OFF
+  m_InvalidKeywords:
   - _GLOSSYREFLECTIONS_OFF
-  m_InvalidKeywords: []
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
@@ -140,7 +142,7 @@ Material:
     - _Distortion: 0.2
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _EnvironmentReflections: 1
+    - _EnvironmentReflections: 0
     - _Float0: 0.0192
     - _Float1: 0.85
     - _Float3: 0.9
@@ -164,7 +166,7 @@ Material:
     - _ReceiveShadows: 1
     - _ShoreDepth: -6.35
     - _ShoreFalloff: -10
-    - _Smoothness: 0.9
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _Specular: 0.1
     - _SpecularHighlights: 1
@@ -183,8 +185,8 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
-    - _BaseColor: {r: 0.17621931, g: 0.6291291, b: 0.6792453, a: 1}
-    - _Color: {r: 0.17621928, g: 0.6291291, b: 0.6792453, a: 1}
+    - _BaseColor: {r: 0.17621925, g: 0.6291291, b: 0.6792453, a: 1}
+    - _Color: {r: 0.17621922, g: 0.6291291, b: 0.6792453, a: 1}
     - _Color0: {r: 0, g: 0.6749488, b: 0.8088235, a: 0}
     - _Color1: {r: 0, g: 0.048731543, b: 0.22794023, a: 0}
     - _DeepColor: {r: 0.2511125, g: 0.7187613, b: 0.9339623, a: 1}
