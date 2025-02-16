@@ -23,6 +23,9 @@ namespace Dajunctic.Scripts.Quest
         [Header("Events")]
         [SerializeField] private UnityEvent onQuestStarted;
         [SerializeField] private UnityEvent onQuestFinished;
+        [SerializeField] private UnityEvent onQuestCanceled;
+        [SerializeField] private UnityEvent onQuestTriggerEnter;
+        [SerializeField] private UnityEvent onQuestTriggerExit;
         
         public int Id => id;
         private QuestController controller;
@@ -70,6 +73,7 @@ namespace Dajunctic.Scripts.Quest
         private void OnTriggerEnter(Collider other)
         {
             if (!other.CompareTag("Character") || state == State.Disable) return;
+            onQuestTriggerEnter?.Invoke();
 
             if (state == State.Enable)
             {
@@ -88,6 +92,7 @@ namespace Dajunctic.Scripts.Quest
         private void OnTriggerExit(Collider other)
         {
             if (!other.CompareTag("Character") || state == State.Disable) return;
+            onQuestTriggerExit?.Invoke();
 
             if (state != State.Completed)
             {

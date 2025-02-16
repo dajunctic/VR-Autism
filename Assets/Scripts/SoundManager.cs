@@ -12,6 +12,8 @@ public class SoundManager : MonoBehaviour
     private void Awake()
     {
         this.SubscribeListener(EventID.PlaySound, param => PlaySound((TypeSound) param));
+        this.SubscribeListener(EventID.PauseSound, param => PauseSound());
+        this.SubscribeListener(EventID.PlaySoundLoop, param => PlaySoundLoop((TypeSound) param));
     }
 
     private void PlayMusic()
@@ -27,6 +29,11 @@ public class SoundManager : MonoBehaviour
         audioSource.PlayOneShot(sound.audioClip);
     }
 
+    private void PauseSound()
+    {
+        audioSource.Pause();
+    }
+
     public void PlaySoundLoop(TypeSound typeSound)
     {
         var sound = soundObjects.Find(x => x.typeSound == typeSound);
@@ -34,7 +41,7 @@ public class SoundManager : MonoBehaviour
         audioSource.Stop();
         audioSource.loop = true;
         audioSource.clip = sound.audioClip;
-        audioSource.volume = 0.2f;
+        // audioSource.volume = 0.2f;
         audioSource.Play();
     }
 
@@ -135,7 +142,10 @@ public enum TypeSound
     JellyfishDes,
     TurtleSound,
     TurtleDes,
-   
+    
+    // Bathroom
+    WaterSound,
+    
 }
 
 

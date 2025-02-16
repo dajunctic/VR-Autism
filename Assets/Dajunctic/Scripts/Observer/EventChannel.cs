@@ -187,6 +187,8 @@ namespace Daark
         OnTriggerProcessEnter,
         OnTriggerProcessExit,
         PlaySound,
+        PauseSound,
+        PlaySoundLoop,
         // Change Scene
         ChangeScene,
         ExitScene,
