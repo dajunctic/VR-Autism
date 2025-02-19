@@ -28,6 +28,7 @@ namespace Dajunctic.Scripts.Manager
                 {
                     yield return new WaitUntil(() => actionEvent.isConditionMet.Value);
                 }
+                actionEvent.onFinished?.Invoke();
             }
             
             Debug.Log("[Debug] <color=#00ff48>All actions have been finished...</color>");
