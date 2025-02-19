@@ -11,6 +11,7 @@ namespace Dajunctic.Scripts.Quest
     {
         [Header("Setup quest")] 
         [SerializeField] private int id;
+        [SerializeField] private string questName;
         [SerializeField] private QuestType questType;
         [ShowIf("@questType == QuestType.HoldClick || questType == QuestType.HoldTouch")]
         [SerializeField] private float duration;
@@ -28,6 +29,7 @@ namespace Dajunctic.Scripts.Quest
         [SerializeField] private UnityEvent onQuestTriggerExit;
         
         public int Id => id;
+        public string Name => questName;
         private QuestController controller;
         private State state;
         private float progress;
