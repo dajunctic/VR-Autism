@@ -50,7 +50,7 @@ namespace Convai.Scripts.Runtime.Features
             Metadata headers = new()
             {
                 { "source", "Unity" },
-                { "version", "3.2.0" }
+                { "version", "3.2.1" }
             };
 
             CallOptions options = new(headers);

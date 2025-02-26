@@ -161,15 +161,15 @@ namespace Convai.Scripts.Runtime.Core
                         ConvaiLogger.Error($"Unknown error from server: {rpcException.Status.Detail}", ConvaiLogger.LogCategory.Character);
                         break;
                     case StatusCode.PermissionDenied:
-                    {
-                        if (NotificationSystemHandler.Instance != null && !_isInitializationErrorThrown)
                         {
-                            NotificationSystemHandler.Instance.NotificationRequest(NotificationType.UsageLimitExceeded);
-                            _isInitializationErrorThrown = true;
-                        }
+                            if (NotificationSystemHandler.Instance != null && !_isInitializationErrorThrown)
+                            {
+                                NotificationSystemHandler.Instance.NotificationRequest(NotificationType.UsageLimitExceeded);
+                                _isInitializationErrorThrown = true;
+                            }
 
-                        break;
-                    }
+                            break;
+                        }
                     default:
                         throw;
                 }
@@ -312,7 +312,7 @@ namespace Convai.Scripts.Runtime.Core
             Metadata headers = new()
             {
                 { "source", "Unity" },
-                { "version", "3.2.0" }
+                { "version", "3.2.3" }
             };
 
             CallOptions options = new(headers);
@@ -494,15 +494,15 @@ namespace Convai.Scripts.Runtime.Core
                             ConvaiLogger.Error(rpcException, ConvaiLogger.LogCategory.Character);
                             break;
                         case StatusCode.PermissionDenied:
-                        {
-                            if (NotificationSystemHandler.Instance != null && !_usageLimitNotificationSent)
                             {
-                                NotificationSystemHandler.Instance.NotificationRequest(NotificationType.UsageLimitExceeded);
-                                _usageLimitNotificationSent = true;
-                            }
+                                if (NotificationSystemHandler.Instance != null && !_usageLimitNotificationSent)
+                                {
+                                    NotificationSystemHandler.Instance.NotificationRequest(NotificationType.UsageLimitExceeded);
+                                    _usageLimitNotificationSent = true;
+                                }
 
-                            break;
-                        }
+                                break;
+                            }
                         default:
                             throw;
                     }

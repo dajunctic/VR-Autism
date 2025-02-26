@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [7.3.1] - 2024.10.30
+
+## Updated
+- Re-exporting package for asset store with updated dependencies
+
+## [7.3.0] - 2024.10.22
+
+## Updated
+- auth-related requests now use auth-service endpoints  [#317](https://github.com/readyplayerme/rpm-unity-sdk-core/pull/317)
+- updated shader variants to fix issues various material issues
+
+## Fixed
+- Fixed an issue causing Out of Bounds exception in WebGL voice handler [#322](https://github.com/readyplayerme/rpm-unity-sdk-core/pull/322)
+
+## Added 
+- DestroyMesh class can be used to destroy manually destroy mesh, materials and textures to prevent memory leaks
+
+## [7.2.0] - 2024.09.06
+
+## Updated
+- Updated handling of response data to reduce garbage allocation [#314](https://github.com/readyplayerme/rpm-unity-sdk-core/pull/314)
+## Fixed
+- Preserve AssetId property in IAssetData [#313](https://github.com/readyplayerme/rpm-unity-sdk-core/pull/313)
+
+## [7.1.1] - 2024.07.25
+
+## Fixed
+- Fixed an issue causing json parsing to fail on iFrame events [#311](https://github.com/readyplayerme/rpm-unity-sdk-core/pull/311/)
+
 ## [7.1.0] - 2024.07.16
 
 ## Updated

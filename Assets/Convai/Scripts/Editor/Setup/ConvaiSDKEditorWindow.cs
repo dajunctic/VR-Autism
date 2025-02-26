@@ -14,6 +14,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Convai.Scripts.Editor.Setup {
+
     public class ConvaiSDKSetupEditorWindow : EditorWindow {
         private const string STYLE_SHEET_PATH = "Assets/Convai/Art/UI/Editor/ConvaiSDKSetupWindow.uss";
         private const string VISUAL_TREE_PATH = "Assets/Convai/Art/UI/Editor/ConvaiSDKSetupWindow.uxml";
@@ -25,10 +26,12 @@ namespace Convai.Scripts.Editor.Setup {
             { "welcome", "account", "package-management", "character-importer", "logger-settings", "updates", "documentation", "contact-us", "ltm" };
 
         private static readonly HashSet<string> ApiKeyDependentSections = new() { "character-importer", "logger-settings", "package-management", "ltm" };
+        //private static readonly HashSet<string> CoreAPIDependantSections = new() { "character-importer" };
 
         private static bool _isApiKeySet;
 
-        public static event Action OnAPIKeySet;
+        public static bool IsCoreAPIAllowed = false;
+
         public static bool IsApiKeySet {
             get => _isApiKeySet;
             set {
@@ -37,56 +40,58 @@ namespace Convai.Scripts.Editor.Setup {
             }
         }
 
-        private void CreateGUI () {
+        private void CreateGUI() {
             InitializeUI();
             SetupNavigationHandlers();
         }
 
+        public static event Action OnAPIKeySet;
+
         [MenuItem( "Convai/Welcome", priority = 1 )]
-        public static void OpenWindow () {
+        public static void OpenWindow() {
             OpenSection( "welcome" );
         }
 
         [MenuItem( "Convai/API Key Setup", priority = 2 )]
-        public static void OpenAPIKeySetup () {
+        public static void OpenAPIKeySetup() {
             OpenSection( "account" );
         }
 #if READY_PLAYER_ME
         [MenuItem( "Convai/Character Importer", priority = 3 )]
-        public static void OpenCharacterImporter () {
+        public static void OpenCharacterImporter() {
             OpenSection( "character-importer" );
         }
 #endif
 
         [MenuItem( "Convai/Logger Settings", priority = 4 )]
-        public static void OpenLoggerSettings () {
+        public static void OpenLoggerSettings() {
             OpenSection( "logger-settings" );
         }
 
         [MenuItem( "Convai/Custom Package Installer", priority = 5 )]
-        public static void OpenCustomPackageInstaller () {
+        public static void OpenCustomPackageInstaller() {
             OpenSection( "package-management" );
         }
 
         [MenuItem( "Convai/Documentation", priority = 6 )]
-        public static void OpenDocumentation () {
+        public static void OpenDocumentation() {
             OpenSection( "documentation" );
         }
 
         [MenuItem( "Convai/Long Term Memory", priority = 6 )]
-        public static void OpenLTM () {
+        public static void OpenLTM() {
             OpenSection( "ltm" );
         }
 
-        private static void OpenSection ( string sectionName ) {
-            Rect rect = new( 100, 100, 1200, 550 );
+        private static void OpenSection( string sectionName ) {
+            Rect rect = new(100, 100, 1200, 550);
             ConvaiSDKSetupEditorWindow window = GetWindowWithRect<ConvaiSDKSetupEditorWindow>( rect, true, "Convai SDK Setup", true );
             window.minSize = window.maxSize = rect.size;
             window.Show();
             ShowSection( sectionName );
         }
 
-        private void InitializeUI () {
+        private void InitializeUI() {
             _root = rootVisualElement;
             VisualTreeAsset visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>( VISUAL_TREE_PATH );
             _root.Add( visualTree.Instantiate() );
@@ -112,21 +117,26 @@ namespace Convai.Scripts.Editor.Setup {
             _root.Q<Button>( "documentation-page" ).clicked += () => Application.OpenURL( "https://docs.convai.com/api-docs/plugins-and-integrations/unity-plugin" );
         }
 
-        private static void InitializeSections () {
+        private static void InitializeSections() {
             foreach ( string section in SectionNames )
-                Sections[section] = (_contentContainer.Q( section ), _root.Q<Button>( $"{section}-btn" ));
+                Sections[section] = ( _contentContainer.Q( section ), _root.Q<Button>( $"{section}-btn" ) );
         }
 
-        private static void SetupNavigationHandlers () {
+        private static void SetupNavigationHandlers() {
             foreach ( KeyValuePair<string, (VisualElement Section, Button Button)> section in Sections )
                 section.Value.Button.clicked += () => ShowSection( section.Key );
         }
 
-        public static void ShowSection ( string sectionName ) {
+        public static void ShowSection( string sectionName ) {
             if ( !IsApiKeySet && ApiKeyDependentSections.Contains( sectionName ) ) {
                 EditorUtility.DisplayDialog( "API Key Required", "Please set up your API Key to access this section.", "OK" );
                 return;
             }
+
+            // if ( !IsCoreAPIAllowed && CoreAPIDependantSections.Contains( sectionName ) ) {
+            //     EditorUtility.DisplayDialog( "Core API Access Denied", "Please upgrade your plan to access core api services", "OK" );
+            //     return;
+            // }
 
 #if !READY_PLAYER_ME
             if (sectionName == "character-importer")
@@ -142,12 +152,11 @@ namespace Convai.Scripts.Editor.Setup {
 
                 UpdateNavigationState( sectionName );
             }
-            else {
+            else
                 ConvaiLogger.Warn( $"Section '{sectionName}' not found.", ConvaiLogger.LogCategory.Character );
-            }
         }
 
-        private static void UpdateNavigationState ( string activeSectionName ) {
+        private static void UpdateNavigationState( string activeSectionName ) {
             foreach ( KeyValuePair<string, (VisualElement Section, Button Button)> section in Sections ) {
                 bool isActive = section.Key == activeSectionName;
                 section.Value.Button.EnableInClassList( "sidebar-link--active", isActive );
@@ -155,4 +164,5 @@ namespace Convai.Scripts.Editor.Setup {
             }
         }
     }
+
 }

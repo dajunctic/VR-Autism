@@ -36,12 +36,11 @@ namespace Convai.Scripts.Editor.Setup.Documentation
                     "macos-build",
                     "https://docs.convai.com/api-docs/plugins-and-integrations/unity-plugin/building-for-supported-platforms/microphone-permission-issue-on-intel-macs-with-universal-builds"
                 },
-                { "ar-vr-build", "https://docs.convai.com/api-docs/plugins-and-integrations/unity-plugin/building-for-supported-platforms/building-for-ar" },
+                { "ar-vr-build", "https://docs.convai.com/api-docs/plugins-and-integrations/unity-plugin/building-for-supported-platforms/convai-xr" },
 
                 { "faq", "https://docs.convai.com/api-docs/plugins-and-integrations/unity-plugin/troubleshooting-guide" },
 
-                { "convai-support", "https://convai.com/contact" },
-                { "discord", "https://discord.gg/convai" }
+                { "developer-forum", "https://forum.convai.com/" }
             };
 
             foreach (KeyValuePair<string, string> link in links) SetupLinkHandler(link.Key, link.Value);

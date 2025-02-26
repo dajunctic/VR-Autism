@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b59e4023a623436a9d6eeacf9a5aebb2, type: 3}
   m_Name: LoggerSettings
   m_EditorClassIdentifier: 
-  LipSync: -1
+  LipSync: 31
   Character: -1
   Actions: -1
   UI: -1

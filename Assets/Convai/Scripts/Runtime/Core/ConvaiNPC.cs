@@ -74,6 +74,7 @@ namespace Convai.Scripts.Runtime.Core
         private bool _isLipSyncActive;
         private bool _stopAudioPlayingLoop;
         private bool _stopHandlingInput;
+        private Coroutine _processResponseCoroutine;
         public ActionConfig ActionConfig;
 
         private bool IsInConversationWithAnotherNPC
@@ -136,7 +137,6 @@ namespace Convai.Scripts.Runtime.Core
         {
             // Assign the ConvaiGRPCAPI component in the scene
             _grpcAPI = ConvaiGRPCAPI.Instance;
-            InvokeRepeating(nameof(ProcessResponse), 0f, 1 / 100f);
 
 
             // Check if the platform is Android
@@ -170,6 +170,7 @@ namespace Convai.Scripts.Runtime.Core
             ConvaiNPCManager.Instance.OnActiveNPCChanged += HandleActiveNPCChanged;
 
             if (_convaiChatUIHandler != null) _convaiChatUIHandler.UpdateCharacterList();
+            _processResponseCoroutine = StartCoroutine(ProcessResponseCoroutine());
         }
 
         private void OnDisable()
@@ -185,6 +186,7 @@ namespace Convai.Scripts.Runtime.Core
             ConvaiNPCManager.Instance.OnActiveNPCChanged -= HandleActiveNPCChanged;
 
             if (_convaiChatUIHandler != null) _convaiChatUIHandler.UpdateCharacterList();
+            if (_processResponseCoroutine != null) StopCoroutine(_processResponseCoroutine);
         }
 
         /// <summary>
@@ -379,6 +381,15 @@ namespace Convai.Scripts.Runtime.Core
         {
             if (convaiLipSync == null) return;
             convaiLipSync.PurgeExcessFrames();
+        }
+        
+        private IEnumerator ProcessResponseCoroutine()
+        {
+            while (gameObject.activeInHierarchy)
+            {
+                ProcessResponse();
+                yield return new WaitForSeconds(1f/100f);
+            }
         }
 
         /// <summary>

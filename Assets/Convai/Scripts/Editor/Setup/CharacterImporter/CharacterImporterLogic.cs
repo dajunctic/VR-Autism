@@ -20,6 +20,7 @@ using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 using Convai.Scripts.Runtime.UI;
 using UnityEngine;
+using System.IO;
 #endif
 
 namespace Convai.Scripts.Editor.Setup.CharacterImporter
@@ -118,9 +119,7 @@ namespace Convai.Scripts.Editor.Setup.CharacterImporter
                 CompletionEventArgs args = await LoadAvatarAsync(avatarLoader, modelLink, characterName);
 
                 AvatarLoaderSettings avatarLoaderSettings = Resources.Load<AvatarLoaderSettings>("ConvaiAvatarLoaderSettings");
-                string path =
-                    $"{DirectoryUtility.GetRelativeProjectPath(args.Avatar.name, AvatarCache.GetAvatarConfigurationHash(avatarLoaderSettings.AvatarConfig))}/{args.Avatar.name}";
-                GameObject avatar = PrefabHelper.CreateAvatarPrefab(args.Metadata, path, avatarConfig: avatarLoaderSettings.AvatarConfig);
+                string path = $"{DirectoryUtility.GetRelativeProjectPath(args.Avatar.name, AvatarCache.GetAvatarConfigurationHash(avatarLoaderSettings.AvatarConfig))}/{args.Avatar.name}"; GameObject avatar = PrefabHelper.CreateAvatarPrefab(args.Metadata, path, avatarConfig: avatarLoaderSettings.AvatarConfig);
 
                 SetupCharacter(characterID, characterName, avatar, args);
 

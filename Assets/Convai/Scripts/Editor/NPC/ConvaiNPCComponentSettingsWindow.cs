@@ -1,10 +1,8 @@
-using System.IO;
 using Convai.Scripts.Runtime.Core;
 using Convai.Scripts.Runtime.Features;
 using Convai.Scripts.Runtime.Features.LongTermMemory;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using ConvaiLipSync = Convai.Scripts.Runtime.Features.LipSync.ConvaiLipSync;
 
 namespace Convai.Scripts.Editor.NPC
@@ -139,22 +137,15 @@ namespace Convai.Scripts.Editor.NPC
         {
             T component = _convaiNPC.GetComponent<T>();
 
-            string savedDataFileName = Path.Combine(StateSaver.ROOT_DIRECTORY, _convaiNPC.characterID,
-                $"{SceneManager.GetActiveScene().name}_{_convaiNPC.characterID}_{nameof(T)}_State.data");
-
             if (includeComponent)
             {
                 if (component == null)
                 {
                     component = _convaiNPC.gameObject.AddComponentSafe<T>();
-
-                    if (File.Exists(savedDataFileName))
-                        component.RestoreStateFromFile(savedDataFileName);
                 }
             }
             else if (component != null)
             {
-                component.SaveStateToFile(savedDataFileName);
                 DestroyImmediate(component);
             }
         }

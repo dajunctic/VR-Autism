@@ -1,7 +1,6 @@
 ﻿using Assets.Convai.Scripts.Runtime.PlayerStats.API.Model;
 using Convai.Scripts.Editor.Setup;
 using Convai.Scripts.Runtime.PlayerStats.API;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -69,6 +68,10 @@ namespace Assets.Convai.Scripts.Editor.Setup.LongTermMemory {
                 ToggleVisibility( _noSpeakerId, true );
                 ToggleVisibility(_listContainer, false );
                 return;
+            }
+            else {
+                ToggleVisibility(_noSpeakerId, false);
+                ToggleVisibility(_listContainer, true);
             }
             foreach ( SpeakerIDDetails sid in speakerIDs ) {
                 VisualElement item = new VisualElement() {

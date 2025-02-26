@@ -8,11 +8,12 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Hair_Transparency_2nd_Pass
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: a641ee34650e2134985a3f9b4ded71e7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
+  - _ALPHATEST_ON
   - _ALPHATOMASK_ON
   - _CLIPQUALITY_DITHERED
   - _DISABLE_SSR_TRANSPARENT
@@ -24,7 +25,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap:
     MotionVector: User
   disabledShaderPasses:
@@ -36,22 +37,6 @@ Material:
     m_TexEnvs:
     - _BlendMap:
         m_Texture: {fileID: 2800000, guid: f6f0f723d23398f4996e8f22ac4b2694, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DiffuseMap:
@@ -70,27 +55,11 @@ Material:
         m_Texture: {fileID: 2800000, guid: db940b4def59dd64c8292268f88ae0fb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MaskMap:
         m_Texture: {fileID: 2800000, guid: 785792808ee75584dac3f71033b3aeca, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -116,18 +85,11 @@ Material:
     - _AlphaRemap: 0.75
     - _BaseColorStrength: 0
     - _BlendStrength: 1
-    - _BumpScale: 1
     - _ClipQuality: 1
-    - _Cutoff: 0.5
-    - _DetailNormalMapScale: 1
     - _DiffuseStrength: 1
-    - _DstBlend: 0
     - _EndColorStrength: 1
     - _FlowMapFlipGreen: 0
     - _GlobalStrength: 1
-    - _GlossMapScale: 1
-    - _Glossiness: 0.5
-    - _GlossyReflections: 1
     - _HighlightAOverlapEnd: 0
     - _HighlightAOverlapInvert: 0
     - _HighlightAStrength: 0.305
@@ -136,35 +98,24 @@ Material:
     - _HighlightBStrength: 0.386
     - _HighlightBlend: 1
     - _InvertRootMap: 0
-    - _Metallic: 0
-    - _Mode: 0
     - _NormalStrength: 1
-    - _OcclusionStrength: 1
-    - _Parallax: 0.02
     - _RimPower: 4
     - _RimTransmissionIntensity: 7.563482
     - _RootColorStrength: 1
     - _SmoothnessMax: 0.897
     - _SmoothnessMin: 0.42697203
     - _SmoothnessPower: 1
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
     - _SpecularMix: 0.5
     - _SpecularMultiplier: 0.40586635
     - _SpecularPowerScale: 4
     - _SpecularShiftMax: -0.25
     - _SpecularShiftMin: -0.777
     - _SpecularTint: 0.5
-    - _SrcBlend: 1
     - _Translucency: 0.25
-    - _UVSec: 0
     - _VertexColorStrength: 0.802
-    - _ZWrite: 1
     - __dirty: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DiffuseColor: {r: 0.99999994, g: 0.99999994, b: 0.99999994, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 0}
     - _EndColor: {r: 0.4475037, g: 0.33218095, b: 0.2402475, a: 1}
     - _HighlightAColor: {r: 0.68538064, g: 0.5785821, b: 0.43762976, a: 1}

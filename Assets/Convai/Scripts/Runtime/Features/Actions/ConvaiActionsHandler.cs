@@ -37,6 +37,7 @@ namespace Convai.Scripts.Runtime.Features
         private List<string> _actions = new();
         private ConvaiNPC _currentNPC;
         private ConvaiInteractablesData _interactablesData;
+        private Coroutine _playActionListCoroutine;
 
         // Awake is called when the script instance is being loaded
         private void Awake()
@@ -114,7 +115,19 @@ namespace Convai.Scripts.Runtime.Features
             #endregion
 
             // Start playing the action list using a coroutine
-            StartCoroutine(PlayActionList());
+            _playActionListCoroutine = StartCoroutine(PlayActionList());
+        }
+
+        private void OnEnable() {
+            if ( _playActionListCoroutine != null ) {
+                _playActionListCoroutine = StartCoroutine(PlayActionList());
+            }
+        }
+        
+        private void OnDisable() {
+            if ( _playActionListCoroutine != null ) {
+                StopCoroutine(_playActionListCoroutine);
+            }
         }
 
         private void Update()
