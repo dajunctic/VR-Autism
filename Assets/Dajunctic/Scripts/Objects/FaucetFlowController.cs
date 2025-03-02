@@ -1,6 +1,5 @@
 using System;
 using Daark;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +7,7 @@ namespace Dajunctic.Scripts.Objects
 {
     public class FaucetFlowController : MonoBehaviour
     {
-        [SerializeField, ChildGameObjectsOnly] private Animator animator;
+        [SerializeField] private Animator animator;
         private bool turnOn;
 
         private void Awake()

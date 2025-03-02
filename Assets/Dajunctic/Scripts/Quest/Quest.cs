@@ -1,7 +1,6 @@
 using System;
 using KBCore.Refs;
 using Plugins.QuickOutline.Scripts;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,7 +12,6 @@ namespace Dajunctic.Scripts.Quest
         [SerializeField] private int id;
         [SerializeField] private string questName;
         [SerializeField] private QuestType questType;
-        [ShowIf("@questType == QuestType.HoldClick || questType == QuestType.HoldTouch")]
         [SerializeField] private float duration;
 
         [Header("Components")] 

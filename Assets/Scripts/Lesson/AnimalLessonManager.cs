@@ -1,6 +1,5 @@
 using System.Collections;
 using Daark;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class AnimalLessonManager : MonoBehaviour
@@ -27,7 +26,6 @@ public class AnimalLessonManager : MonoBehaviour
     public float cameraMoveSpeed = 2f;
     [SerializeField] private Transform rootPosition;
     [SerializeField] private bool isInVR;
-    [ShowIf("@isInVR==true")]
     [SerializeField] private Vector3 offsetVR;
     public Animal[] animals;
     
