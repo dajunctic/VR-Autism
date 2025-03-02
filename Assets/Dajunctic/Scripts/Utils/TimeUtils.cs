@@ -7,8 +7,8 @@ namespace Dajunctic.Scripts.Utils
 {
     public static class TimeUtils
     {
-        public static long CurrentSecond => ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds();
-        public static long CurrentDay => CurrentSecond / 3600;
+        public static double CurrentSecond => (DateTime.Now - DateTime.UnixEpoch).TotalSeconds;
+        public static long CurrentDay => (long) CurrentSecond / 86400;
     }
 
 }
