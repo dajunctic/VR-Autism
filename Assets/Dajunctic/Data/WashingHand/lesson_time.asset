@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61f125226750bf64e801fff34bd20b16, type: 3}
+  m_Script: {fileID: 11500000, guid: b6302f5df683de24bb941bfb8c673e36, type: 3}
   m_Name: lesson_time
   m_EditorClassIdentifier: 

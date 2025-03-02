@@ -10,7 +10,7 @@ namespace Dajunctic.Scripts.Manager
 {
     public class TimeManager : MonoBehaviour
     {
-        [SerializeField] private LongVariable lessonTime;
+        [SerializeField] private DoubleVariable lessonTime;
         
         private LessonTimeData data;
         private void Awake()
@@ -39,13 +39,15 @@ namespace Dajunctic.Scripts.Manager
         {
             data.totalTime = TimeUtils.CurrentSecond - lessonTime.Value;
             DataUtils<LessonTimeData>.SaveData(Application.persistentDataPath + "/Data/Saved/test.txt", data);
+
+            FindObjectOfType<FirebaseManager>().UploadLessonTimeData();
         }
     }
 
     [Serializable]
     public class LessonTimeData
     {
-        public long totalTime;
+        public double totalTime;
         public bool hasQuest;
         public List<QuestTimeData> questTime;
     }
@@ -55,7 +57,7 @@ namespace Dajunctic.Scripts.Manager
     {
         public int id;
         public string name;
-        public long time;
+        public double time;
     }
 }
 

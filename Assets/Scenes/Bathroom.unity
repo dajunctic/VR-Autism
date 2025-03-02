@@ -797,7 +797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0963498e461ea5a43b5129c9227aeeb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lessonTime: {fileID: 11400000, guid: b25c9412ac1ff8e4abd56083815e2b83, type: 2}
+  lessonTime: {fileID: 11400000, guid: d3dd43d81e31bfc429dc39a21882d222, type: 2}
 --- !u!1 &191985541
 GameObject:
   m_ObjectHideFlags: 0
@@ -2223,7 +2223,7 @@ PrefabInstance:
     - target: {fileID: 2029856480896452142, guid: 15fe3dadbaf51304eac079b8ae681f26,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5566147146946765730, guid: 15fe3dadbaf51304eac079b8ae681f26,
         type: 3}
@@ -2254,6 +2254,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.070187956
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787569983924151729, guid: 15fe3dadbaf51304eac079b8ae681f26,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8114551327771423694, guid: 15fe3dadbaf51304eac079b8ae681f26,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.000000055879354
+      objectReference: {fileID: 0}
+    - target: {fileID: 8114551327771423694, guid: 15fe3dadbaf51304eac079b8ae681f26,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.459
+      objectReference: {fileID: 0}
+    - target: {fileID: 8114551327771423694, guid: 15fe3dadbaf51304eac079b8ae681f26,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.20200007
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7932,7 +7952,7 @@ MonoBehaviour:
   bubbleQuestion: {fileID: 721296230}
   congratulationUI: {fileID: 73881163}
   isConditionMet: {fileID: 11400000, guid: a8e38e13912aab046bec3e66c434c42d, type: 2}
-  timeVariable: {fileID: 11400000, guid: 7799d3afe2654494abbeb515ea779a78, type: 2}
+  timeVariable: {fileID: 11400000, guid: b0521398d2e0d794196276b1362c7e97, type: 2}
 --- !u!4 &1336548302
 Transform:
   m_ObjectHideFlags: 0
@@ -8129,12 +8149,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3187309919060079607, guid: b913f75e9028f6846bdc2b960b61a6b8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3290560462628128254, guid: b913f75e9028f6846bdc2b960b61a6b8,
         type: 3}
       propertyPath: m_Name
       value: XR Manager
       objectReference: {fileID: 0}
     - target: {fileID: 3290560462628128254, guid: b913f75e9028f6846bdc2b960b61a6b8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3321617895203065581, guid: b913f75e9028f6846bdc2b960b61a6b8,
         type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -8163,6 +8193,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 6066071021585426233, guid: b913f75e9028f6846bdc2b960b61a6b8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8983876838593465678, guid: b913f75e9028f6846bdc2b960b61a6b8,
         type: 3}

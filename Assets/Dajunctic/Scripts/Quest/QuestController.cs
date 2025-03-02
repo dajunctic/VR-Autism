@@ -16,7 +16,7 @@ namespace Dajunctic.Scripts.Quest
         [SerializeField] public GameObject bubbleQuestion;
         [SerializeField] public GameObject congratulationUI;
         [SerializeField] private BooleanVariable isConditionMet;
-        [SerializeField] private LongVariable timeVariable;
+        [SerializeField] private DoubleVariable timeVariable;
 
 
         private int curQuestId;
