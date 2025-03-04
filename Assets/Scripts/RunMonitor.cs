@@ -47,7 +47,7 @@ public class RunMonitor : BaseMono
         SceneManager.LoadScene(sceneSO.GetSceneName(sceneEnum));
     }
 
-    private void ExitScene()
+    public void ExitScene()
     {
         var exitScene = FindObjectOfType<ExitScene>(true);
         if (exitScene == null) return;

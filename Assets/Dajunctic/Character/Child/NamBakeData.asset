@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 303ee1e016d584170aa3f9c205065899, type: 3}
-  m_Name: Sample Baked Data 01
+  m_Name: NamBakeData
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: e7bee847b0146493d97aceaf14bb2903, type: 2}
   audioClip: {fileID: 8300000, guid: 525adcac0aff4c84580919e542c8202d, type: 3}
