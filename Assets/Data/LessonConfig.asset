@@ -14,9 +14,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topics:
   - id: 0
+    name: "K\u0129 n\u0103ng c\xE1 nh\xE2n v\xE0 x\xE3 h\u1ED9i"
+    lessons:
+    - id: 1
+      topicId: 0
+      sceneName: Bathroom
+      title: "B\xE0i h\u1ECDc r\u1EEDa tay"
+      description: "B\xE0i h\u1ECDc h\u01B0\u1EDBng d\u1EABn c\xE1c b\u01B0\u1EDBc
+        r\u1EEDa tay"
+      cover: {fileID: 21300000, guid: 19c242ff48a42804d82c79f073584d83, type: 3}
+      sessionTimes: []
+    - id: 2
+      topicId: 0
+      sceneName: Supermarket
+      title: "Mua \u0111\u1ED3 trong si\xEAu th\u1ECB"
+      description: "B\xE0i h\u1ECDc m\xF4 ph\u1ECFng mua \u0111\u1ED3 trong si\xEAu
+        th\u1ECB"
+      cover: {fileID: 21300000, guid: 774e1205ac52a4f47a58e298d5dd7af1, type: 3}
+      sessionTimes: []
+    - id: 3
+      topicId: 0
+      sceneName: LearnToAsk
+      title: "Gi\u1EDBi thi\u1EC7u b\u1EA3n th\xE2n tr\u01B0\u1EDBc l\u1EDBp"
+      description: "B\xE0i h\u1ECDc gi\u1EDBi thi\u1EC7u b\u1EA3n th\xE2n tr\u01B0\u1EDBc
+        l\u1EDBp"
+      cover: {fileID: 21300000, guid: 774e1205ac52a4f47a58e298d5dd7af1, type: 3}
+      sessionTimes: []
+  - id: 1
     name: "Kh\xE1m ph\xE1 m\xF4i tr\u01B0\u1EDDng \u0111\u1ED9ng v\u1EADt"
     lessons:
     - id: 1
+      topicId: 0
       sceneName: Ocean
       title: "Kh\xE1m ph\xE1 \u0111\u1EA1i d\u01B0\u01A1ng"
       description: "B\xE0i h\u1ECDc m\xF4 ph\u1ECFng m\u1ED9t m\xF4i tr\u01B0\u1EDDng
@@ -25,7 +53,9 @@ MonoBehaviour:
         cung c\u1EA5p nh\u1EEFng ki\u1EBFn th\u1EE9c v\u1EC1 nh\u1EEFng con v\u1EADt
         \u1EDF \u0111\u1EA1i d\u01B0\u01A1ng."
       cover: {fileID: 21300000, guid: 4125b23148178e949bc887786a5030f9, type: 3}
+      sessionTimes: []
     - id: 2
+      topicId: 0
       sceneName: Farm
       title: "N\xF4ng tr\u1EA1i vui v\u1EBB"
       description: "B\xE0i h\u1ECDc m\xF4 ph\u1ECFng m\u1ED9t m\xF4i tr\u01B0\u1EDDng
@@ -34,10 +64,47 @@ MonoBehaviour:
         \u0111\u01B0\u1EE3c cung c\u1EA5p nh\u1EEFng ki\u1EBFn th\u1EE9c v\u1EC1
         nh\u1EEFng con v\u1EADt n\xE0y."
       cover: {fileID: 21300000, guid: 06f9e2398a3047945bedc58f29b9d615, type: 3}
+      sessionTimes: []
     - id: 3
+      topicId: 0
       sceneName: Grassland
       title: "\u0110\u1ED9ng v\u1EADt hoang d\xE3"
       description: "B\xE0i h\u1ECDc m\xF4 ph\u1ECFng m\u1ED9t m\xF4i tr\u01B0\u1EDDng
         n\u01A1i hoang d\xE3 c\xF3 nh\u1EEFng con v\u1EADt nh\u01B0 s\u01B0 t\u1EED,
         ng\u1EF1a v\u1EB1n, voi, th\u1ECF..."
       cover: {fileID: 21300000, guid: 8ab1f7cb311a23648924e4278da13d39, type: 3}
+      sessionTimes: []
+  - id: 2
+    name: "Luy\u1EC7n t\u1EADp"
+    lessons:
+    - id: 1
+      topicId: 0
+      sceneName: Ocean-Quiz
+      title: "C\xE2u \u0111\u1ED1 Kh\xE1m ph\xE1 \u0111\u1EA1i d\u01B0\u01A1ng"
+      description: "B\xE0i h\u1ECDc m\xF4 ph\u1ECFng m\u1ED9t m\xF4i tr\u01B0\u1EDDng
+        \u0111\u1EA1i d\u01B0\u01A1ng c\xF3 nh\u1EEFng con v\u1EADt nh\u01B0 c\xE1
+        heo, r\xF9a bi\u1EC3n, c\xE1 m\u1EADp... Tr\u1EBB s\u1EBD \u0111\u01B0\u1EE3c
+        cung c\u1EA5p nh\u1EEFng ki\u1EBFn th\u1EE9c v\u1EC1 nh\u1EEFng con v\u1EADt
+        \u1EDF \u0111\u1EA1i d\u01B0\u01A1ng."
+      cover: {fileID: 21300000, guid: 4125b23148178e949bc887786a5030f9, type: 3}
+      sessionTimes: []
+    - id: 2
+      topicId: 0
+      sceneName: Farm-Quiz
+      title: "C\xE2u \u0111\u1ED1 N\xF4ng tr\u1EA1i vui v\u1EBB"
+      description: "B\xE0i h\u1ECDc m\xF4 ph\u1ECFng m\u1ED9t m\xF4i tr\u01B0\u1EDDng
+        n\xF4ng tr\u1EA1i. \u1EDE n\xF4ng tr\u1EA1i s\u1EBD c\xF3 nh\u1EEFng con
+        v\u1EADt nh\u01B0 ch\xF3, b\xF2, heo, c\u1EEBu, g\xE0... Tr\u1EBB s\u1EBD
+        \u0111\u01B0\u1EE3c cung c\u1EA5p nh\u1EEFng ki\u1EBFn th\u1EE9c v\u1EC1
+        nh\u1EEFng con v\u1EADt n\xE0y."
+      cover: {fileID: 21300000, guid: 06f9e2398a3047945bedc58f29b9d615, type: 3}
+      sessionTimes: []
+    - id: 3
+      topicId: 0
+      sceneName: Grassland-Quiz
+      title: "C\xE2u \u0111\u1ED1 \u0110\u1ED9ng v\u1EADt hoang d\xE3"
+      description: "B\xE0i h\u1ECDc m\xF4 ph\u1ECFng m\u1ED9t m\xF4i tr\u01B0\u1EDDng
+        n\u01A1i hoang d\xE3 c\xF3 nh\u1EEFng con v\u1EADt nh\u01B0 s\u01B0 t\u1EED,
+        ng\u1EF1a v\u1EB1n, voi, th\u1ECF..."
+      cover: {fileID: 21300000, guid: 8ab1f7cb311a23648924e4278da13d39, type: 3}
+      sessionTimes: []

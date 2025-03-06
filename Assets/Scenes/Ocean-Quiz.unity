@@ -1561,10 +1561,20 @@ PrefabInstance:
       propertyPath: quizConfigName
       value: OceanQuizConfig
       objectReference: {fileID: 0}
+    - target: {fileID: 1937785369236080292, guid: 0ff4f01035c778047b87226a1568ddbf,
+        type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 3791457419703885717, guid: 0ff4f01035c778047b87226a1568ddbf,
         type: 3}
       propertyPath: m_Name
       value: Quizzz
+      objectReference: {fileID: 0}
+    - target: {fileID: 3875459433395867494, guid: 0ff4f01035c778047b87226a1568ddbf,
+        type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6131206875481359396, guid: 0ff4f01035c778047b87226a1568ddbf,
         type: 3}
