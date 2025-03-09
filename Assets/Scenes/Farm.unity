@@ -9324,6 +9324,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b913f75e9028f6846bdc2b960b61a6b8, type: 3}
+--- !u!4 &976336682 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4812816877853377933, guid: b913f75e9028f6846bdc2b960b61a6b8,
+    type: 3}
+  m_PrefabInstance: {fileID: 976336681}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &984371183
 GameObject:
   m_ObjectHideFlags: 0
@@ -16331,10 +16337,10 @@ MonoBehaviour:
   introSound: 15
   endSound: 16
   timeIntroSound: 6.3
-  mainCamera: {fileID: 735263067}
+  mainCamera: {fileID: 976336682}
   cameraMoveSpeed: 2
   rootPosition: {fileID: 356289178}
-  isInVR: 0
+  isInVR: 1
   offsetVR: {x: 0, y: -1, z: 0}
   animals:
   - name: 9

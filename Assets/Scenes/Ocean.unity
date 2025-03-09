@@ -8225,6 +8225,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1174998605}
   m_SourcePrefab: {fileID: 100100000, guid: fb7d7050e508455449815d289b5d7f55, type: 3}
+--- !u!4 &406711071 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4812816877853377933, guid: b913f75e9028f6846bdc2b960b61a6b8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1086499590}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &412205222
 GameObject:
   m_ObjectHideFlags: 0
@@ -8967,6 +8973,7 @@ GameObject:
   m_Component:
   - component: {fileID: 521308876}
   - component: {fileID: 521308875}
+  - component: {fileID: 521308877}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -9051,6 +9058,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &521308877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521308874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &522275733
 GameObject:
   m_ObjectHideFlags: 0
@@ -9349,10 +9379,10 @@ MonoBehaviour:
   introSound: 28
   endSound: 29
   timeIntroSound: 8.1
-  mainCamera: {fileID: 2033821557}
+  mainCamera: {fileID: 406711071}
   cameraMoveSpeed: 2
   rootPosition: {fileID: 1882431108}
-  isInVR: 0
+  isInVR: 1
   offsetVR: {x: 0, y: -1.1, z: 0}
   animals:
   - name: 13
@@ -9483,7 +9513,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 255
+    m_Bits: 4294967295
 --- !u!114 &585426844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11787,7 +11817,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 255
+    m_Bits: 4294967295
 --- !u!114 &905166615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19061,7 +19091,7 @@ PrefabInstance:
     - target: {fileID: 3290560462628128254, guid: b913f75e9028f6846bdc2b960b61a6b8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4028822339186647823, guid: b913f75e9028f6846bdc2b960b61a6b8,
         type: 3}
@@ -19701,6 +19731,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExitScene
       objectReference: {fileID: 0}
+    - target: {fileID: 5669756984806205853, guid: c2425aa93186f964292fe864cdedc4d9,
+        type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6796562786289489209, guid: c2425aa93186f964292fe864cdedc4d9,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -20208,7 +20243,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 255
+    m_Bits: 4294967295
 --- !u!114 &1242665810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25114,13 +25149,14 @@ GameObject:
   - component: {fileID: 2033821557}
   - component: {fileID: 2033821556}
   - component: {fileID: 2033821555}
+  - component: {fileID: 2033821558}
   m_Layer: 0
   m_Name: FollowCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &2033821555
 AudioListener:
   m_ObjectHideFlags: 0
@@ -25139,7 +25175,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -25195,6 +25231,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -272.198, y: 0, z: 0}
+--- !u!114 &2033821558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033821554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &2039222335
 GameObject:
   m_ObjectHideFlags: 0
@@ -26553,6 +26633,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SharkIntroUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064161800862023505, guid: fd7083dc54eb96644b108239ddbfb1ea,
+        type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7379043149885440160, guid: fd7083dc54eb96644b108239ddbfb1ea,
         type: 3}
