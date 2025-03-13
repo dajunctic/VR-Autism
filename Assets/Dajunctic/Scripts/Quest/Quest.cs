@@ -51,10 +51,18 @@ namespace Dajunctic.Scripts.Quest
         {
             state = newState;
 
-            controller.bubbleQuestion.SetActive(state == State.Enable);
-            controller.bubbleQuestion.transform.position = posBubbleQuestion.position;
-            controller.questProgressUI.gameObject.SetActive(state == State.Start);
-            controller.questProgressUI.transform.position = posProgressBar.position;
+            if (controller.bubbleQuestion != null) 
+            {
+                controller.bubbleQuestion.SetActive(state == State.Enable);
+                controller.bubbleQuestion.transform.position = posBubbleQuestion.position;
+            }
+
+            if (controller.questProgressUI != null)
+            {
+                controller.questProgressUI.gameObject.SetActive(state == State.Start);
+                controller.questProgressUI.transform.position = posProgressBar.position;
+            }
+
             if (outline) outline.enabled = newState == State.Start;
 
             if (state == State.Start)
@@ -77,6 +85,11 @@ namespace Dajunctic.Scripts.Quest
 
             if (state == State.Enable)
             {
+                if (questType == QuestType.Condition)
+                {
+                    
+                }
+                
                 if (questType == QuestType.Touch)
                 {
                     SetState(State.Completed);
@@ -105,7 +118,7 @@ namespace Dajunctic.Scripts.Quest
             if (state != State.Start) return;
             
             progress += Time.deltaTime / duration;
-            controller.questProgressUI.SetProgress(progress);
+            if (controller.questProgressUI) controller.questProgressUI.SetProgress(progress);
             if (progress >= 1)
             {
                 progress = 1;
@@ -119,7 +132,8 @@ namespace Dajunctic.Scripts.Quest
         Click,
         Touch,
         HoldClick,
-        HoldTouch
+        HoldTouch,
+        Condition
     }
 }
 

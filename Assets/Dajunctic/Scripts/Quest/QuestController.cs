@@ -28,9 +28,9 @@ namespace Dajunctic.Scripts.Quest
                 quest.Init(this);
             }
             
-            questProgressUI.gameObject.SetActive(false);
-            bubbleQuestion.SetActive(false);
-            congratulationUI.SetActive(false);
+            if (questProgressUI != null) questProgressUI.gameObject.SetActive(false);
+            if (bubbleQuestion != null) bubbleQuestion.SetActive(false);
+            if (congratulationUI != null) congratulationUI.SetActive(false);
 
             curQuestId = 0;
         }
