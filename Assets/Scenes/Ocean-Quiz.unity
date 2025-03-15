@@ -1221,6 +1221,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2425aa93186f964292fe864cdedc4d9, type: 3}
+--- !u!114 &1178337350 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3828468543886525153, guid: c2425aa93186f964292fe864cdedc4d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1178337349}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057dd60dcdbad244483a6ab425d1f115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1329008384 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 740047861698004904, guid: 0ff4f01035c778047b87226a1568ddbf,
@@ -1576,6 +1588,41 @@ PrefabInstance:
       propertyPath: m_BlockingMask.m_Bits
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 5081335534073563165, guid: 0ff4f01035c778047b87226a1568ddbf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5081335534073563165, guid: 0ff4f01035c778047b87226a1568ddbf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5081335534073563165, guid: 0ff4f01035c778047b87226a1568ddbf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1178337350}
+    - target: {fileID: 5081335534073563165, guid: 0ff4f01035c778047b87226a1568ddbf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5081335534073563165, guid: 0ff4f01035c778047b87226a1568ddbf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickExit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5081335534073563165, guid: 0ff4f01035c778047b87226a1568ddbf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ExitScene, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5081335534073563165, guid: 0ff4f01035c778047b87226a1568ddbf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6131206875481359396, guid: 0ff4f01035c778047b87226a1568ddbf,
         type: 3}
       propertyPath: m_IsActive
@@ -1654,22 +1701,22 @@ PrefabInstance:
     - target: {fileID: 6222980759401724625, guid: 0ff4f01035c778047b87226a1568ddbf,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.83413595
+      value: 0.82910234
       objectReference: {fileID: 0}
     - target: {fileID: 6222980759401724625, guid: 0ff4f01035c778047b87226a1568ddbf,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.24568044
+      value: 0.22439991
       objectReference: {fileID: 0}
     - target: {fileID: 6222980759401724625, guid: 0ff4f01035c778047b87226a1568ddbf,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.48407844
+      value: 0.49430305
       objectReference: {fileID: 0}
     - target: {fileID: 6222980759401724625, guid: 0ff4f01035c778047b87226a1568ddbf,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.09760324
+      value: -0.13378511
       objectReference: {fileID: 0}
     - target: {fileID: 6222980759401724625, guid: 0ff4f01035c778047b87226a1568ddbf,
         type: 3}
@@ -1694,7 +1741,7 @@ PrefabInstance:
     - target: {fileID: 6222980759401724625, guid: 0ff4f01035c778047b87226a1568ddbf,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 4.985
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -24,22 +24,6 @@ MonoBehaviour:
         r\u1EEDa tay"
       cover: {fileID: 21300000, guid: 19c242ff48a42804d82c79f073584d83, type: 3}
       sessionTimes: []
-    - id: 2
-      topicId: 0
-      sceneName: Supermarket
-      title: "Mua \u0111\u1ED3 trong si\xEAu th\u1ECB"
-      description: "B\xE0i h\u1ECDc m\xF4 ph\u1ECFng mua \u0111\u1ED3 trong si\xEAu
-        th\u1ECB"
-      cover: {fileID: 21300000, guid: 774e1205ac52a4f47a58e298d5dd7af1, type: 3}
-      sessionTimes: []
-    - id: 3
-      topicId: 0
-      sceneName: LearnToAsk
-      title: "Gi\u1EDBi thi\u1EC7u b\u1EA3n th\xE2n tr\u01B0\u1EDBc l\u1EDBp"
-      description: "B\xE0i h\u1ECDc gi\u1EDBi thi\u1EC7u b\u1EA3n th\xE2n tr\u01B0\u1EDBc
-        l\u1EDBp"
-      cover: {fileID: 21300000, guid: 774e1205ac52a4f47a58e298d5dd7af1, type: 3}
-      sessionTimes: []
   - id: 1
     name: "Kh\xE1m ph\xE1 m\xF4i tr\u01B0\u1EDDng \u0111\u1ED9ng v\u1EADt"
     lessons:
@@ -101,7 +85,7 @@ MonoBehaviour:
       sessionTimes: []
     - id: 3
       topicId: 0
-      sceneName: Grassland-Quiz
+      sceneName: Grassland-Quizz
       title: "C\xE2u \u0111\u1ED1 \u0110\u1ED9ng v\u1EADt hoang d\xE3"
       description: "B\xE0i h\u1ECDc m\xF4 ph\u1ECFng m\u1ED9t m\xF4i tr\u01B0\u1EDDng
         n\u01A1i hoang d\xE3 c\xF3 nh\u1EEFng con v\u1EADt nh\u01B0 s\u01B0 t\u1EED,
