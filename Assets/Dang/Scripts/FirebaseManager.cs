@@ -1,4 +1,4 @@
-using Firebase;
+﻿/*using Firebase;
 using Firebase.Database;
 using Firebase.Extensions;
 using UnityEngine;
@@ -61,4 +61,68 @@ public class FirebaseManager : MonoBehaviour
             Debug.LogError("test.txt not found at: " + filePath);
         }
     }
+}
+*/
+
+using System;
+using System.IO;
+using System.Threading.Tasks;
+using Firebase;
+using Firebase.Database;
+using Firebase.Extensions;
+using UnityEngine;
+
+public class FirebaseManager : MonoBehaviour
+{
+    private DatabaseReference dbReference;
+
+    private void Awake()
+    {
+        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
+        {
+            FirebaseApp app = FirebaseApp.DefaultInstance;
+            dbReference = FirebaseDatabase.DefaultInstance.RootReference;
+        });
+    }
+
+    public void UploadLessonTimeData()
+    {
+        string filePath = Application.persistentDataPath + "/Data/Saved/test.txt";
+
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            SaveJsonToFirebase(json);
+        }
+        else
+        {
+            Debug.LogError("File không tồn tại: " + filePath);
+        }
+    }
+
+    private void SaveJsonToFirebase(string jsonData)
+    {
+        dbReference.Child("students")
+            .Child("student_001")
+            .Child("lessons")
+            .Child("WashingHand")
+            .Child("levels")
+            .Child("1")
+            .Child("sessions")
+            .Push() 
+            .SetRawJsonValueAsync(jsonData)
+            .ContinueWithOnMainThread(task =>
+            {
+                if (task.IsCompleted)
+                {
+                    Debug.Log("Dữ liệu mới đã được thêm vào Firebase thành công!");
+                }
+                else
+                {
+                    Debug.LogError("Lỗi khi thêm dữ liệu vào Firebase: " + task.Exception);
+                }
+            });
+    }
+
+
 }

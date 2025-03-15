@@ -12,6 +12,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-common:21.0.0' // Assets/Firebase/Editor/AppDependencies.xml:13
     implementation 'com.google.firebase:firebase-database:21.0.0' // Assets/Firebase/Editor/DatabaseDependencies.xml:13
     implementation 'com.google.firebase:firebase-database-unity:12.6.0' // Assets/Firebase/Editor/DatabaseDependencies.xml:22
+    implementation 'net.openid:appauth:0.7.+' // Packages/com.elringus.unitygoogledrive/Editor/Dependencies.xml:3
 // Android Resolver Dependencies End
 **DEPS**}
 
