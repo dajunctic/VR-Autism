@@ -10171,6 +10171,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExitScene
       objectReference: {fileID: 0}
+    - target: {fileID: 5669756984806205853, guid: c2425aa93186f964292fe864cdedc4d9,
+        type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6796562786289489209, guid: c2425aa93186f964292fe864cdedc4d9,
         type: 3}
       propertyPath: m_SizeDelta.x
