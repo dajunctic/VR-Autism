@@ -40,7 +40,7 @@ namespace Dajunctic.Scripts.Manager
             data.totalTime = TimeUtils.CurrentSecond - lessonTime.Value;
             DataUtils<LessonTimeData>.SaveData(Application.persistentDataPath + "/Data/Saved/test.txt", data);
 
-            FindObjectOfType<FirebaseManager>().UploadLessonTimeData();
+            // FindObjectOfType<FirebaseManager>().UploadLessonTimeData();
         }
     }
 
