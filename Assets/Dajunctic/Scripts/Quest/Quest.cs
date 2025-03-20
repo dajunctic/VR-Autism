@@ -25,12 +25,18 @@ namespace Dajunctic.Scripts.Quest
         [SerializeField] private UnityEvent onQuestCanceled;
         [SerializeField] private UnityEvent onQuestTriggerEnter;
         [SerializeField] private UnityEvent onQuestTriggerExit;
+        [Header("Reminder")] 
+        [SerializeField] private float reminderCycle;
+        [SerializeField] private UnityEvent onQuestReminder;
+
         
         public int Id => id;
         public string Name => questName;
         private QuestController controller;
         private State state;
         private float progress;
+
+        private float timeReminder;
         
         public enum State
         {
@@ -75,6 +81,11 @@ namespace Dajunctic.Scripts.Quest
                 onQuestFinished?.Invoke();
                 controller.OnCompleteQuest();
             }
+
+            if (state == State.Enable)
+            {
+                timeReminder = reminderCycle;
+            }
         }
         
 
@@ -115,6 +126,16 @@ namespace Dajunctic.Scripts.Quest
 
         private void Update()
         {
+            if (state == State.Enable && reminderCycle > 0)
+            {
+                timeReminder -= Time.deltaTime;
+                if (timeReminder < 0)
+                {
+                    timeReminder = reminderCycle;
+                    onQuestReminder?.Invoke();
+                }
+            }
+            
             if (state != State.Start) return;
             
             progress += Time.deltaTime / duration;
@@ -124,6 +145,9 @@ namespace Dajunctic.Scripts.Quest
                 progress = 1;
                 SetState(State.Completed);
             }
+            
+            
+            
         }
     }
 
