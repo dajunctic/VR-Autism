@@ -40722,7 +40722,7 @@ MonoBehaviour:
   onQuestTriggerExit:
     m_PersistentCalls:
       m_Calls: []
-  reminderCycle: 0
+  reminderCycle: 3
   onQuestReminder:
     m_PersistentCalls:
       m_Calls: []
