@@ -7,26 +7,21 @@ namespace Dajunctic.Scripts.NPC
 {
     public class NPCController : MonoBehaviour
     {
-        [SerializeField] private ConvaiNPC[] convaiNpc;
-        [SerializeField, Multiline] private string[] messages;
+        [SerializeField] private AudioSource[] npcs;
+        [SerializeField] private AudioClip[] audioClips;
 
-        private ConvaiNPC myNPC;
+        private AudioSource myNPC;
 
         public void SetNpc(int id)
         {
-            myNPC = convaiNpc[id];
+            myNPC = npcs[id];
         }
         
         public void SaySomething(int id)
         {
-            if (myNPC != null)
-            {
-                myNPC.TriggerSpeech("Hãy nói y hệt tôi như sau: " + messages[id]);
-            }
-            else
-            {
-                Debug.LogError("NPC chưa được gán!");
-            }
+            myNPC.clip = audioClips[id];
+            myNPC.Play();
+           // myNPC.PlayOneShot(audioClips[id]);
         }
         
     } 
