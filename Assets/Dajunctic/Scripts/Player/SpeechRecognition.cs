@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using HuggingFace.API;
 using TMPro;
@@ -6,39 +7,65 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class SpeechRecognition : MonoBehaviour {
+    [SerializeField] private SpeechResponser speechResponser;
     [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private int clipLengthCycle = 10;
+    [SerializeField] private float checkInterval = 5f;
     private AudioClip clip;
     private byte[] bytes;
     private bool recording;
-    private float checkInterval = 5f; // Kiểm tra mỗi 5 giây
+    // private string deviceName = "Microphone (USBAudio2.0)";
     
     private void Start() {
-        // StartRecording(); // Bắt đầu ghi âm ngay khi scene chạy
+        // StartRecording();
+        // foreach (var device in Microphone.devices)
+        // {
+        //     Debug.LogError("Name: " + device);
+        // }
     }
 
     private void Update() {
-        if (recording && Microphone.GetPosition(null) >= clip.samples) {
-            StopRecordingAndRestart();
-        }
+        // if (recording && Microphone.GetPosition(deviceName) >= clip.samples) {
+        //     StopRecordingAndRestart();
+        // }
     }
 
     public void StartRecording() {
         text.color = Color.white;
         text.text = "Listening...";
-        clip = Microphone.Start(null, true, 10, 44100);
+        clip = Microphone.Start(null, true, clipLengthCycle, 44100);
         recording = true;
         StartCoroutine(SendRecordingPeriodically());
     }
 
     private void StopRecordingAndRestart() {
-        var position = Microphone.GetPosition(null);
+        if (clip == null || clip.samples == 0) {
+            Debug.LogError("AudioClip is null or has no data!");
+            return;
+        }
+
+        int position = Microphone.GetPosition(null);
+        if (position <= 0) {
+            // Debug.LogError("Microphone position is invalid!");
+            return;
+        }
+
         Microphone.End(null);
-        var samples = new float[position * clip.channels];
-        clip.GetData(samples, 0);
+    
+        int sampleCount = Math.Min(position * clip.channels, clip.samples);
+        float[] samples = new float[sampleCount];
+
+        try {
+            clip.GetData(samples, 0);
+        } catch (Exception e) {
+            Debug.LogError("Error getting audio data: " + e.Message);
+            return;
+        }
+
         bytes = EncodeAsWAV(samples, clip.frequency, clip.channels);
         recording = false;
         SendRecording();
-        StartRecording(); // Bắt đầu ghi âm lại
+        StartRecording();
     }
 
     public void StopRecording()
@@ -62,23 +89,23 @@ public class SpeechRecognition : MonoBehaviour {
             text.text = response;
             AnalyzeSpeech(response);
         }, error => {
+            Debug.LogError(error);
             text.color = Color.red;
             text.text = error;
         });
     }
 
     private void AnalyzeSpeech(string speech) {
-        if (string.IsNullOrEmpty(speech)) return;
-
-        if (speech.Contains("tên")) {
-            text.text = "Con vừa nói tên! Tốt lắm!";
-        } else if (speech.Contains("tuổi")) {
-            text.text = "Giờ hãy nói tuổi của con!";
-        } else if (speech.Contains("thích")) {
-            text.text = "Hãy nói sở thích của con!";
-        } else {
-            text.text = "Cố gắng nói rõ hơn nhé!";
+        if (string.IsNullOrEmpty(speech))
+        {
+            speech = "";
         }
+
+        if (speechResponser != null)
+        {
+            speechResponser.AnalyzeSpeech(speech);
+        }
+        
     }
 
     private byte[] EncodeAsWAV(float[] samples, int frequency, int channels) {

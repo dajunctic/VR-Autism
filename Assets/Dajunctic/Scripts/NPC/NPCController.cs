@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Convai.Scripts.Runtime.Core;
+
 using UnityEngine;
 
 namespace Dajunctic.Scripts.NPC
@@ -9,12 +7,20 @@ namespace Dajunctic.Scripts.NPC
     {
         [SerializeField] private AudioSource[] npcs;
         [SerializeField] private AudioClip[] audioClips;
+        [SerializeField] private ReminderData[] reminders;
+        
+        [SerializeField] private SpeechResponser speechResponser;
 
         private AudioSource myNPC;
 
         public void SetNpc(int id)
         {
             myNPC = npcs[id];
+        }
+
+        private void Start()
+        {
+            if (speechResponser != null) speechResponser.OnPrompt += SayAudio;
         }
         
         public void SaySomething(int id)
@@ -23,7 +29,18 @@ namespace Dajunctic.Scripts.NPC
             myNPC.Play();
            // myNPC.PlayOneShot(audioClips[id]);
         }
-        
+
+        public void SayAudio(AudioClip clip)
+        {
+            myNPC.clip = clip;
+            myNPC.Play();
+        }
+
+        public void SayRandomReminder(int id)
+        {
+            myNPC.clip = reminders[id].audioClips[Random.Range(0, reminders[id].audioClips.Length)];
+            myNPC.Play();
+        }
     } 
 }
 
