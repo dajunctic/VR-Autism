@@ -1,34 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
-using Convai.Scripts.Runtime.Core;
+
 using UnityEngine;
 
 namespace Dajunctic.Scripts.NPC
 {
     public class NPCController : MonoBehaviour
     {
-        [SerializeField] private ConvaiNPC[] convaiNpc;
-        [SerializeField, Multiline] private string[] messages;
+        [SerializeField] private AudioSource[] npcs;
+        [SerializeField] private AudioClip[] audioClips;
+        [SerializeField] private ReminderData[] reminders;
+        
+        [SerializeField] private SpeechResponser speechResponser;
 
-        private ConvaiNPC myNPC;
+        private AudioSource myNPC;
 
         public void SetNpc(int id)
         {
-            myNPC = convaiNpc[id];
+            myNPC = npcs[id];
+        }
+
+        private void Start()
+        {
+            if (speechResponser != null) speechResponser.OnPrompt += SayAudio;
         }
         
         public void SaySomething(int id)
         {
-            if (myNPC != null)
-            {
-                myNPC.TriggerSpeech("Hãy nói y hệt tôi như sau: " + messages[id]);
-            }
-            else
-            {
-                Debug.LogError("NPC chưa được gán!");
-            }
+            myNPC.clip = audioClips[id];
+            myNPC.Play();
+           // myNPC.PlayOneShot(audioClips[id]);
         }
-        
+
+        public void SayAudio(AudioClip clip)
+        {
+            myNPC.clip = clip;
+            myNPC.Play();
+        }
+
+        public void SayRandomReminder(int id)
+        {
+            myNPC.clip = reminders[id].audioClips[Random.Range(0, reminders[id].audioClips.Length)];
+            myNPC.Play();
+        }
     } 
 }
 
