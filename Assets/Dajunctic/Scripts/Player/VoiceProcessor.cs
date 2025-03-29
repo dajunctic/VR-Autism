@@ -25,17 +25,14 @@ public class VoiceProcessor : MonoBehaviour
     private string CurrentDeviceName => (CurrentDeviceIndex >= 0 && CurrentDeviceIndex < Microphone.devices.Length) ? Devices[CurrentDeviceIndex] : string.Empty;
 
     [Header("Voice Detection Settings")]
-    [SerializeField] private float _minimumSpeakingSampleValue = 0.02f; // Ngưỡng nhận diện giọng nói
-    [SerializeField] private float _silenceTimer = 1.0f; // Thời gian im lặng để kết thúc ghi âm
+    [SerializeField] private float _minimumSpeakingSampleValue = 0.02f; 
+    [SerializeField] private float _silenceTimer = 1.0f; 
 
     private float _timeAtSilenceBegan;
     private bool _audioDetected;
     private bool _isSpeaking;
 
     private AudioClip _audioClip;
-    private event Action RestartRecording;
-    private readonly string huggingFaceAPI = "https://api-inference.huggingface.co/models/nguyenvulebinh/wav2vec2-base-vietnamese-250h";
-    private readonly string apiKey = "YOUR_HUGGINGFACE_API_KEY"; // Thay API key vào đây
 
     void Awake()
     {

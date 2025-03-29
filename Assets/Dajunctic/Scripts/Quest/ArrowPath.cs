@@ -10,7 +10,6 @@ namespace Dajunctic.Scripts.Quest
         public Transform target;
         [SerializeField] Transform startPoint;
         [SerializeField] LineRenderer lineRenderer;
-        [SerializeField] float arrowSpacing = 2f;
     
         private NavMeshPath path;
     
