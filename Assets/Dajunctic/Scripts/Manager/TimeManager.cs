@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Serialization;
 using System.IO;
+using Dajunctic.Scripts.Quest;
 
 namespace Dajunctic.Scripts.Manager
 {
@@ -15,65 +16,123 @@ namespace Dajunctic.Scripts.Manager
     {
         [SerializeField] private DoubleVariable lessonTime;
         [SerializeField] private FirebaseManager firebaseManager;
-        // [SerializeField] private VideoRecorder videoRecorder;
-        // [SerializeField] private GoogleDriveUploader uploader;
+        [SerializeField] private VideoRecorder videoRecorder;
+        [SerializeField] private GoogleDriveUploader uploader;
+        [SerializeField] private QuestController questController;
+        [SerializeField] private LessonInfo lessonInfo;
+
         private Stopwatch timer;
         
         private LessonTimeData data;
 
-        private DateTime startTime; 
-        private DateTime endTime;
+        private DateTime start_time; 
+        private DateTime end_time;
         
 
 
         private void Awake()
         {
             data = new LessonTimeData();
+            if (lessonInfo != null)
+            {
+                data.lesson_name = lessonInfo.lesson_name;
+                data.level_name = lessonInfo.level_name;
+                data.lesson_index = lessonInfo.lesson_index;
+                data.level_index = lessonInfo.level_index;
+                data.type = lessonInfo.type == LessonType.theoretical ? "theoretical" : "practical";
+            }
+            else
+            {
+                UnityEngine.Debug.LogError("LessonInfo chưa được gán trong Inspector!");
+            }
+        }
+
+        private void Start()
+        {
+            start_time = DateTime.Now; 
+            data.start_time = start_time.ToString("yyyy-MM-ddTHH:mm:ss");
+
+            string device_id = SystemInfo.deviceUniqueIdentifier;
+            UnityEngine.Debug.Log("Device ID: " + device_id);
+            data.device_id = device_id;
+
+            if (questController != null)
+            {
+                string[] questNames = questController.GetAllQuestNames();
+                data.quest_list = new List<QuestTimeData>();
+
+                for (int i = 0; i < questNames.Length; i++)
+                {
+                    QuestTimeData questData = new QuestTimeData
+                    {
+                        index = i,
+                        quest_name = questNames[i]
+                    };
+                    data.quest_list.Add(questData);
+                    
+                }
+                UnityEngine.Debug.Log("Danh sách QuestTime:");
+                foreach (var quest in data.quest_list)
+                {
+                    UnityEngine.Debug.Log($"ID: {quest.index}, Name: {quest.quest_name}");
+                }
+
+            }
+            else
+            {
+                UnityEngine.Debug.LogError("QuestController chưa được gán vào TimeManager!");
+            }
+
+            DataUtils<LessonTimeData>.SaveData(Application.persistentDataPath + "/Data/Saved/test.txt", data);
+
         }
 
         public void StartLessonTime()
         {
-            startTime = DateTime.Now;
-            // videoRecorder.StartRecording();
-            //data.SetStartTime(DateTime.Now);
+            videoRecorder.StartRecording();
             timer = new Stopwatch();
             timer.Start();
-            UnityEngine.Debug.Log("Lesson started at: " + startTime.ToString("yyyy-MM-dd HH:mm:ss"));
+            UnityEngine.Debug.Log("Lesson started at: " + start_time.ToString("yyyy-MM-dd HH:mm:ss"));
             lessonTime.Value = TimeUtils.CurrentSecond;
+
+            StartCoroutine(TrackSkillUpdate());
         }
 
 
         public void StartQuestTime()
         {
             data.hasQuest = true;
-            data.questTime = new List<QuestTimeData>();
+            data.quest_list = new List<QuestTimeData>();
         }
 
         public void AddQuestTime(QuestTimeData questData)
         {
-            data.questTime.Add(questData);
+            data.quest_list.Add(questData);
         }
 
         public void SaveLessonTimeData()
         {
             timer.Stop();
-            endTime = DateTime.Now;
-            data.startTime = startTime.ToString("yyyy-MM-ddTHH:mm:ss");
-            data.endTime = endTime.ToString("yyyy-MM-ddTHH:mm:ss");
-            data.totalTime = timer.Elapsed.TotalMilliseconds;
-            // videoRecorder.StopRecording();
-            // string videoPath = videoRecorder.GetVideoPath();
+            end_time = DateTime.Now;
+            data.finish_time = end_time.ToString("yyyy-MM-ddTHH:mm:ss");
+            data.duration = timer.Elapsed.TotalMilliseconds / 1000;
+            firebaseManager.UpdateSessionData("finish_time", data.finish_time);
+            firebaseManager.UpdateSessionData("duration", data.duration);
+            videoRecorder.StopRecording();
+            string videoPath = videoRecorder.GetVideoPath();
 
-            // StartCoroutine(uploader.UploadVideo(videoPath, (fileId) =>
-            // {
-            //     UnityEngine.Debug.Log("Start upload video");
-            //     /*firebaseManager.SaveVideoUrlToFirebase("student_001", "WashingHand", fileId);*/
-            //     data.videoUrl = "https://drive.google.com/file/d/" + fileId + "/preview";
-            //     DataUtils<LessonTimeData>.SaveData(Application.persistentDataPath + "/Data/Saved/test.txt", data);
-            //     firebaseManager.UploadLessonTimeData();
-            // }));
+            StartCoroutine(uploader.UploadVideo(videoPath, (fileId) =>
+            {
+                UnityEngine.Debug.Log("Start upload video");
+                /*firebaseManager.Savevideo_urlToFirebase("student_001", "WashingHand", fileId);*/
+                data.video_url = "https://drive.google.com/file/d/" + fileId + "/preview";
+                DataUtils<LessonTimeData>.SaveData(Application.persistentDataPath + "/Data/Saved/test.txt", data);
 
-            //data.totalTime = TimeUtils.CurrentSecond - lessonTime.Value;
+                firebaseManager.UpdateSessionData("video_url", data.video_url);
+                //firebaseManager.UploadLessonTimeData();
+            }));
+
+            //data.duration = TimeUtils.CurrentSecond - lessonTime.Value;
             
             //string filePath = Application.persistentDataPath + "/Data/Saved/test.txt";
             //File.WriteAllText(filePath, JsonUtility.ToJson(data, true));
@@ -81,26 +140,88 @@ namespace Dajunctic.Scripts.Manager
             //firebaseManager.UploadLessonTimeData();
 
         }
+
+        private IEnumerator TrackSkillUpdate()
+        {
+
+            while (timer.Elapsed.TotalSeconds < 60)
+            {
+                yield return null; 
+            }
+
+            while (true)
+            {
+                yield return new WaitForSeconds(1f);
+                if (timer.Elapsed.TotalSeconds >= 60 &&
+                    (timer.Elapsed.TotalSeconds - 60) >= data.skills.Count * 60)
+                {
+                    SkillsData newSkill = new SkillsData
+                    {
+                        initiation = 0,
+                        negotiation = 0,
+                        self_identity = 0,
+                        cognitive_flexibility = 0
+                    };
+                    data.skills.Add(newSkill);
+
+                    firebaseManager.PushNewSkillData(newSkill, data.skills.Count - 1);
+
+                    UnityEngine.Debug.Log($"Thêm SkillsData mới sau {timer.Elapsed.TotalSeconds} giây. Tổng skills: {data.skills.Count}");
+                }
+            }
+        }
+
     }
 
     [Serializable]
     public class LessonTimeData
     {
-        public double totalTime;
+        public String lesson_name;
+        public String level_name;
+        public int lesson_index;
+        public int level_index;
+        public double duration;
         public bool hasQuest;
-        public String startTime;
-        public String endTime;
-        public String videoUrl;
-        public List<QuestTimeData> questTime;
+        public String start_time;
+        public String finish_time;
+        public String video_url;
+        public List<QuestTimeData> quest_list;
+        public List<SkillsData> skills = new List<SkillsData>
+        {
+            new SkillsData
+            {
+                initiation = 0,
+                negotiation = 0,
+                self_identity = 0,
+                cognitive_flexibility = 0
+            }
+        };
+
+        public String device_id;
+        public String type;
+
+
     }
 
     [Serializable]
     public class QuestTimeData
     {
-        public int id;
-        public string name;
-        public double time;
-        public int hintCount;
+        public int index;
+        public string quest_name;
+        public double response_time;
+        public int hint_count;
     }
+
+    [Serializable]
+    public class SkillsData
+    {
+        public int initiation;
+        public int negotiation;
+        public int self_identity;
+        public int cognitive_flexibility;
+    }
+
 }
+
+
 

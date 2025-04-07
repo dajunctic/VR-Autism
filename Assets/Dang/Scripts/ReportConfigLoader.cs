@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿/*using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -44,7 +44,7 @@ public class ReportConfigLoader : MonoBehaviour
             {
                 Lesson lesson = new Lesson
                 {
-                    id = lessonData.id,
+                    lesson_index = lessonData.lesson_index,
                     topicId = lessonData.topicId,
                     sceneName = lessonData.sceneName,
                     title = lessonData.title,
@@ -114,3 +114,4 @@ public class LessonData
     public List<float> sessionTimes;
 }
 
+*/

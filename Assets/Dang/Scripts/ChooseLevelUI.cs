@@ -62,7 +62,8 @@ public class ChooseLevelUI : MonoBehaviour
     {
         var gameData = JsonConvert.SerializeObject(GameSession.Instance);
         PlayerPrefs.SetString("GameSession", gameData);
-        var sceneName = GetSceneName();
+        var lesson = GetLesson();
+        var sceneName = lesson.sceneName;
         //AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
         var asyncLoad = SceneManager.LoadSceneAsync(sceneName);
         Debug.Log("Loading scene: " + sceneName);
@@ -87,5 +88,25 @@ public class ChooseLevelUI : MonoBehaviour
     private string GetSceneName()
     {
         return SceneMenuController.Instance.Lesson.sceneName;
+    }
+
+    private Lesson GetLesson()
+    {
+        //return SceneMenuController.Instance.Lesson;
+        Lesson lesson = SceneMenuController.Instance.Lesson;
+
+        Debug.Log($"Lesson info:\n" +
+                  $"- lesson_index: {lesson.lesson_index}\n" +
+                  $"- lesson_id: {lesson.lesson_id}\n" +
+                  $"- topicId: {lesson.topicId}\n" +
+                  $"- sceneName: {lesson.sceneName}\n" +
+                  $"- lesson_name: {lesson.lesson_name}\n" +
+                  $"- type: {lesson.type}\n" +
+                  $"- description: {lesson.description}\n" +
+                  $"- level_index: {lesson.level_index}\n" +
+                  $"- level_id: {lesson.level_id}\n" +
+                  $"- level_name: {lesson.level_name}");
+
+        return lesson;
     }
 }

@@ -583,7 +583,7 @@ MonoBehaviour:
         m_Calls: []
     isConditionMet: {fileID: 0}
   - name: "Ch\u1EA1y Timeline h\u01B0\u1EDBng d\u1EABn"
-    on: 1
+    on: 0
     duration: 0
     onStart:
       m_PersistentCalls:
@@ -862,7 +862,7 @@ MonoBehaviour:
   videoRecorder: {fileID: 807088771}
   uploader: {fileID: 102946480}
   questController: {fileID: 1336548301}
-  lessonInfo: {fileID: 11400000, guid: 209ab4eb6d4196945882db981b9bd126, type: 2}
+  lessonInfo: {fileID: 11400000, guid: 06cdfd1558b1cb441888cd63d31daa2e, type: 2}
 --- !u!1 &191985541
 GameObject:
   m_ObjectHideFlags: 0
