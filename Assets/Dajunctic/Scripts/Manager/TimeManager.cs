@@ -16,7 +16,7 @@ namespace Dajunctic.Scripts.Manager
     {
         [SerializeField] private DoubleVariable lessonTime;
         [SerializeField] private FirebaseManager firebaseManager;
-        [SerializeField] private VideoRecorder videoRecorder;
+        //[SerializeField] private VideoRecorder videoRecorder;
         [SerializeField] private GoogleDriveUploader uploader;
         [SerializeField] private QuestController questController;
         [SerializeField] private LessonInfo lessonInfo;
@@ -89,7 +89,7 @@ namespace Dajunctic.Scripts.Manager
 
         public void StartLessonTime()
         {
-            videoRecorder.StartRecording();
+            //videoRecorder.StartRecording();
             timer = new Stopwatch();
             timer.Start();
             UnityEngine.Debug.Log("Lesson started at: " + start_time.ToString("yyyy-MM-dd HH:mm:ss"));
@@ -118,19 +118,19 @@ namespace Dajunctic.Scripts.Manager
             data.duration = timer.Elapsed.TotalMilliseconds / 1000;
             firebaseManager.UpdateSessionData("finish_time", data.finish_time);
             firebaseManager.UpdateSessionData("duration", data.duration);
-            videoRecorder.StopRecording();
-            string videoPath = videoRecorder.GetVideoPath();
+           // videoRecorder.StopRecording();
+            //string videoPath = videoRecorder.GetVideoPath();
 
-            StartCoroutine(uploader.UploadVideo(videoPath, (fileId) =>
+           /* StartCoroutine(uploader.UploadVideo(videoPath, (fileId) =>
             {
                 UnityEngine.Debug.Log("Start upload video");
-                /*firebaseManager.Savevideo_urlToFirebase("student_001", "WashingHand", fileId);*/
+                /*firebaseManager.Savevideo_urlToFirebase("student_001", "WashingHand", fileId);
                 data.video_url = "https://drive.google.com/file/d/" + fileId + "/preview";
                 DataUtils<LessonTimeData>.SaveData(Application.persistentDataPath + "/Data/Saved/test.txt", data);
 
                 firebaseManager.UpdateSessionData("video_url", data.video_url);
                 //firebaseManager.UploadLessonTimeData();
-            }));
+            }));*/
 
             //data.duration = TimeUtils.CurrentSecond - lessonTime.Value;
             
