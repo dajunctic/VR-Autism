@@ -14,22 +14,7 @@ public class SpeechRecognition : MonoBehaviour {
     private AudioClip clip;
     private byte[] bytes;
     private bool recording;
-    // private string deviceName = "Microphone (USBAudio2.0)";
     
-    private void Start() {
-        // StartRecording();
-        // foreach (var device in Microphone.devices)
-        // {
-        //     Debug.LogError("Name: " + device);
-        // }
-    }
-
-    private void Update() {
-        // if (recording && Microphone.GetPosition(deviceName) >= clip.samples) {
-        //     StopRecordingAndRestart();
-        // }
-    }
-
     public void StartRecording() {
         text.color = Color.white;
         text.text = "Listening...";

@@ -16,7 +16,7 @@ namespace Dajunctic.Scripts.Manager
         [SerializeField] private DoubleVariable lessonTime;
         [SerializeField] private FirebaseManager firebaseManager;
         [SerializeField] private VideoRecorder videoRecorder;
-        [SerializeField] private GoogleDriveUploader uploader;
+        // [SerializeField] private GoogleDriveUploader uploader;
         private Stopwatch timer;
         
         private LessonTimeData data;
@@ -34,7 +34,7 @@ namespace Dajunctic.Scripts.Manager
         public void StartLessonTime()
         {
             startTime = DateTime.Now;
-            videoRecorder.StartRecording();
+            // videoRecorder.StartRecording();
             //data.SetStartTime(DateTime.Now);
             timer = new Stopwatch();
             timer.Start();
@@ -61,17 +61,17 @@ namespace Dajunctic.Scripts.Manager
             data.startTime = startTime.ToString("yyyy-MM-ddTHH:mm:ss");
             data.endTime = endTime.ToString("yyyy-MM-ddTHH:mm:ss");
             data.totalTime = timer.Elapsed.TotalMilliseconds;
-            videoRecorder.StopRecording();
-            string videoPath = videoRecorder.GetVideoPath();
+            // videoRecorder.StopRecording();
+            // string videoPath = videoRecorder.GetVideoPath();
 
-            StartCoroutine(uploader.UploadVideo(videoPath, (fileId) =>
-            {
-                UnityEngine.Debug.Log("Start upload video");
-                /*firebaseManager.SaveVideoUrlToFirebase("student_001", "WashingHand", fileId);*/
-                data.videoUrl = "https://drive.google.com/file/d/" + fileId + "/preview";
-                DataUtils<LessonTimeData>.SaveData(Application.persistentDataPath + "/Data/Saved/test.txt", data);
-                firebaseManager.UploadLessonTimeData();
-            }));
+            // StartCoroutine(uploader.UploadVideo(videoPath, (fileId) =>
+            // {
+            //     UnityEngine.Debug.Log("Start upload video");
+            //     /*firebaseManager.SaveVideoUrlToFirebase("student_001", "WashingHand", fileId);*/
+            //     data.videoUrl = "https://drive.google.com/file/d/" + fileId + "/preview";
+            //     DataUtils<LessonTimeData>.SaveData(Application.persistentDataPath + "/Data/Saved/test.txt", data);
+            //     firebaseManager.UploadLessonTimeData();
+            // }));
 
             //data.totalTime = TimeUtils.CurrentSecond - lessonTime.Value;
             

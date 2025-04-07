@@ -21,6 +21,7 @@ public class ExitScene : BaseMono
         if (fixedPos)
         {
             gameObject.SetActive(true);
+            return;
         }
         
         
