@@ -42,6 +42,7 @@ public class SpeechResponser : MonoBehaviour
             else
             {
                 finishCondition.Value = true;
+                Debug.LogError("<color=green>Finish Response</color>");
             }
         }
         

@@ -15,7 +15,7 @@ namespace Dajunctic.Scripts.Manager
     {
         [SerializeField] private DoubleVariable lessonTime;
         [SerializeField] private FirebaseManager firebaseManager;
-        [SerializeField] private VideoRecorder videoRecorder;
+        // [SerializeField] private VideoRecorder videoRecorder;
         // [SerializeField] private GoogleDriveUploader uploader;
         private Stopwatch timer;
         

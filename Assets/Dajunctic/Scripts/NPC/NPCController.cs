@@ -9,7 +9,7 @@ namespace Dajunctic.Scripts.NPC
         [SerializeField] private AudioClip[] audioClips;
         [SerializeField] private ReminderData[] reminders;
         
-        [SerializeField] private SpeechResponser speechResponser;
+        [SerializeField] private SpeechResponser[] speechResponser;
 
         private AudioSource myNPC;
 
@@ -20,7 +20,10 @@ namespace Dajunctic.Scripts.NPC
 
         private void Start()
         {
-            if (speechResponser != null) speechResponser.OnPrompt += SayAudio;
+            foreach (var responser in speechResponser)
+            {
+                responser.OnPrompt += SayAudio;
+            }
         }
         
         public void SaySomething(int id)

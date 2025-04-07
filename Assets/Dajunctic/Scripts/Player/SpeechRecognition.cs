@@ -116,4 +116,9 @@ public class SpeechRecognition : MonoBehaviour {
             return memoryStream.ToArray();
         }
     }
+
+    public void SetSpeechResponser(SpeechResponser newSpeechResponser)
+    {
+        speechResponser = newSpeechResponser;
+    }
 }

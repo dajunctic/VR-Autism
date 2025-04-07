@@ -36992,7 +36992,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 990faf17fded01e4d99461092673427c, type: 3}
   reminders:
   - {fileID: 11400000, guid: 61989c1b0cce329429d1a69119140ee6, type: 2}
-  speechResponser: {fileID: 506044689}
+  speechResponser:
+  - {fileID: 506044689}
 --- !u!4 &1417027145
 Transform:
   m_ObjectHideFlags: 0
@@ -41005,7 +41006,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lessonTime: {fileID: 11400000, guid: d3dd43d81e31bfc429dc39a21882d222, type: 2}
   firebaseManager: {fileID: 0}
-  videoRecorder: {fileID: 0}
 --- !u!4 &2047998752
 Transform:
   m_ObjectHideFlags: 0
