@@ -22,6 +22,6 @@ public class LessonUI : MonoBehaviour
     {
         _lesson = lesson;
         if (lesson.cover != null) imgBg.sprite = lesson.cover;
-        txtTitle.text = lesson.title;
+        txtTitle.text = lesson.lesson_name;
     }
 }

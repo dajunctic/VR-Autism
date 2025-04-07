@@ -44,7 +44,7 @@ public class SceneMenuController : MonoBehaviour
         if (lesson != null)
         {
             Lesson = lesson;
-            lessonDetailUI.Show(lesson.title, lesson.description, lesson.cover);
+            lessonDetailUI.Show(lesson.lesson_name, lesson.description, lesson.cover);
         }
         else
         {

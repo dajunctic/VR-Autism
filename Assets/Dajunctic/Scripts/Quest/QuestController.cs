@@ -11,6 +11,7 @@ namespace Dajunctic.Scripts.Quest
     public class QuestController: MonoBehaviour
     {
         [SerializeField] private TimeManager timeManager;
+        [SerializeField] private FirebaseManager firebaseManager;
         [SerializeField] private Quest[] quests;
         [SerializeField] public QuestProgressUI questProgressUI;
         [SerializeField] public GameObject bubbleQuestion;
@@ -20,6 +21,7 @@ namespace Dajunctic.Scripts.Quest
 
 
         private int curQuestId;
+        private string[] questNames;
 
         private void Awake()
         {
@@ -27,12 +29,20 @@ namespace Dajunctic.Scripts.Quest
             {
                 quest.Init(this);
             }
-            
+
+            questNames = quests.Select(q => q.Name).ToArray();
+            UnityEngine.Debug.Log("hollla");
+
             if (questProgressUI != null) questProgressUI.gameObject.SetActive(false);
             if (bubbleQuestion != null) bubbleQuestion.SetActive(false);
             if (congratulationUI != null) congratulationUI.SetActive(false);
 
             curQuestId = 0;
+        }
+        
+        public string[] GetAllQuestNames()
+        {
+            return questNames;
         }
 
         private Quest GetCurQuest()
@@ -51,13 +61,15 @@ namespace Dajunctic.Scripts.Quest
             if (timeManager)
             {
                 var finishedTime = TimeUtils.CurrentSecond - timeVariable.Value;
+
+                firebaseManager.UpdateQuestData("response_time", finishedTime, curQuestId);
                 
                 timeManager.AddQuestTime(
                     new QuestTimeData
                     {
-                        id = curQuestId,
-                        name = GetCurQuest().Name,
-                        time = finishedTime,
+                        index = curQuestId,
+                        quest_name = GetCurQuest().Name,
+                        response_time = finishedTime,
                     });
             }
             

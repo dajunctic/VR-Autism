@@ -21,7 +21,7 @@ MonoBehaviour:
     client_secret: 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
     redirect_uris: []
   uriSchemeClientCredentials:
-    clientId: 579801649382-a0gnq8hk1iiajsemrs76t23j67k9o5hp.apps.googleusercontent.com
+    clientId: 579801649382-f2sassjdd1kio82htveh7khcjki2apup.apps.googleusercontent.com
     reversedClientId: 
     plistVersion: 
     bundleId: 

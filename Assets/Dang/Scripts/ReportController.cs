@@ -55,7 +55,7 @@ public class ReportController : MonoBehaviour
         {
             Lesson = lesson;
             lessonReportedPanel.SetActive(false);
-            reportDetailUI.Show(lesson.title, lesson.description, topic.name, lesson.sessionTimes);
+            reportDetailUI.Show(lesson.lesson_name, lesson.description, topic.name, lesson.sessionTimes);
 
         }
         else

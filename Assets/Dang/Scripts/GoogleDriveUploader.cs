@@ -19,6 +19,7 @@ public class GoogleDriveUploader : MonoBehaviour
         };
 
         var request = GoogleDriveFiles.Create(file);
+        UnityEngine.Debug.Log("Create file...." + request);
         yield return request.Send();
         UnityEngine.Debug.Log("Upload...." + request.Error);
 

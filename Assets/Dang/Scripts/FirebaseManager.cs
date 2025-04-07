@@ -1,72 +1,5 @@
-﻿/*using Firebase;
-using Firebase.Database;
-using Firebase.Extensions;
-using UnityEngine;
-using System.IO;
+﻿using System.IO;
 using Dajunctic.Scripts.Manager;
-
-public class FirebaseManager : MonoBehaviour
-{
-    private DatabaseReference dbReference;
-
-    void Start()
-    {
-        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => {
-            if (task.Result == DependencyStatus.Available)
-            {
-                FirebaseApp app = FirebaseApp.DefaultInstance;
-                FirebaseDatabase.DefaultInstance.SetPersistenceEnabled(true);
-                dbReference = FirebaseDatabase.DefaultInstance.RootReference;
-                Debug.Log("Firebase initialized successfully and offline persistence enabled!");
-            }
-            else
-            {
-                Debug.LogError($"Failed to initialize Firebase: {task.Result}");
-            }
-        });
-    }
-
-   
-    public void UploadLessonTimeData()
-    {
-        string filePath = Application.persistentDataPath + "/Data/Saved/test.txt";
-
-        if (File.Exists(filePath))
-        {
-            string json = File.ReadAllText(filePath);
-            LessonTimeData data = JsonUtility.FromJson<LessonTimeData>(json);
-
-            if (data != null)
-            {
-                string key = dbReference.Child("lessonTimeData").Push().Key;
-
-                dbReference.Child("lessonTimeData").Child(key).SetRawJsonValueAsync(json).ContinueWithOnMainThread(task => {
-                    if (task.IsCompleted)
-                    {
-                        Debug.Log("Lesson time data uploaded successfully.");
-                    }
-                    else
-                    {
-                        Debug.LogError("Failed to upload lesson time data: " + task.Exception);
-                    }
-                });
-            }
-            else
-            {
-                Debug.LogError("Failed to parse JSON from test.txt.");
-            }
-        }
-        else
-        {
-            Debug.LogError("test.txt not found at: " + filePath);
-        }
-    }
-}
-*/
-
-using System;
-using System.IO;
-using System.Threading.Tasks;
 using Firebase;
 using Firebase.Database;
 using Firebase.Extensions;
@@ -75,14 +8,24 @@ using UnityEngine;
 public class FirebaseManager : MonoBehaviour
 {
     private DatabaseReference dbReference;
+    private string sessionId;
 
     private void Awake()
     {
-        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
+        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
         {
-            FirebaseApp app = FirebaseApp.DefaultInstance;
-            dbReference = FirebaseDatabase.DefaultInstance.RootReference;
+            if (task.Result == DependencyStatus.Available)
+            {
+                dbReference = FirebaseDatabase.DefaultInstance.RootReference;
+                UploadLessonTimeData();
+                Debug.Log("Firebase đã được khởi tạo thành công!");
+            }
+            else
+            {
+                Debug.LogError("Firebase không thể khởi tạo: " + task.Result);
+            }
         });
+        
     }
 
     public void UploadLessonTimeData()
@@ -92,7 +35,7 @@ public class FirebaseManager : MonoBehaviour
         if (File.Exists(filePath))
         {
             string json = File.ReadAllText(filePath);
-            SaveJsonToFirebase(json);
+            AddSessionToFirebase(json);
         }
         else
         {
@@ -100,29 +43,105 @@ public class FirebaseManager : MonoBehaviour
         }
     }
 
-    private void SaveJsonToFirebase(string jsonData)
+    private void AddSessionToFirebase(string jsonData)
     {
-        dbReference.Child("students")
-            .Child("student_001")
-            .Child("lessons")
-            .Child("WashingHand")
-            .Child("levels")
-            .Child("1")
-            .Child("sessions")
-            .Push() 
-            .SetRawJsonValueAsync(jsonData)
-            .ContinueWithOnMainThread(task =>
+        DatabaseReference sessionsRef = dbReference.Child("sessions");
+
+        sessionsRef.GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted || task.IsCanceled)
             {
-                if (task.IsCompleted)
+                Debug.LogError("Lỗi khi lấy dữ liệu sessions: " + task.Exception);
+                return;
+            }
+
+            DataSnapshot snapshot = task.Result;
+            int nextId = 0;  
+
+            if (snapshot.Exists && snapshot.ChildrenCount > 0)
+            {
+                nextId = (int)snapshot.ChildrenCount;
+            }
+
+            sessionId = nextId.ToString();
+
+            sessionsRef.Child(nextId.ToString()).SetRawJsonValueAsync(jsonData).ContinueWithOnMainThread(uploadTask =>
+            {
+                if (uploadTask.IsCompleted)
                 {
-                    Debug.Log("Dữ liệu mới đã được thêm vào Firebase thành công!");
+                    Debug.Log("Session mới đã được thêm vào Firebase với ID: " + nextId);
                 }
                 else
                 {
-                    Debug.LogError("Lỗi khi thêm dữ liệu vào Firebase: " + task.Exception);
+                    Debug.LogError("Lỗi khi thêm session mới: " + uploadTask.Exception);
+                }
+            });
+        });
+    }
+
+    public void UpdateQuestData(string field, object value, int index)
+    {
+        if (string.IsNullOrEmpty(sessionId))
+        {
+            Debug.LogError("Không có sessionId để cập nhật dữ liệu!");
+            return;
+        }
+
+        DatabaseReference sessionRef = dbReference.Child("sessions").Child(sessionId).Child("quest_list").Child(index.ToString());
+
+        sessionRef.Child(field).SetValueAsync(value).ContinueWithOnMainThread(task =>
+        {
+            if (task.IsCompleted)
+            {
+                Debug.Log($"Dữ liệu {field} đã được cập nhật thành công với giá trị: {value}");
+            }
+            else
+            {
+                Debug.LogError($"Lỗi khi cập nhật {field}: {task.Exception}");
+            }
+        });
+    }
+
+    public void UpdateSessionData(string field, object value)
+    {
+        if (string.IsNullOrEmpty(sessionId))
+        {
+            Debug.LogError("Không có sessionId để cập nhật dữ liệu!");
+            return;
+        }
+
+        DatabaseReference sessionRef = dbReference.Child("sessions").Child(sessionId);
+
+        sessionRef.Child(field).SetValueAsync(value).ContinueWithOnMainThread(task =>
+        {
+            if (task.IsCompleted)
+            {
+                Debug.Log($"Dữ liệu {field} đã được cập nhật thành công với giá trị: {value}");
+            }
+            else
+            {
+                Debug.LogError($"Lỗi khi cập nhật {field}: {task.Exception}");
+            }
+        });
+    }
+
+    public void PushNewSkillData(SkillsData skill, int index)
+    {
+        string path = $"sessions/{sessionId}/skills/{index}";
+
+        string jsonData = JsonUtility.ToJson(skill);
+
+        FirebaseDatabase.DefaultInstance.RootReference.Child(path).SetRawJsonValueAsync(jsonData)
+            .ContinueWith(task =>
+            {
+                if (task.IsCompleted)
+                {
+                    UnityEngine.Debug.Log($"Skill {index} đã được lưu lên Firebase!");
+                }
+                else
+                {
+                    UnityEngine.Debug.LogError("Lỗi khi push dữ liệu Skills lên Firebase: " + task.Exception);
                 }
             });
     }
-
-
 }
