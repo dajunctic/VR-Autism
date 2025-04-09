@@ -2647,7 +2647,7 @@ MonoBehaviour:
         m_Calls: []
     isConditionMet: {fileID: 0}
   - name: "B\u1EA1n Nam gi\u1EDBi thi\u1EC7u"
-    on: 1
+    on: 0
     onSendData: 0
     duration: 0
     onStart:

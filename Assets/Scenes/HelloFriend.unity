@@ -252,11 +252,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBeforePrompt: 15
   finishCondition: {fileID: 11400000, guid: a6200f3ab457e474ea788842216db21b, type: 2}
+  hintCount: {fileID: 11400000, guid: c854ceea369507c4b99c5e5fb7ed0666, type: 2}
   speechCategories:
-  - key: "tu\u1ED5i"
-    prompts:
-    - "H\xE3y n\xF3i theo c\xF4: Con t\xEAn l\xE0\u2026"
-    - "Con h\xE3y th\u1EED n\xF3i: Con t\xEAn l\xE0 g\xEC n\xE0o?"
+  - key: "tu\u1ED5i,m\u1ED9t,hai,ba,b\u1ED1n,n\u0103m,s\xE1u,b\u1EA3y,t\xE1m,ch\xEDn,m\u01B0\u1EDDi"
     audios:
     - {fileID: 8300000, guid: e062120679c1d724e9dff9f0f36156f6, type: 3}
     hasSpoken: 0
@@ -306,11 +304,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBeforePrompt: 15
   finishCondition: {fileID: 11400000, guid: 71a3d7d0fca1d1847a300509cd3a4754, type: 2}
+  hintCount: {fileID: 11400000, guid: c854ceea369507c4b99c5e5fb7ed0666, type: 2}
   speechCategories:
-  - key: "ch\xE0o"
-    prompts:
-    - "H\xE3y n\xF3i theo c\xF4: Con t\xEAn l\xE0\u2026"
-    - "Con h\xE3y th\u1EED n\xF3i: Con t\xEAn l\xE0 g\xEC n\xE0o?"
+  - key: "ch\xE0o,hai,h\xEA l\xE2u,h\xEA l\xF4,h\u1EBF,h\xEA,l\xF4,hello"
     audios:
     - {fileID: 8300000, guid: 14d0c9339456ccf49bd9880cee007c90, type: 3}
     - {fileID: 8300000, guid: a01f61e4644ff444a9286c07ac13baca, type: 3}
@@ -583,11 +579,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBeforePrompt: 15
   finishCondition: {fileID: 11400000, guid: a3029e4b751d85a4fb2738410d66d41c, type: 2}
+  hintCount: {fileID: 11400000, guid: c854ceea369507c4b99c5e5fb7ed0666, type: 2}
   speechCategories:
-  - key: "t\u1EA1m bi\u1EC7t"
-    prompts:
-    - "H\xE3y n\xF3i theo c\xF4: Con t\xEAn l\xE0\u2026"
-    - "Con h\xE3y th\u1EED n\xF3i: Con t\xEAn l\xE0 g\xEC n\xE0o?"
+  - key: "t\u1EA1m bi\u1EC7t,ch\xE0o,bai,g\xFAt bai"
     audios:
     - {fileID: 8300000, guid: 48fe7b4fd279088499b58c5a4df4aa6f, type: 3}
     - {fileID: 8300000, guid: ecfe5ae880e94ed4db2f54387600fd82, type: 3}
@@ -1619,9 +1613,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdd29a1c102e2e45b1ef7967436a7e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hintCount: {fileID: 11400000, guid: c854ceea369507c4b99c5e5fb7ed0666, type: 2}
   actionEvents:
   - name: "Kh\u1EDFi t\u1EA1o"
     on: 1
+    onSendData: 0
     duration: 2
     onStart:
       m_PersistentCalls:
@@ -1710,13 +1706,38 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 2047998751}
+          m_TargetAssemblyTypeName: Dajunctic.Scripts.Manager.TimeManager, Assembly-CSharp
+          m_MethodName: StartLessonTime
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 2047998751}
+          m_TargetAssemblyTypeName: Dajunctic.Scripts.Manager.TimeManager, Assembly-CSharp
+          m_MethodName: StartQuestTime
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     onFinished:
       m_PersistentCalls:
         m_Calls: []
     isConditionMet: {fileID: 0}
   - name: "Bot gi\u1EDBi thi\u1EC7u"
     on: 1
-    duration: 10
+    onSendData: 0
+    duration: 8
     onStart:
       m_PersistentCalls:
         m_Calls:
@@ -1738,6 +1759,7 @@ MonoBehaviour:
     isConditionMet: {fileID: 0}
   - name: "B\u1EA1n Nam v\xE0o l\u1EDBp"
     on: 1
+    onSendData: 0
     duration: 0
     onStart:
       m_PersistentCalls:
@@ -1772,6 +1794,7 @@ MonoBehaviour:
     isConditionMet: {fileID: 11400000, guid: d2c130d81e4a9a643bd22313b4c4ca8a, type: 2}
   - name: "Ch\xE0o b\u1EA1n Nam"
     on: 1
+    onSendData: 1
     duration: 0
     onStart:
       m_PersistentCalls:
@@ -1815,9 +1838,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 115284920}
+          m_TargetAssemblyTypeName: SpeechResponser, Assembly-CSharp
+          m_MethodName: StopResponse
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     isConditionMet: {fileID: 11400000, guid: 71a3d7d0fca1d1847a300509cd3a4754, type: 2}
   - name: "B\u1EA1n Nam n\xF3i t\xEAn"
     on: 1
+    onSendData: 0
     duration: 3
     onStart:
       m_PersistentCalls:
@@ -1852,6 +1888,7 @@ MonoBehaviour:
     isConditionMet: {fileID: 0}
   - name: "Gi\u1EDBi thi\u1EC7u t\xEAn b\u1EA3n th\xE2n"
     on: 1
+    onSendData: 1
     duration: 5
     onStart:
       m_PersistentCalls:
@@ -1895,6 +1932,18 @@ MonoBehaviour:
     onFinished:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 1502744518}
+          m_TargetAssemblyTypeName: SpeechResponser, Assembly-CSharp
+          m_MethodName: StopResponse
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 506044688}
           m_TargetAssemblyTypeName: SpeechRecognition, Assembly-CSharp
           m_MethodName: StopRecording
@@ -1910,6 +1959,7 @@ MonoBehaviour:
     isConditionMet: {fileID: 11400000, guid: acc40b80c29f26842a0167c2c9b57cc5, type: 2}
   - name: "B\u1EA1n Nam n\xF3i tu\u1ED5i"
     on: 1
+    onSendData: 0
     duration: 3
     onStart:
       m_PersistentCalls:
@@ -1944,6 +1994,7 @@ MonoBehaviour:
     isConditionMet: {fileID: 0}
   - name: "Gi\u1EDBi thi\u1EC7u tu\u1ED5i"
     on: 1
+    onSendData: 1
     duration: 0
     onStart:
       m_PersistentCalls:
@@ -1960,7 +2011,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 111769769}
+        - m_Target: {fileID: 111769771}
           m_TargetAssemblyTypeName: SpeechResponser, Assembly-CSharp
           m_MethodName: StartResponse
           m_Mode: 1
@@ -1987,6 +2038,18 @@ MonoBehaviour:
     onFinished:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 111769771}
+          m_TargetAssemblyTypeName: SpeechResponser, Assembly-CSharp
+          m_MethodName: StopResponse
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 506044688}
           m_TargetAssemblyTypeName: SpeechRecognition, Assembly-CSharp
           m_MethodName: StopRecording
@@ -2002,6 +2065,7 @@ MonoBehaviour:
     isConditionMet: {fileID: 11400000, guid: a6200f3ab457e474ea788842216db21b, type: 2}
   - name: "B\u1EA1n Nam t\u1EA1m bi\u1EC7t"
     on: 1
+    onSendData: 0
     duration: 3
     onStart:
       m_PersistentCalls:
@@ -2024,6 +2088,7 @@ MonoBehaviour:
     isConditionMet: {fileID: 0}
   - name: "T\u1EA1m bi\u1EC7t b\u1EA1n Nam"
     on: 1
+    onSendData: 1
     duration: 5
     onStart:
       m_PersistentCalls:
@@ -2079,6 +2144,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 249396073}
+          m_TargetAssemblyTypeName: SpeechResponser, Assembly-CSharp
+          m_MethodName: StopResponse
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 1547952479}
           m_TargetAssemblyTypeName: UnityEngine.Playables.PlayableDirector, UnityEngine
           m_MethodName: Play
@@ -2094,6 +2171,7 @@ MonoBehaviour:
     isConditionMet: {fileID: 11400000, guid: a3029e4b751d85a4fb2738410d66d41c, type: 2}
   - name: "K\u1EBFt th\xFAc"
     on: 1
+    onSendData: 0
     duration: 10
     onStart:
       m_PersistentCalls:
@@ -2129,6 +2207,18 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 2047998751}
+          m_TargetAssemblyTypeName: Dajunctic.Scripts.Manager.TimeManager, Assembly-CSharp
+          m_MethodName: SaveLessonTimeData
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6599,7 +6689,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cb6f4bdb84df04b4b991cb21929d000a, type: 3}
   - {fileID: 8300000, guid: e137f243aed25d444acfc283ba93ecc4, type: 3}
   reminders: []
-  speechResponser: []
+  speechResponser:
+  - {fileID: 115284920}
+  - {fileID: 1502744518}
+  - {fileID: 111769771}
+  - {fileID: 249396073}
 --- !u!4 &1417027145
 Transform:
   m_ObjectHideFlags: 0
@@ -7525,11 +7619,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBeforePrompt: 15
   finishCondition: {fileID: 11400000, guid: acc40b80c29f26842a0167c2c9b57cc5, type: 2}
+  hintCount: {fileID: 11400000, guid: c854ceea369507c4b99c5e5fb7ed0666, type: 2}
   speechCategories:
-  - key: "t\xEAn"
-    prompts:
-    - "H\xE3y n\xF3i theo c\xF4: Con t\xEAn l\xE0\u2026"
-    - "Con h\xE3y th\u1EED n\xF3i: Con t\xEAn l\xE0 g\xEC n\xE0o?"
+  - key: "t\xEAn,m\xECnh l\xE0,t\u1EDB l\xE0,em l\xE0,t\xF4i l\xE0"
     audios:
     - {fileID: 8300000, guid: cea3363a8f402404292bdbdb9042f177, type: 3}
     - {fileID: 8300000, guid: f54158021094ad04d9d3aa2fa1330150, type: 3}
@@ -9121,7 +9213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeManager: {fileID: 2047998751}
-  firebaseManager: {fileID: 0}
+  firebaseManager: {fileID: 637690085}
   quests: []
   questProgressUI: {fileID: 0}
   bubbleQuestion: {fileID: 0}
@@ -9309,14 +9401,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1910887216}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.96, y: 1.37, z: -2.196}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 7.1, y: 1.17, z: -5.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 942452204}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &1924283882
 GameObject:
   m_ObjectHideFlags: 0
@@ -10173,16 +10265,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2047998750}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0963498e461ea5a43b5129c9227aeeb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lessonTime: {fileID: 11400000, guid: d3dd43d81e31bfc429dc39a21882d222, type: 2}
-  firebaseManager: {fileID: 0}
-  uploader: {fileID: 0}
-  questController: {fileID: 0}
-  lessonInfo: {fileID: 0}
+  firebaseManager: {fileID: 637690085}
+  questController: {fileID: 1883205728}
+  lessonInfo: {fileID: 11400000, guid: 209ab4eb6d4196945882db981b9bd126, type: 2}
 --- !u!4 &2047998752
 Transform:
   m_ObjectHideFlags: 0

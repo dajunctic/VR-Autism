@@ -30,8 +30,7 @@ namespace Dajunctic.Scripts.Quest
                 quest.Init(this);
             }
 
-            questNames = quests.Select(q => q.Name).ToArray();
-            UnityEngine.Debug.Log("hollla");
+            questNames = quests.Where(q => q.IsSendData).Select(q => q.Name).ToArray();
 
             if (questProgressUI != null) questProgressUI.gameObject.SetActive(false);
             if (bubbleQuestion != null) bubbleQuestion.SetActive(false);

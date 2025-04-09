@@ -7,11 +7,13 @@ using UnityEngine;
 
 public class FirebaseManager : MonoBehaviour
 {
+    public static FirebaseManager Instance;
     private DatabaseReference dbReference;
     private string sessionId;
 
     private void Awake()
     {
+        Instance = this;
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
         {
             if (task.Result == DependencyStatus.Available)

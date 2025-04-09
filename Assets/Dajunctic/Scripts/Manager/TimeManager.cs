@@ -5,19 +5,18 @@ using System.Diagnostics;
 using Dajunctic.Scripts.Events;
 using Dajunctic.Scripts.Utils;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
-using UnityEngine.Serialization;
-using System.IO;
 using Dajunctic.Scripts.Quest;
+using Debug = UnityEngine.Debug;
 
 namespace Dajunctic.Scripts.Manager
 {
     public class TimeManager : MonoBehaviour
     {
+        public static TimeManager Instance;
         [SerializeField] private DoubleVariable lessonTime;
         [SerializeField] private FirebaseManager firebaseManager;
         //[SerializeField] private VideoRecorder videoRecorder;
-        [SerializeField] private GoogleDriveUploader uploader;
+        // [SerializeField] private GoogleDriveUploader uploader;
         [SerializeField] private QuestController questController;
         [SerializeField] private LessonInfo lessonInfo;
 
@@ -32,6 +31,8 @@ namespace Dajunctic.Scripts.Manager
 
         private void Awake()
         {
+            Instance = this;
+            
             data = new LessonTimeData();
             if (lessonInfo != null)
             {
@@ -43,7 +44,7 @@ namespace Dajunctic.Scripts.Manager
             }
             else
             {
-                UnityEngine.Debug.LogError("LessonInfo chưa được gán trong Inspector!");
+                Debug.LogError("LessonInfo chưa được gán trong Inspector!");
             }
         }
 
@@ -53,35 +54,45 @@ namespace Dajunctic.Scripts.Manager
             data.start_time = start_time.ToString("yyyy-MM-ddTHH:mm:ss");
 
             string device_id = SystemInfo.deviceUniqueIdentifier;
-            UnityEngine.Debug.Log("Device ID: " + device_id);
+            Debug.Log("Device ID: " + device_id);
             data.device_id = device_id;
-
-            if (questController != null)
+            
+            data.quest_list = new List<QuestTimeData>();
+            var questNames = new List<string>();
+            if (ActionManager.Instance != null)
             {
-                string[] questNames = questController.GetAllQuestNames();
-                data.quest_list = new List<QuestTimeData>();
-
-                for (int i = 0; i < questNames.Length; i++)
-                {
-                    QuestTimeData questData = new QuestTimeData
-                    {
-                        index = i,
-                        quest_name = questNames[i]
-                    };
-                    data.quest_list.Add(questData);
-                    
-                }
-                UnityEngine.Debug.Log("Danh sách QuestTime:");
-                foreach (var quest in data.quest_list)
-                {
-                    UnityEngine.Debug.Log($"ID: {quest.index}, Name: {quest.quest_name}");
-                }
-
+                questNames.AddRange(ActionManager.Instance.GetQuestName());
             }
             else
             {
-                UnityEngine.Debug.LogError("QuestController chưa được gán vào TimeManager!");
+                Debug.LogError("ActionManager is null!");
             }
+            
+            if (questController != null)
+            {
+                questNames.AddRange(questController.GetAllQuestNames());
+            }
+            else
+            {
+                Debug.LogError("QuestController chưa được gán vào TimeManager!");
+            }
+            
+            for (int i = 0; i < questNames.Count; i++)
+            {
+                QuestTimeData questData = new QuestTimeData
+                {
+                    index = i,
+                    quest_name = questNames[i]
+                };
+                data.quest_list.Add(questData);
+                    
+            }
+            Debug.Log("Danh sách QuestTime:");
+            foreach (var quest in data.quest_list)
+            {
+                Debug.Log($"ID: {quest.index}, Name: {quest.quest_name}");
+            }
+
 
             DataUtils<LessonTimeData>.SaveData(Application.persistentDataPath + "/Data/Saved/test.txt", data);
 
@@ -110,14 +121,20 @@ namespace Dajunctic.Scripts.Manager
             data.quest_list.Add(questData);
         }
 
-        public void SaveLessonTimeData()
+        public void SaveDurationTime()
         {
-            timer.Stop();
             end_time = DateTime.Now;
             data.finish_time = end_time.ToString("yyyy-MM-ddTHH:mm:ss");
             data.duration = timer.Elapsed.TotalMilliseconds / 1000;
             firebaseManager.UpdateSessionData("finish_time", data.finish_time);
             firebaseManager.UpdateSessionData("duration", data.duration);
+        }
+
+        public void SaveLessonTimeData()
+        {
+            Debug.LogError("Quest: " + data.quest_list.Count);
+            timer.Stop();
+            SaveDurationTime();
            // videoRecorder.StopRecording();
             //string videoPath = videoRecorder.GetVideoPath();
 
@@ -134,8 +151,8 @@ namespace Dajunctic.Scripts.Manager
 
             //data.duration = TimeUtils.CurrentSecond - lessonTime.Value;
             
-            //string filePath = Application.persistentDataPath + "/Data/Saved/test.txt";
-            //File.WriteAllText(filePath, JsonUtility.ToJson(data, true));
+            // string filePath = Application.persistentDataPath + "/Data/Saved/test.txt";
+            // File.WriteAllText(filePath, JsonUtility.ToJson(data, true));
 
             //firebaseManager.UploadLessonTimeData();
 

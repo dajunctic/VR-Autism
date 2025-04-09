@@ -13,6 +13,7 @@ namespace Dajunctic.Scripts.Quest
         [SerializeField] private string questName;
         [SerializeField] private QuestType questType;
         [SerializeField] private float duration;
+        [SerializeField] private bool isSendData;
 
         [Header("Components")] 
         [SerializeField] private Outline outline;
@@ -32,6 +33,7 @@ namespace Dajunctic.Scripts.Quest
         
         public int Id => id;
         public string Name => questName;
+        public bool IsSendData => isSendData;
         private QuestController controller;
         private State state;
         private float progress;

@@ -1,4 +1,5 @@
 
+using Dajunctic.Scripts.Events;
 using UnityEngine;
 
 namespace Dajunctic.Scripts.NPC
@@ -8,6 +9,7 @@ namespace Dajunctic.Scripts.NPC
         [SerializeField] private AudioSource[] npcs;
         [SerializeField] private AudioClip[] audioClips;
         [SerializeField] private ReminderData[] reminders;
+        [SerializeField] private IntVariable hintCount;
         
         [SerializeField] private SpeechResponser[] speechResponser;
 
@@ -41,6 +43,7 @@ namespace Dajunctic.Scripts.NPC
 
         public void SayRandomReminder(int id)
         {
+            hintCount.Value++;
             myNPC.clip = reminders[id].audioClips[Random.Range(0, reminders[id].audioClips.Length)];
             myNPC.Play();
         }

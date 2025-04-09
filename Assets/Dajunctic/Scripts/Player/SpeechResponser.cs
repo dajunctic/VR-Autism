@@ -8,6 +8,7 @@ public class SpeechResponser : MonoBehaviour
 {
     [SerializeField] private float timeBeforePrompt = 5f; // Thời gian chờ trước khi gợi ý
     [SerializeField] private BooleanVariable finishCondition;
+    [SerializeField] private IntVariable hintCount;
     [SerializeField] private SpeechCategory[] speechCategories; // Mảng chứa các chủ đề
     
     public Action<AudioClip> OnPrompt;
@@ -26,10 +27,15 @@ public class SpeechResponser : MonoBehaviour
 
         foreach (var category in speechCategories)
         {
-            if (text.Contains(category.key))
+            var words = category.key.Split(',');
+            foreach (var word in words)
             {
-                category.hasSpoken = true;
-                found = true;
+                if (text.Contains(word))
+                {
+                    category.hasSpoken = true;
+                    found = true;
+                    break;
+                }
             }
         }
 
@@ -67,9 +73,17 @@ public class SpeechResponser : MonoBehaviour
         silenceTimer = StartCoroutine(SilenceCountdown());
     }
 
+    bool stop = false;
+    public void StopResponse()
+    {
+        stop = true;
+        if (silenceTimer != null) StopCoroutine(silenceTimer);
+    }
+
     private IEnumerator SilenceCountdown()
     {
         yield return new WaitForSeconds(timeBeforePrompt);
+        if (stop) yield break;
         PromptTeacher();
     }
 
@@ -77,7 +91,9 @@ public class SpeechResponser : MonoBehaviour
     {
         // string prompt = GetPrompt();
         OnPrompt?.Invoke(GetPrompt());
-        // Debug.Log("Gợi ý giáo viên: " + prompt);
+        hintCount.Value++;
+        Debug.LogError("<color=yellow>Nhận gợi ý</color>");
+
     }
 
     private AudioClip GetPrompt()
@@ -97,19 +113,19 @@ public class SpeechResponser : MonoBehaviour
 public class SpeechCategory
 {
     public string key;               // Từ khóa cần nhận diện
-    public string[] prompts; // Mảng câu hỏi gợi ý
+    // public string[] prompts; // Mảng câu hỏi gợi ý
     public AudioClip[] audios;
     public bool hasSpoken = false;   // Kiểm tra xem trẻ đã nói về chủ đề này chưa
 
     // Lấy một câu gợi ý ngẫu nhiên từ mảng
-    public string GetRandomPrompt()
-    {
-        if (prompts.Length > 0)
-        {
-            return prompts[UnityEngine.Random.Range(0, prompts.Length)];
-        }
-        return "Hãy chia sẻ thêm về con nào!";
-    }
+    // public string GetRandomPrompt()
+    // {
+    //     if (prompts.Length > 0)
+    //     {
+    //         return prompts[UnityEngine.Random.Range(0, prompts.Length)];
+    //     }
+    //     return "Hãy chia sẻ thêm về con nào!";
+    // }
 
     public AudioClip GetRandomAudio()
     {

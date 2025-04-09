@@ -525,7 +525,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 173669180}
   - {fileID: 1875500759}
   - {fileID: 1371836874}
   - {fileID: 1795470048}
@@ -547,9 +546,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdd29a1c102e2e45b1ef7967436a7e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hintCount: {fileID: 11400000, guid: c854ceea369507c4b99c5e5fb7ed0666, type: 2}
   actionEvents:
   - name: "Kh\u1EDFi t\u1EA1o"
     on: 1
+    onSendData: 0
     duration: 0
     onStart:
       m_PersistentCalls:
@@ -584,6 +585,7 @@ MonoBehaviour:
     isConditionMet: {fileID: 0}
   - name: "Ch\u1EA1y Timeline h\u01B0\u1EDBng d\u1EABn"
     on: 1
+    onSendData: 0
     duration: 0
     onStart:
       m_PersistentCalls:
@@ -642,6 +644,7 @@ MonoBehaviour:
     isConditionMet: {fileID: 11400000, guid: 5370bca8d9527be47bb16a452483f188, type: 2}
   - name: "B\u1EAFt \u0111\u1EA7u nhi\u1EC7m v\u1EE5"
     on: 1
+    onSendData: 0
     duration: 0
     onStart:
       m_PersistentCalls:
@@ -676,6 +679,7 @@ MonoBehaviour:
     isConditionMet: {fileID: 11400000, guid: a8e38e13912aab046bec3e66c434c42d, type: 2}
   - name: "L\u01B0u k\u1EBFt qu\u1EA3"
     on: 1
+    onSendData: 0
     duration: 0
     onStart:
       m_PersistentCalls:
@@ -843,7 +847,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 113919261}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &173669181
 MonoBehaviour:
@@ -859,8 +863,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lessonTime: {fileID: 11400000, guid: d3dd43d81e31bfc429dc39a21882d222, type: 2}
   firebaseManager: {fileID: 1068350362}
-  videoRecorder: {fileID: 807088771}
-  uploader: {fileID: 102946480}
   questController: {fileID: 1336548301}
   lessonInfo: {fileID: 11400000, guid: 209ab4eb6d4196945882db981b9bd126, type: 2}
 --- !u!1 &191985541
@@ -16735,6 +16737,7 @@ SceneRoots:
   - {fileID: 851676440}
   - {fileID: 865076693}
   - {fileID: 1336548302}
+  - {fileID: 173669180}
   - {fileID: 113919261}
   - {fileID: 291897518}
   - {fileID: 1433132082}
