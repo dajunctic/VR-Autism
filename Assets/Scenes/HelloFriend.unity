@@ -6689,6 +6689,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cb6f4bdb84df04b4b991cb21929d000a, type: 3}
   - {fileID: 8300000, guid: e137f243aed25d444acfc283ba93ecc4, type: 3}
   reminders: []
+  hintCount: {fileID: 0}
   speechResponser:
   - {fileID: 115284920}
   - {fileID: 1502744518}
@@ -10273,7 +10274,7 @@ MonoBehaviour:
   lessonTime: {fileID: 11400000, guid: d3dd43d81e31bfc429dc39a21882d222, type: 2}
   firebaseManager: {fileID: 637690085}
   questController: {fileID: 1883205728}
-  lessonInfo: {fileID: 11400000, guid: 209ab4eb6d4196945882db981b9bd126, type: 2}
+  lessonInfo: {fileID: 11400000, guid: 012afccd320bb8d4f8e0d9080cb218ff, type: 2}
 --- !u!4 &2047998752
 Transform:
   m_ObjectHideFlags: 0

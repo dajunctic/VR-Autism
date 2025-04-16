@@ -41341,7 +41341,7 @@ MonoBehaviour:
   lessonTime: {fileID: 11400000, guid: d3dd43d81e31bfc429dc39a21882d222, type: 2}
   firebaseManager: {fileID: 252710529}
   questController: {fileID: 1883205728}
-  lessonInfo: {fileID: 11400000, guid: 06cdfd1558b1cb441888cd63d31daa2e, type: 2}
+  lessonInfo: {fileID: 11400000, guid: 53a6736f2f35bb544b52c9418d6f0d4c, type: 2}
 --- !u!4 &2047998752
 Transform:
   m_ObjectHideFlags: 0

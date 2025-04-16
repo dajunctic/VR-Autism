@@ -40,6 +40,7 @@ namespace Dajunctic.Scripts.Manager
                 data.level_name = lessonInfo.level_name;
                 data.lesson_index = lessonInfo.lesson_index;
                 data.level_index = lessonInfo.level_index;
+                data.lesson_id = lessonInfo.lesson_id;
                 data.type = lessonInfo.type == LessonType.theoretical ? "theoretical" : "practical";
             }
             else
@@ -196,6 +197,7 @@ namespace Dajunctic.Scripts.Manager
         public String lesson_name;
         public String level_name;
         public int lesson_index;
+        public String lesson_id;
         public int level_index;
         public double duration;
         public bool hasQuest;

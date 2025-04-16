@@ -45,41 +45,69 @@ public class FirebaseManager : MonoBehaviour
         }
     }
 
+    /*   private void AddSessionToFirebase(string jsonData)
+       {
+           DatabaseReference sessionsRef = dbReference.Child("sessions");
+
+           sessionsRef.GetValueAsync().ContinueWithOnMainThread(task =>
+           {
+               if (task.IsFaulted || task.IsCanceled)
+               {
+                   Debug.LogError("Lỗi khi lấy dữ liệu sessions: " + task.Exception);
+                   return;
+               }
+
+               DataSnapshot snapshot = task.Result;
+               int maxId = -1;
+
+               foreach (var child in snapshot.Children)
+               {
+                   if (int.TryParse(child.Key, out int id))
+                   {
+                       if (id > maxId)
+                           maxId = id;
+                   }
+               }
+
+               int nextId = maxId + 1;
+
+               sessionId = nextId.ToString();
+
+               sessionsRef.Child(nextId.ToString()).SetRawJsonValueAsync(jsonData).ContinueWithOnMainThread(uploadTask =>
+               {
+                   if (uploadTask.IsCompleted)
+                   {
+                       Debug.Log("Session mới đã được thêm vào Firebase với ID: " + nextId);
+                   }
+                   else
+                   {
+                       Debug.LogError("Lỗi khi thêm session mới: " + uploadTask.Exception);
+                   }
+               });
+           });
+       }*/
+
     private void AddSessionToFirebase(string jsonData)
     {
         DatabaseReference sessionsRef = dbReference.Child("sessions");
 
-        sessionsRef.GetValueAsync().ContinueWithOnMainThread(task =>
+        DatabaseReference newSessionRef = sessionsRef.Push();
+        // Lưu lại id
+        sessionId = newSessionRef.Key;
+
+        newSessionRef.SetRawJsonValueAsync(jsonData).ContinueWithOnMainThread(uploadTask =>
         {
-            if (task.IsFaulted || task.IsCanceled)
+            if (uploadTask.IsCompleted)
             {
-                Debug.LogError("Lỗi khi lấy dữ liệu sessions: " + task.Exception);
-                return;
+                Debug.Log("Session mới đã được thêm vào Firebase với ID (sessionId): " + sessionId);
             }
-
-            DataSnapshot snapshot = task.Result;
-            int nextId = 0;  
-
-            if (snapshot.Exists && snapshot.ChildrenCount > 0)
+            else
             {
-                nextId = (int)snapshot.ChildrenCount;
+                Debug.LogError("Lỗi khi thêm session mới: " + uploadTask.Exception);
             }
-
-            sessionId = nextId.ToString();
-
-            sessionsRef.Child(nextId.ToString()).SetRawJsonValueAsync(jsonData).ContinueWithOnMainThread(uploadTask =>
-            {
-                if (uploadTask.IsCompleted)
-                {
-                    Debug.Log("Session mới đã được thêm vào Firebase với ID: " + nextId);
-                }
-                else
-                {
-                    Debug.LogError("Lỗi khi thêm session mới: " + uploadTask.Exception);
-                }
-            });
         });
     }
+
 
     public void UpdateQuestData(string field, object value, int index)
     {

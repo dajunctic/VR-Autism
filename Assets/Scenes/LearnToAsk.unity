@@ -2647,7 +2647,7 @@ MonoBehaviour:
         m_Calls: []
     isConditionMet: {fileID: 0}
   - name: "B\u1EA1n Nam gi\u1EDBi thi\u1EC7u"
-    on: 1
+    on: 0
     onSendData: 0
     duration: 0
     onStart:
@@ -41341,7 +41341,7 @@ MonoBehaviour:
   lessonTime: {fileID: 11400000, guid: d3dd43d81e31bfc429dc39a21882d222, type: 2}
   firebaseManager: {fileID: 252710529}
   questController: {fileID: 1883205728}
-  lessonInfo: {fileID: 11400000, guid: 06cdfd1558b1cb441888cd63d31daa2e, type: 2}
+  lessonInfo: {fileID: 11400000, guid: 9985e7076c031ca4f936d1e30476e1c8, type: 2}
 --- !u!4 &2047998752
 Transform:
   m_ObjectHideFlags: 0

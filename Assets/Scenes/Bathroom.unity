@@ -221,6 +221,11 @@ PrefabInstance:
       propertyPath: questType
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8789362967001776651, guid: 18945e38d72d82d4b99ed45e696d6bd3,
+        type: 3}
+      propertyPath: isSendData
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2141,6 +2146,11 @@ PrefabInstance:
         type: 3}
       propertyPath: questType
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789362967001776651, guid: 18945e38d72d82d4b99ed45e696d6bd3,
+        type: 3}
+      propertyPath: isSendData
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7730,6 +7740,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8789362967001776651, guid: 18945e38d72d82d4b99ed45e696d6bd3,
         type: 3}
+      propertyPath: isSendData
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789362967001776651, guid: 18945e38d72d82d4b99ed45e696d6bd3,
+        type: 3}
       propertyPath: onQuestStarted.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -9343,6 +9358,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8789362967001776651, guid: 18945e38d72d82d4b99ed45e696d6bd3,
         type: 3}
+      propertyPath: isSendData
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789362967001776651, guid: 18945e38d72d82d4b99ed45e696d6bd3,
+        type: 3}
       propertyPath: onQuestStarted.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -10110,6 +10130,11 @@ PrefabInstance:
         type: 3}
       propertyPath: questType
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789362967001776651, guid: 18945e38d72d82d4b99ed45e696d6bd3,
+        type: 3}
+      propertyPath: isSendData
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8789362967001776651, guid: 18945e38d72d82d4b99ed45e696d6bd3,
         type: 3}
@@ -16397,6 +16422,11 @@ PrefabInstance:
         type: 3}
       propertyPath: questType
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789362967001776651, guid: 18945e38d72d82d4b99ed45e696d6bd3,
+        type: 3}
+      propertyPath: isSendData
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8789362967001776651, guid: 18945e38d72d82d4b99ed45e696d6bd3,
         type: 3}

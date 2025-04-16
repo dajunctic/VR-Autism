@@ -221,6 +221,11 @@ PrefabInstance:
       propertyPath: questType
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8789362967001776651, guid: 18945e38d72d82d4b99ed45e696d6bd3,
+        type: 3}
+      propertyPath: isSendData
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -547,9 +552,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdd29a1c102e2e45b1ef7967436a7e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hintCount: {fileID: 11400000, guid: c854ceea369507c4b99c5e5fb7ed0666, type: 2}
   actionEvents:
   - name: "Kh\u1EDFi t\u1EA1o"
     on: 1
+    onSendData: 0
     duration: 0
     onStart:
       m_PersistentCalls:
@@ -584,6 +591,7 @@ MonoBehaviour:
     isConditionMet: {fileID: 0}
   - name: "Ch\u1EA1y Timeline h\u01B0\u1EDBng d\u1EABn"
     on: 0
+    onSendData: 0
     duration: 0
     onStart:
       m_PersistentCalls:
@@ -642,6 +650,7 @@ MonoBehaviour:
     isConditionMet: {fileID: 11400000, guid: 5370bca8d9527be47bb16a452483f188, type: 2}
   - name: "B\u1EAFt \u0111\u1EA7u nhi\u1EC7m v\u1EE5"
     on: 1
+    onSendData: 0
     duration: 0
     onStart:
       m_PersistentCalls:
@@ -676,6 +685,7 @@ MonoBehaviour:
     isConditionMet: {fileID: 11400000, guid: a8e38e13912aab046bec3e66c434c42d, type: 2}
   - name: "L\u01B0u k\u1EBFt qu\u1EA3"
     on: 1
+    onSendData: 0
     duration: 0
     onStart:
       m_PersistentCalls:
@@ -859,8 +869,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lessonTime: {fileID: 11400000, guid: d3dd43d81e31bfc429dc39a21882d222, type: 2}
   firebaseManager: {fileID: 1068350362}
-  videoRecorder: {fileID: 807088771}
-  uploader: {fileID: 102946480}
   questController: {fileID: 1336548301}
   lessonInfo: {fileID: 11400000, guid: 06cdfd1558b1cb441888cd63d31daa2e, type: 2}
 --- !u!1 &191985541
@@ -2139,6 +2147,11 @@ PrefabInstance:
         type: 3}
       propertyPath: questType
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789362967001776651, guid: 18945e38d72d82d4b99ed45e696d6bd3,
+        type: 3}
+      propertyPath: isSendData
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7728,6 +7741,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8789362967001776651, guid: 18945e38d72d82d4b99ed45e696d6bd3,
         type: 3}
+      propertyPath: isSendData
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789362967001776651, guid: 18945e38d72d82d4b99ed45e696d6bd3,
+        type: 3}
       propertyPath: onQuestStarted.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -9341,6 +9359,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8789362967001776651, guid: 18945e38d72d82d4b99ed45e696d6bd3,
         type: 3}
+      propertyPath: isSendData
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789362967001776651, guid: 18945e38d72d82d4b99ed45e696d6bd3,
+        type: 3}
       propertyPath: onQuestStarted.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -10108,6 +10131,11 @@ PrefabInstance:
         type: 3}
       propertyPath: questType
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789362967001776651, guid: 18945e38d72d82d4b99ed45e696d6bd3,
+        type: 3}
+      propertyPath: isSendData
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8789362967001776651, guid: 18945e38d72d82d4b99ed45e696d6bd3,
         type: 3}
@@ -16395,6 +16423,11 @@ PrefabInstance:
         type: 3}
       propertyPath: questType
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789362967001776651, guid: 18945e38d72d82d4b99ed45e696d6bd3,
+        type: 3}
+      propertyPath: isSendData
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8789362967001776651, guid: 18945e38d72d82d4b99ed45e696d6bd3,
         type: 3}
