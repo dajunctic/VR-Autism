@@ -18,6 +18,7 @@ public class SpeechResponser : MonoBehaviour
     {
         ResetSilenceTimer();
         finishCondition.Value = false;
+        stop = false;
     }
 
     public void AnalyzeSpeech(string text)
@@ -51,7 +52,8 @@ public class SpeechResponser : MonoBehaviour
                 Debug.LogError("<color=green>Finish Response</color>");
             }
         }
-        
+
+
         Debug.LogError(text);
     }
 
@@ -93,7 +95,7 @@ public class SpeechResponser : MonoBehaviour
         OnPrompt?.Invoke(GetPrompt());
         hintCount.Value++;
         Debug.LogError("<color=yellow>Nhận gợi ý</color>");
-
+        ResetSilenceTimer();
     }
 
     private AudioClip GetPrompt()
