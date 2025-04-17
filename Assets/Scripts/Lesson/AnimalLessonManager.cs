@@ -1,5 +1,6 @@
 using System.Collections;
 using Daark;
+using Dajunctic.Scripts.Manager;
 using UnityEngine;
 
 public class AnimalLessonManager : MonoBehaviour
@@ -16,6 +17,7 @@ public class AnimalLessonManager : MonoBehaviour
     }
 
     [SerializeField] private bool turnOff;
+    [SerializeField] private TimeManager timeManager;
     public float timeSoundToDescription=4f;
 
     public TypeSound backgroundMusic;
@@ -48,6 +50,7 @@ public class AnimalLessonManager : MonoBehaviour
 
     private void StartLesson()
     {
+        timeManager.StartLessonTime();
         StartCoroutine(IELesson());
     }
 
@@ -82,6 +85,7 @@ public class AnimalLessonManager : MonoBehaviour
         
         yield return new WaitForSeconds(1f);
         this.SendEvent(EventID.PlaySound, endSound);
+        timeManager.SaveLessonTimeData();
         
         yield return new WaitForSeconds(5f);
         

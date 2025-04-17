@@ -155,6 +155,7 @@ public class FirebaseManager : MonoBehaviour
         });
     }
 
+
     public void PushNewSkillData(SkillsData skill, int index)
     {
         string path = $"sessions/{sessionId}/skills/{index}";

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dajunctic.Scripts.Events;
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -13,7 +14,9 @@ public class QuizUIController : MonoBehaviour
     private TextMeshProUGUI score;
     [SerializeField]
     private TextMeshProUGUI time_completed;
-    int count = 0;
+    [SerializeField] IntVariable quiz_score;
+    [SerializeField]
+    private FirebaseManager firebase;
     private float startTime;
     private float elapsedTime;
     private bool isTiming;
@@ -41,6 +44,7 @@ public class QuizUIController : MonoBehaviour
         if (!isTiming)
         {
             startTime = Time.time;
+            quiz_score.Value = 0;
             isTiming = true;
         }
 
@@ -89,8 +93,9 @@ public class QuizUIController : MonoBehaviour
         if (selectedAnswerIndex == correctAnswerIndex)
         {
             selectedButton.image.color = correctColor;
-            count++;
-            score.text = "Số câu trả lời đúng: " + count;
+            quiz_score.Value++;
+            firebase.UpdateSessionData("score", quiz_score.Value);
+            score.text = "Số câu trả lời đúng: " + quiz_score.Value;
         }
         else
         {

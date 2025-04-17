@@ -3405,6 +3405,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1323163644376483739, guid: 0ff4f01035c778047b87226a1568ddbf,
         type: 3}
+      propertyPath: timeManager
+      value: 
+      objectReference: {fileID: 1251137440}
+    - target: {fileID: 1323163644376483739, guid: 0ff4f01035c778047b87226a1568ddbf,
+        type: 3}
       propertyPath: quizConfigName
       value: FarmQuizConfig
       objectReference: {fileID: 0}
@@ -5058,6 +5063,17 @@ PrefabInstance:
       objectReference: {fileID: 1419308324}
     - target: {fileID: 9188471086318479826, guid: 6f532ff8a182f2441bd03104c1648037,
         type: 3}
+      propertyPath: firebase
+      value: 
+      objectReference: {fileID: 913712847}
+    - target: {fileID: 9188471086318479826, guid: 6f532ff8a182f2441bd03104c1648037,
+        type: 3}
+      propertyPath: quiz_score
+      value: 
+      objectReference: {fileID: 11400000, guid: 44c304603c5367c49b2bb239fa33e365,
+        type: 2}
+    - target: {fileID: 9188471086318479826, guid: 6f532ff8a182f2441bd03104c1648037,
+        type: 3}
       propertyPath: objectPoint
       value: 
       objectReference: {fileID: 0}
@@ -6121,6 +6137,50 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 230.10397, y: 251.26288, z: 5.11283}
   m_Center: {x: 0.000019073486, y: -0.0005340575, z: 0.2718318}
+--- !u!1 &913712846
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 913712848}
+  - component: {fileID: 913712847}
+  m_Layer: 0
+  m_Name: FirebaseManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &913712847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913712846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: defe48c3c69b6604386a88a3d23b8f32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &913712848
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913712846}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.536002, y: 0.9592815, z: -11.6080675}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &930603523
 GameObject:
   m_ObjectHideFlags: 0
@@ -9024,6 +9084,54 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1246338236}
   m_Mesh: {fileID: -7319971470353341470, guid: 3c585864cbe260448827ee7a41514435, type: 3}
+--- !u!1 &1251137439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1251137441}
+  - component: {fileID: 1251137440}
+  m_Layer: 0
+  m_Name: TimeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1251137440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251137439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0963498e461ea5a43b5129c9227aeeb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lessonTime: {fileID: 11400000, guid: d3dd43d81e31bfc429dc39a21882d222, type: 2}
+  firebaseManager: {fileID: 913712847}
+  questController: {fileID: 0}
+  lessonInfo: {fileID: 11400000, guid: 300f204a330d46148b1fc351ecd8c907, type: 2}
+--- !u!4 &1251137441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251137439}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.536002, y: 0.9592815, z: -11.6080675}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1258430992
 GameObject:
   m_ObjectHideFlags: 0
@@ -16802,3 +16910,5 @@ SceneRoots:
   - {fileID: 1315603666}
   - {fileID: 1750617516}
   - {fileID: 476554870}
+  - {fileID: 1251137441}
+  - {fileID: 913712848}

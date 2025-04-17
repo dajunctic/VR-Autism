@@ -218,6 +218,7 @@ namespace Dajunctic.Scripts.Manager
 
         public String device_id;
         public String type;
+        public int score;
 
 
     }

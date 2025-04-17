@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Dajunctic.Scripts.Manager;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,10 @@ public class QuizController : MonoBehaviour
     public GameObject gameover;
     private TypeSound win = TypeSound.Win;
     private TypeSound lose = TypeSound.Lose;
+
+    [SerializeField]
+    private TimeManager timeManager;
+
 
 
     [SerializeField]
@@ -36,6 +41,7 @@ public class QuizController : MonoBehaviour
         nextQuestionButton.gameObject.SetActive(false);
         nextQuestionButton.onClick.AddListener(OnNextQuestionClicked);
         PresentQuestion();
+        timeManager.StartLessonTime();
     }
 
     private void PresentQuestion()
@@ -93,6 +99,7 @@ public class QuizController : MonoBehaviour
         gameover.SetActive(true);
         nextQuestionButton.gameObject.SetActive(false);
         soundManager.StopLoopingSound();
+        timeManager.SaveLessonTimeData();
     }
 
     private IEnumerator HandleQuestionSounds()

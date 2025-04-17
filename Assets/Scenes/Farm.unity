@@ -3374,6 +3374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnOff: 1
+  timeManager: {fileID: 0}
   timeSoundToDescription: 2
   backgroundMusic: 14
   introSound: 15
@@ -16424,6 +16425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnOff: 0
+  timeManager: {fileID: 763802327}
   timeSoundToDescription: 4
   backgroundMusic: 14
   introSound: 15
