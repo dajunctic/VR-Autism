@@ -16,7 +16,7 @@ namespace Dajunctic.Scripts.Manager
         [SerializeField] private DoubleVariable lessonTime;
         [SerializeField] private FirebaseManager firebaseManager;
         //[SerializeField] private VideoRecorder videoRecorder;
-        // [SerializeField] private GoogleDriveUploader uploader;
+        //[SerializeField] private GoogleDriveUploader uploader;
         [SerializeField] private QuestController questController;
         [SerializeField] private LessonInfo lessonInfo;
 
@@ -53,6 +53,7 @@ namespace Dajunctic.Scripts.Manager
         {
             start_time = DateTime.Now; 
             data.start_time = start_time.ToString("yyyy-MM-ddTHH:mm:ss");
+
 
             string device_id = SystemInfo.deviceUniqueIdentifier;
             Debug.Log("Device ID: " + device_id);
@@ -136,7 +137,7 @@ namespace Dajunctic.Scripts.Manager
             Debug.LogError("Quest: " + data.quest_list.Count);
             timer.Stop();
             SaveDurationTime();
-           // videoRecorder.StopRecording();
+            //videoRecorder.StopRecording();
             //string videoPath = videoRecorder.GetVideoPath();
 
            /* StartCoroutine(uploader.UploadVideo(videoPath, (fileId) =>

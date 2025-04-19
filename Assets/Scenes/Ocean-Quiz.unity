@@ -206,6 +206,50 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 100599979}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &255803364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 255803366}
+  - component: {fileID: 255803365}
+  m_Layer: 0
+  m_Name: Firebase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &255803365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255803364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: defe48c3c69b6604386a88a3d23b8f32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &255803366
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255803364}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.4781495, y: 1.6347296, z: 3.0399103}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &289091178
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1046,7 +1090,17 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7891509876662492395, guid: b913f75e9028f6846bdc2b960b61a6b8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8380263555359133776, guid: b913f75e9028f6846bdc2b960b61a6b8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9111189231301891053, guid: b913f75e9028f6846bdc2b960b61a6b8,
         type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1319,6 +1373,54 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e56ed9f6495cba469ece763fb92ae93, type: 3}
+--- !u!1 &1592271537
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1592271539}
+  - component: {fileID: 1592271538}
+  m_Layer: 0
+  m_Name: TimeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1592271538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592271537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0963498e461ea5a43b5129c9227aeeb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lessonTime: {fileID: 11400000, guid: d3dd43d81e31bfc429dc39a21882d222, type: 2}
+  firebaseManager: {fileID: 255803365}
+  questController: {fileID: 0}
+  lessonInfo: {fileID: 11400000, guid: c3d4de83e6fb2fc4cbc57c18c38cce9f, type: 2}
+--- !u!4 &1592271539
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592271537}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.4781495, y: 1.6347296, z: 3.0399103}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1820619412
 GameObject:
   m_ObjectHideFlags: 0
@@ -1568,6 +1670,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 326386772894703836, guid: 0ff4f01035c778047b87226a1568ddbf,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 889135829922581904, guid: 0ff4f01035c778047b87226a1568ddbf,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1138518590382553213, guid: 0ff4f01035c778047b87226a1568ddbf,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323163644376483739, guid: 0ff4f01035c778047b87226a1568ddbf,
+        type: 3}
+      propertyPath: timeManager
+      value: 
+      objectReference: {fileID: 1592271538}
+    - target: {fileID: 1323163644376483739, guid: 0ff4f01035c778047b87226a1568ddbf,
+        type: 3}
+      propertyPath: introAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 05bbbf9c791ba724ca899c1c82df7af9, type: 3}
     - target: {fileID: 1323163644376483739, guid: 0ff4f01035c778047b87226a1568ddbf,
         type: 3}
       propertyPath: quizConfigName
@@ -1577,6 +1704,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_BlockingMask.m_Bits
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 3388725983562148838, guid: 0ff4f01035c778047b87226a1568ddbf,
+        type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3791457419703885717, guid: 0ff4f01035c778047b87226a1568ddbf,
         type: 3}
@@ -1742,6 +1874,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6240855409078692654, guid: 0ff4f01035c778047b87226a1568ddbf,
+        type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2015,6 +2152,17 @@ PrefabInstance:
       objectReference: {fileID: 500250167}
     - target: {fileID: 9188471086318479826, guid: 6f532ff8a182f2441bd03104c1648037,
         type: 3}
+      propertyPath: firebase
+      value: 
+      objectReference: {fileID: 255803365}
+    - target: {fileID: 9188471086318479826, guid: 6f532ff8a182f2441bd03104c1648037,
+        type: 3}
+      propertyPath: quiz_score
+      value: 
+      objectReference: {fileID: 11400000, guid: 44c304603c5367c49b2bb239fa33e365,
+        type: 2}
+    - target: {fileID: 9188471086318479826, guid: 6f532ff8a182f2441bd03104c1648037,
+        type: 3}
       propertyPath: questionText
       value: 
       objectReference: {fileID: 1944599101}
@@ -2177,3 +2325,5 @@ SceneRoots:
   - {fileID: 1944599096}
   - {fileID: 289091178}
   - {fileID: 867156436}
+  - {fileID: 1592271539}
+  - {fileID: 255803366}

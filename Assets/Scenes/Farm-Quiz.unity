@@ -3403,11 +3403,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 326386772894703836, guid: 0ff4f01035c778047b87226a1568ddbf,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 889135829922581904, guid: 0ff4f01035c778047b87226a1568ddbf,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1138518590382553213, guid: 0ff4f01035c778047b87226a1568ddbf,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1323163644376483739, guid: 0ff4f01035c778047b87226a1568ddbf,
         type: 3}
       propertyPath: timeManager
       value: 
       objectReference: {fileID: 1251137440}
+    - target: {fileID: 1323163644376483739, guid: 0ff4f01035c778047b87226a1568ddbf,
+        type: 3}
+      propertyPath: introAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 05bbbf9c791ba724ca899c1c82df7af9, type: 3}
     - target: {fileID: 1323163644376483739, guid: 0ff4f01035c778047b87226a1568ddbf,
         type: 3}
       propertyPath: quizConfigName
@@ -3417,6 +3437,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_BlockingMask.m_Bits
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 3388725983562148838, guid: 0ff4f01035c778047b87226a1568ddbf,
+        type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3791457419703885717, guid: 0ff4f01035c778047b87226a1568ddbf,
         type: 3}
@@ -3577,6 +3602,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.984
+      objectReference: {fileID: 0}
+    - target: {fileID: 6240855409078692654, guid: 0ff4f01035c778047b87226a1568ddbf,
+        type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

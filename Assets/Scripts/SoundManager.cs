@@ -29,6 +29,18 @@ public class SoundManager : MonoBehaviour
         audioSource.PlayOneShot(sound.audioClip);
     }
 
+    public void PlayAudioClip(AudioClip clip)
+    {
+        if (clip != null)
+        {
+            audioSource.Stop();
+            audioSource.clip = clip;
+            audioSource.loop = false;
+            audioSource.Play();
+        }
+    }
+
+
     private void PauseSound()
     {
         audioSource.Pause();

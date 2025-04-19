@@ -15,6 +15,9 @@ public class QuizController : MonoBehaviour
 
     [SerializeField]
     private TimeManager timeManager;
+    [SerializeField]
+    private AudioClip introAudioClip;
+
 
 
 
@@ -40,9 +43,26 @@ public class QuizController : MonoBehaviour
         questionCollection.LoadQuizConfig(quizConfigName);
         nextQuestionButton.gameObject.SetActive(false);
         nextQuestionButton.onClick.AddListener(OnNextQuestionClicked);
-        PresentQuestion();
+        
         timeManager.StartLessonTime();
+
+
+        StartCoroutine(PlayIntroAndStartQuiz());
     }
+
+
+    private IEnumerator PlayIntroAndStartQuiz()
+    {
+        yield return new WaitForSeconds(2f); 
+
+
+        soundManager.PlayAudioClip(introAudioClip);
+        yield return new WaitForSeconds(introAudioClip.length); 
+
+        PresentQuestion(); 
+    }
+
+
 
     private void PresentQuestion()
     {
