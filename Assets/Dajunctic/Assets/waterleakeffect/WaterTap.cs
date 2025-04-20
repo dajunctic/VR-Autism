@@ -81,6 +81,7 @@ public class WaterTap : MonoBehaviour
             this.SendEvent(EventID.PlaySoundLoop, TypeSound.WaterSound);
             isOpen = true;
             isClosed = false;
+            RunningWater.gameObject.SetActive(true);
             RunningWater.Play();
         }
 

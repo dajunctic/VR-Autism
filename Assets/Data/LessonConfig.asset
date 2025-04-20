@@ -151,7 +151,7 @@ MonoBehaviour:
     - lesson_index: 0
       lesson_id: Greet
       topicId: 3
-      sceneName: LearnToAsk
+      sceneName: HelloFriend
       lesson_name: "L\xE0m quen b\u1EA1n m\u1EDBi"
       type: 0
       description: "\u1EDE b\xE0i h\u1ECDc n\xE0y, tr\u1EBB s\u1EBD \u0111\u01B0\u1EE3c
@@ -182,7 +182,7 @@ MonoBehaviour:
     - lesson_index: 2
       lesson_id: Intro
       topicId: 3
-      sceneName: LearnToAsk
+      sceneName: LearnToAsk2
       lesson_name: "Gi\u1EDBi thi\u1EC7u b\u1EA3n th\xE2n tr\u01B0\u1EDBc t\u1EADp
         th\u1EC3 (Kh\xF4ng m\u1EABu)"
       type: 0

@@ -16,4 +16,4 @@ MonoBehaviour:
   Values:
   - featureSets:
     - com.picoxr.openxr.features
-  m_vulkanAdditionalGraphicsQueue: 1
+  m_vulkanAdditionalGraphicsQueue: 0

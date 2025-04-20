@@ -1479,8 +1479,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speechResponser: {fileID: 115284920}
   text: {fileID: 1494399995}
-  clipLengthCycle: 10
-  checkInterval: 10
+  clipLengthCycle: 15
+  checkInterval: 6
 --- !u!1 &526339933
 GameObject:
   m_ObjectHideFlags: 0
@@ -2988,7 +2988,7 @@ PrefabInstance:
     - target: {fileID: 3100152345360069769, guid: 5536f567dc2ab11428d5deeeae445ad0,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3334000987378722097, guid: 5536f567dc2ab11428d5deeeae445ad0,
         type: 3}
@@ -3050,11 +3050,7 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 6938362635279759808, guid: 5536f567dc2ab11428d5deeeae445ad0, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8030128510031163721, guid: 5536f567dc2ab11428d5deeeae445ad0,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5536f567dc2ab11428d5deeeae445ad0, type: 3}
 --- !u!1 &722391607
 GameObject:
@@ -4862,7 +4858,7 @@ PrefabInstance:
     - target: {fileID: 3290560462628128254, guid: b913f75e9028f6846bdc2b960b61a6b8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4028822339186647823, guid: b913f75e9028f6846bdc2b960b61a6b8,
         type: 3}
@@ -5115,7 +5111,7 @@ PrefabInstance:
     - target: {fileID: 2029856480896452142, guid: 15fe3dadbaf51304eac079b8ae681f26,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5566147146946765730, guid: 15fe3dadbaf51304eac079b8ae681f26,
         type: 3}
@@ -13090,11 +13086,11 @@ SkinnedMeshRenderer:
   - 0
   - 0
   - 0
-  - 0.000000006598763
-  - 0.00000081730053
-  - 0.0000009464301
-  - 0.0000016368273
-  - 3.497435e-11
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   - 0
   - 0
   - 0
@@ -26381,12 +26377,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'J_Bip_R_Ring2'\n\tTransform 'J_Bip_L_Index3'\n\tTransform
-    'J_Bip_R_Ring3'\n\tTransform 'J_Bip_R_UpperLeg'\n\tTransform 'J_Bip_C_UpperChest'\n\tTransform
-    'J_Bip_R_Middle3'\n\tTransform 'J_Bip_R_LowerArm'\n\tTransform 'J_Bip_L_Middle2'\n\tTransform
-    'J_Bip_L_ToeBase'\n\tTransform 'J_Bip_R_Index3'\n\tand more ..."
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0

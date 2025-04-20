@@ -2191,7 +2191,7 @@ PrefabInstance:
     - target: {fileID: 3100152345360069769, guid: 5536f567dc2ab11428d5deeeae445ad0,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3334000987378722097, guid: 5536f567dc2ab11428d5deeeae445ad0,
         type: 3}
@@ -2252,11 +2252,7 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 6938362635279759808, guid: 5536f567dc2ab11428d5deeeae445ad0, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8030128510031163721, guid: 5536f567dc2ab11428d5deeeae445ad0,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5536f567dc2ab11428d5deeeae445ad0, type: 3}
 --- !u!1 &865076692
 GameObject:
@@ -2359,7 +2355,7 @@ PrefabInstance:
     - target: {fileID: 2029856480896452142, guid: 15fe3dadbaf51304eac079b8ae681f26,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5566147146946765730, guid: 15fe3dadbaf51304eac079b8ae681f26,
         type: 3}
@@ -8348,7 +8344,7 @@ PrefabInstance:
     - target: {fileID: 3290560462628128254, guid: b913f75e9028f6846bdc2b960b61a6b8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3321617895203065581, guid: b913f75e9028f6846bdc2b960b61a6b8,
         type: 3}
@@ -8726,16 +8722,14 @@ PlayableDirector:
     value: {fileID: 919132149408820661}
   - key: {fileID: -724133296368156018, guid: 43d1754b610eba546ae4ce084a07fad4, type: 2}
     value: {fileID: 1137181980}
-  - key: {fileID: 5491157672226775240, guid: 43d1754b610eba546ae4ce084a07fad4, type: 2}
-    value: {fileID: 971855322}
   - key: {fileID: 388257228515041410, guid: 43d1754b610eba546ae4ce084a07fad4, type: 2}
     value: {fileID: 1261611803}
-  - key: {fileID: 8160055415288338083, guid: 43d1754b610eba546ae4ce084a07fad4, type: 2}
-    value: {fileID: 968606449}
   - key: {fileID: 5094939238382778605, guid: 43d1754b610eba546ae4ce084a07fad4, type: 2}
     value: {fileID: 1433132084}
   m_ExposedReferences:
-    m_References: []
+    m_References:
+    - a5bc86d160d5fd943b3245a523a6c9e8: {fileID: 968606449}
+    - 27335b4726049374ebd7533686327398: {fileID: 971855322}
 --- !u!114 &1433132084
 MonoBehaviour:
   m_ObjectHideFlags: 0

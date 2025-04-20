@@ -9,7 +9,11 @@ namespace Dajunctic.Scripts.Objects
         public void PlayParticle()
         {
             if (particle != null)
+            {
+                particle.gameObject.SetActive(true);
                 particle.Play();
+            }
+                
         }
 
         public void StopParticle()
