@@ -23,17 +23,19 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySound(TypeSound typeSound)
     {
-        audioSource.Stop();
         var sound = soundObjects.Find(x => x.typeSound == typeSound);
         if (sound is null) return;
-        audioSource.PlayOneShot(sound.audioClip);
+        if (audioSource.isPlaying) audioSource.Stop();
+        audioSource.clip = sound.audioClip;
+        audioSource.loop = false;
+        audioSource.Play();
     }
 
     public void PlayAudioClip(AudioClip clip)
     {
+        if (audioSource.isPlaying) audioSource.Stop();
         if (clip != null)
         {
-            audioSource.Stop();
             audioSource.clip = clip;
             audioSource.loop = false;
             audioSource.Play();
@@ -50,7 +52,7 @@ public class SoundManager : MonoBehaviour
     {
         var sound = soundObjects.Find(x => x.typeSound == typeSound);
         if (sound is null) return;
-        audioSource.Stop();
+        if (audioSource.isPlaying) audioSource.Stop();
         audioSource.loop = true;
         audioSource.clip = sound.audioClip;
         // audioSource.volume = 0.2f;
@@ -71,6 +73,12 @@ public class SoundManager : MonoBehaviour
         var sound = soundObjects.Find(x => x.typeSound == typeSound);
         return sound != null && sound.audioClip != null ? sound.audioClip.length : 0f;
     }
+
+    public bool IsPlaying()
+    {
+        return audioSource.isPlaying;
+    }
+
 }
 
 [Serializable]

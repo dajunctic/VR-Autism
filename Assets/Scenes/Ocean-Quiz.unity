@@ -371,7 +371,7 @@ PrefabInstance:
     - target: {fileID: 7378570275141836586, guid: 4bfcfa6fb891b8c429dc854b8ee54dca,
         type: 3}
       propertyPath: m_BlockingMask.m_Bits
-      value: 255
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

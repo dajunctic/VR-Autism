@@ -126,15 +126,22 @@ public class QuizController : MonoBehaviour
     {
         if (currentQuestion.questionSound != TypeSound.None)
         {
+            Debug.Log("Playing question sound: " + currentQuestion.questionSound);
             soundManager.PlaySound(currentQuestion.questionSound);
-            float soundDuration = soundManager.GetSoundDuration(currentQuestion.questionSound);
-            yield return new WaitForSeconds(soundDuration);
+            //float soundDuration = soundManager.GetSoundDuration(currentQuestion.questionSound);
+            
+            //Debug.Log("Waiting for: " + soundDuration + "s");
+            yield return new WaitUntil(() => !soundManager.IsPlaying());
         }
+
+        yield return new WaitForSeconds(0.5f);
 
         //if (currentQuestion.animalSound != TypeSound.None)
         //{
-            //soundManager.PlaySoundLoop(currentQuestion.animalSound);
-            soundManager.PlaySound(currentQuestion.animalSound);
-       // }
+        //soundManager.PlaySoundLoop(currentQuestion.animalSound);
+        Debug.Log("Playing animal sound: " + currentQuestion.animalSound);
+        soundManager.PlaySound(currentQuestion.animalSound);
+       
+        // }
     }
 }
