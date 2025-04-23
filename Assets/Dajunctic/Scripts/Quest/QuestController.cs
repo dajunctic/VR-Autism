@@ -74,7 +74,7 @@ namespace Dajunctic.Scripts.Quest
             
             if (curQuestId >= quests.Length - 1)
             {
-                congratulationUI.SetActive(true);
+                if (congratulationUI != null) congratulationUI.SetActive(true);
                 this.SendEvent(EventID.ExitScene);
                 isConditionMet.Value = true;
                 return;

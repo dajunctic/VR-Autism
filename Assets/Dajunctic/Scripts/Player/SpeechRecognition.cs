@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Threading.Tasks;
 
 public class SpeechRecognition : MonoBehaviour {
     [SerializeField] private SpeechResponser speechResponser;
@@ -14,43 +15,50 @@ public class SpeechRecognition : MonoBehaviour {
     private AudioClip clip;
     private byte[] bytes;
     private bool recording;
-    
+
+    private void Start()
+    {
+        string[] devices = Microphone.devices;
+        Debug.Log("Available Microphone Devices:");
+        foreach (string device in devices)
+        {
+            Debug.Log("Mic: " + device);
+        }
+    }
+
     public void StartRecording() {
         text.color = Color.white;
         text.text = "Listening...";
         clip = Microphone.Start(null, true, clipLengthCycle, 44100);
         recording = true;
-        StartCoroutine(SendRecordingPeriodically());
+        recording = true;
+        lastSamplePosition = 0;
+        StartCoroutine(CaptureAudioLoop());
     }
-
-    private void StopRecordingAndRestart() {
-        if (clip == null || clip.samples == 0) {
-            Debug.LogError("AudioClip is null or has no data!");
-            return;
-        }
-
-        int position = Microphone.GetPosition(null);
-        if (position <= 0) {
-            // Debug.LogError("Microphone position is invalid!");
-            return;
-        }
-
-        Microphone.End(null);
     
-        int sampleCount = Math.Min(position * clip.channels, clip.samples);
-        float[] samples = new float[sampleCount];
+    private int lastSamplePosition = 0;
+    private const int sampleRate = 44100;
+    private const int bufferSeconds = 10;
 
-        try {
-            clip.GetData(samples, 0);
-        } catch (Exception e) {
-            Debug.LogError("Error getting audio data: " + e.Message);
-            return;
+    private IEnumerator CaptureAudioLoop() {
+        while (recording) {
+            yield return new WaitForSeconds(checkInterval);
+
+            int currentPosition = Microphone.GetPosition(null);
+            int samplesToRead = currentPosition - lastSamplePosition;
+            if (samplesToRead < 0) {
+                // Đã loop buffer
+                samplesToRead += bufferSeconds * sampleRate;
+            }
+
+            float[] samples = new float[samplesToRead];
+            clip.GetData(samples, lastSamplePosition);
+
+            lastSamplePosition = currentPosition;
+
+            byte[] encoded = EncodeAsWAV(samples, sampleRate, clip.channels);
+            StartCoroutine(SendRecordingCoroutine(encoded)); // async
         }
-
-        bytes = EncodeAsWAV(samples, clip.frequency, clip.channels);
-        recording = false;
-        SendRecording();
-        StartRecording();
     }
 
     public void StopRecording()
@@ -58,26 +66,36 @@ public class SpeechRecognition : MonoBehaviour {
         recording = false;
         Microphone.End(null);
     }
-
-    private IEnumerator SendRecordingPeriodically() {
-        while (recording) {
-            yield return new WaitForSeconds(checkInterval);
-            StopRecordingAndRestart();
-        }
-    }
-
-    private void SendRecording() {
+    
+    private IEnumerator SendRecordingCoroutine(Byte[] bytess) {
         text.color = Color.yellow;
         text.text = "Processing...";
-        HuggingFaceAPI.AutomaticSpeechRecognition(bytes, response => {
-            text.color = Color.white;
-            text.text = response;
-            AnalyzeSpeech(response);
+
+        bool done = false;
+        string responseText = "";
+        string errorText = "";
+
+        HuggingFaceAPI.AutomaticSpeechRecognition(bytess, response => {
+            responseText = response;
+            done = true;
         }, error => {
-            Debug.LogError(error);
-            text.color = Color.red;
-            text.text = error;
+            errorText = error;
+            done = true;
         });
+
+        while (!done) {
+            yield return null; // đợi frame sau
+        }
+
+        if (!string.IsNullOrEmpty(errorText)) {
+            Debug.LogError(errorText);
+            text.color = Color.red;
+            text.text = errorText;
+        } else {
+            text.color = Color.white;
+            text.text = responseText;
+            AnalyzeSpeech(responseText);
+        }
     }
 
     private void AnalyzeSpeech(string speech) {
