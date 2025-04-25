@@ -614,6 +614,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameover: {fileID: 6131206875481359396}
+  timeManager: {fileID: 0}
+  introAudioClip: {fileID: 0}
   quizConfigName: GrasslandQuizConfig
   nextQuestionButton: {fileID: 4543209651173175465}
 --- !u!114 &3875459433395867494
@@ -795,7 +797,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4649771544085698318}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.000040357}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -804,8 +806,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1203, y: -268}
-  m_SizeDelta: {x: 340.3, y: 174.9}
+  m_AnchoredPosition: {x: 1358.8, y: -202.73}
+  m_SizeDelta: {x: 651.9, y: 305.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5978011471623982709
 CanvasRenderer:
@@ -2736,8 +2738,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
