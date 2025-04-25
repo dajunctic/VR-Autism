@@ -7175,7 +7175,7 @@ MonoBehaviour:
   endSound: 3
   timeIntroSound: 6.9
   mainCamera: {fileID: 1940266057}
-  cameraMoveSpeed: 2
+  cameraMoveSpeed: 1.2
   rootPosition: {fileID: 183032855}
   isInVR: 1
   offsetVR: {x: 0, y: -1.1, z: 0}
