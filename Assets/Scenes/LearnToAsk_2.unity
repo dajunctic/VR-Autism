@@ -2438,6 +2438,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1061610102}
+  - {fileID: 1047925798}
   - {fileID: 1658387842}
   - {fileID: 1557223272}
   - {fileID: 1316607390}
@@ -2455,7 +2456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 594251787b7580c439321879b35a9b30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speechResponser: {fileID: 1658387841}
+  speechResponser: {fileID: 1047925799}
   text: {fileID: 1494399995}
   clipLengthCycle: 15
   checkInterval: 6
@@ -2613,6 +2614,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 11400000, guid: 71a3d7d0fca1d1847a300509cd3a4754, type: 2}
+          m_TargetAssemblyTypeName: Dajunctic.Scripts.Events.BooleanVariable, Assembly-CSharp
+          m_MethodName: set_Value
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     onFinished:
       m_PersistentCalls:
         m_Calls: []
@@ -2646,6 +2659,35 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     isConditionMet: {fileID: 0}
+  - name: "Gi\u1EDBi thi\u1EC7u 2"
+    on: 1
+    onSendData: 0
+    duration: 3
+    onStart:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1417027144}
+          m_TargetAssemblyTypeName: Dajunctic.Scripts.NPC.NPCController, Assembly-CSharp
+          m_MethodName: SaySomething
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 3
+            m_FloatArgument: 0
+            m_StringArgument: "H\xE3y n\xF3i y h\u1EC7t t\xF4i nh\u01B0 sau: \"Xin
+              ch\xE0o c\xE1c em, c\xF4 t\xEAn l\xE0 Thanh. H\xF4m nay ch\xFAng ta
+              h\xE3y gi\u1EDBi thi\u1EC7u v\xE0 l\xE0m quen nhau nh\xE9. B\xE2y gi\u1EDD
+              c\xE1c b\u1EA1n h\xE3y \u0111\u1EE9ng l\xEAn b\u1EE5c v\xE0 gi\u1EDBi
+              thi\u1EC7u v\u1EC1 t\xEAn, tu\u1ED5i v\xE0 s\u1EDF th\xEDch c\u1EE7a
+              b\u1EA3n th\xE2n nh\xE9. \u0110\u1EA7u ti\xEAn, c\xF4 m\u1EDDi b\u1EA1n
+              Nam\"."
+            m_BoolArgument: 0
+          m_CallState: 2
+    onFinished:
+      m_PersistentCalls:
+        m_Calls: []
+    isConditionMet: {fileID: 0}
   - name: "B\u1EA1n Nam gi\u1EDBi thi\u1EC7u"
     on: 0
     onSendData: 0
@@ -2653,6 +2695,18 @@ MonoBehaviour:
     onStart:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 1417027144}
+          m_TargetAssemblyTypeName: Dajunctic.Scripts.NPC.NPCController, Assembly-CSharp
+          m_MethodName: SaySomething
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 4
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 405125983}
           m_TargetAssemblyTypeName: UnityEngine.Playables.PlayableDirector, UnityEngine
           m_MethodName: Play
@@ -2740,25 +2794,13 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
     isConditionMet: {fileID: 11400000, guid: 15707155b79bdaa4ebc209d7a4c849b9, type: 2}
-  - name: "Gi\u1EDBi thi\u1EC7u t\xEAn"
+  - name: "Xin ch\xE0o"
     on: 1
     onSendData: 1
     duration: 0
     onStart:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1658387841}
-          m_TargetAssemblyTypeName: SpeechResponser, Assembly-CSharp
-          m_MethodName: StartResponse
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 506044688}
           m_TargetAssemblyTypeName: SpeechRecognition, Assembly-CSharp
           m_MethodName: StartRecording
@@ -2771,10 +2813,81 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1047925799}
+          m_TargetAssemblyTypeName: SpeechResponser, Assembly-CSharp
+          m_MethodName: StartResponse
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     onFinished:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1658387841}
+        - m_Target: {fileID: 1047925799}
+          m_TargetAssemblyTypeName: SpeechResponser, Assembly-CSharp
+          m_MethodName: StopResponse
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 11400000, guid: 372d23cc1eaf77c4693fa9c7d501f0cf, type: 2}
+          m_TargetAssemblyTypeName: Dajunctic.Scripts.Events.BooleanVariable, Assembly-CSharp
+          m_MethodName: set_Value
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    isConditionMet: {fileID: 11400000, guid: 71a3d7d0fca1d1847a300509cd3a4754, type: 2}
+  - name: "Gi\u1EDBi thi\u1EC7u t\xEAn"
+    on: 1
+    onSendData: 1
+    duration: 0
+    onStart:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 506044688}
+          m_TargetAssemblyTypeName: SpeechRecognition, Assembly-CSharp
+          m_MethodName: SetSpeechResponser
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1658387841}
+            m_ObjectArgumentAssemblyTypeName: SpeechResponser, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1658387840}
+          m_TargetAssemblyTypeName: SpeechResponser, Assembly-CSharp
+          m_MethodName: StartResponse
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    onFinished:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1658387840}
           m_TargetAssemblyTypeName: SpeechResponser, Assembly-CSharp
           m_MethodName: StopResponse
           m_Mode: 1
@@ -34700,6 +34813,60 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025955335}
   m_Mesh: {fileID: 5454144085375349945, guid: 68ed229a1578d6a438d82a545f652616, type: 3}
+--- !u!1 &1047925797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1047925798}
+  - component: {fileID: 1047925799}
+  m_Layer: 0
+  m_Name: HelloSpeechResponser
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1047925798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047925797}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 506044687}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1047925799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047925797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba743457ed6a32f4f90b843801cff7ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBeforePrompt: 15
+  finishCondition: {fileID: 11400000, guid: 71a3d7d0fca1d1847a300509cd3a4754, type: 2}
+  hintCount: {fileID: 11400000, guid: c854ceea369507c4b99c5e5fb7ed0666, type: 2}
+  speechCategories:
+  - key: "ch\xE0o,hai,h\xEA l\xE2u,h\xEA l\xF4,h\u1EBF,h\xEA,l\xF4,hello"
+    audios:
+    - {fileID: 8300000, guid: d67455742f1cad8449dacda7a76e9c6e, type: 3}
+    - {fileID: 8300000, guid: 602dcfc8e94794241b3963c8cd56084b, type: 3}
+    - {fileID: 8300000, guid: 554a1209196f708448eb2d185a561525, type: 3}
+    hasSpoken: 0
 --- !u!1 &1059948408
 GameObject:
   m_ObjectHideFlags: 0
@@ -34978,7 +35145,7 @@ PrefabInstance:
     - target: {fileID: 627763939439603757, guid: b913f75e9028f6846bdc2b960b61a6b8,
         type: 3}
       propertyPath: m_TurnSpeed
-      value: 15
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3290560462628128254, guid: b913f75e9028f6846bdc2b960b61a6b8,
         type: 3}
@@ -36571,11 +36738,11 @@ MonoBehaviour:
   finishCondition: {fileID: 11400000, guid: 07e61450a8326bd40a69c858ff9af2f0, type: 2}
   hintCount: {fileID: 11400000, guid: c854ceea369507c4b99c5e5fb7ed0666, type: 2}
   speechCategories:
-  - key: "th\xEDch,mu\u1ED1n,ch\u01A1i,th\u01B0\u1EDDng"
+  - key: "th\xEDch,mu\u1ED1n,ch\u01A1i,th\u01B0\u1EDDng,l\xE0m"
     audios:
-    - {fileID: 8300000, guid: be88313b89b7c9848bf7b0c2518cb778, type: 3}
-    - {fileID: 8300000, guid: 1d594f063a1f9ae478b4ccec72e2a324, type: 3}
-    - {fileID: 8300000, guid: eb898e91853af384a892649746f3bc34, type: 3}
+    - {fileID: 8300000, guid: 73144907195cc0f43ae8a642f1230b5c, type: 3}
+    - {fileID: 8300000, guid: cb740b79259de5a4db02948eeed94d89, type: 3}
+    - {fileID: 8300000, guid: 82e671e4a6977084998b5b63d32cb01e, type: 3}
     hasSpoken: 0
 --- !u!4 &1316607390
 Transform:
@@ -37207,10 +37374,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2b572d8eed261584dacf8d24806c79b0, type: 3}
   - {fileID: 8300000, guid: 2ac6a836ed07a93489765ab5cda7571d, type: 3}
   - {fileID: 8300000, guid: 990faf17fded01e4d99461092673427c, type: 3}
+  - {fileID: 8300000, guid: 609a1b4c9680d954ca80e2f947debd7c, type: 3}
   reminders:
   - {fileID: 11400000, guid: 61989c1b0cce329429d1a69119140ee6, type: 2}
   hintCount: {fileID: 11400000, guid: c854ceea369507c4b99c5e5fb7ed0666, type: 2}
   speechResponser:
+  - {fileID: 1047925799}
   - {fileID: 1658387841}
   - {fileID: 1557223273}
   - {fileID: 1316607389}
@@ -38502,9 +38671,9 @@ MonoBehaviour:
   speechCategories:
   - key: "tu\u1ED5i,m\u1ED9t,hai,ba,b\u1ED1n,n\u0103m,s\xE1u,b\u1EA3y,t\xE1m,ch\xEDn,m\u01B0\u1EDDi"
     audios:
-    - {fileID: 8300000, guid: 181582f987554f94ab4b033ab64a625b, type: 3}
+    - {fileID: 8300000, guid: 6b11562f13a1ad349b6c189546880b47, type: 3}
     - {fileID: 8300000, guid: f50622de2f6b6604ebc81b396d1daf5f, type: 3}
-    - {fileID: 8300000, guid: 34f3e207c65bf1442bea35f890b0ba41, type: 3}
+    - {fileID: 8300000, guid: 946b236e12b29854190e601142efbfdb, type: 3}
     hasSpoken: 0
 --- !u!1 &1584909664
 GameObject:
@@ -38954,9 +39123,9 @@ MonoBehaviour:
   speechCategories:
   - key: "t\xEAn,con l\xE0,em l\xE0,t\xF4i l\xE0"
     audios:
-    - {fileID: 8300000, guid: 7a837d599c5dc5c449158f74cbe7f811, type: 3}
-    - {fileID: 8300000, guid: eb1046aea5181014b94ef88859a2ecfd, type: 3}
-    - {fileID: 8300000, guid: e671fd892b3a21447a66b5fc41fa8dec, type: 3}
+    - {fileID: 8300000, guid: 8fc3b8832e2d9664b8027c1850536cd4, type: 3}
+    - {fileID: 8300000, guid: 5f7c5ebee807e884bb0fdd7ef75f312a, type: 3}
+    - {fileID: 8300000, guid: b07a5890a40bb7f44b635568010f8bf3, type: 3}
     hasSpoken: 0
 --- !u!4 &1658387842
 Transform:
